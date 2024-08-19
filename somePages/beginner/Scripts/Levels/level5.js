@@ -48,7 +48,7 @@ const quizData = [
   explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
-    question: "Bahasa Inggrisnya 'Pagi'",
+    question: "",
     a: "Morning",
     b: "Noon",
     c: "Afternoon",

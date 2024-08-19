@@ -70,6 +70,10 @@ h2, label,p ,input {
   color: white;
 }
 
+#subm, explanation {
+  position:relative;
+  top:20px
+}
 
 h2 {
   text-align: center;

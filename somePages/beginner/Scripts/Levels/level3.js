@@ -270,7 +270,7 @@ submit.addEventListener("click",() => {
 
       currentScore++
     } else {
-      explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
+      explanation.innerHTML = `<b><br>Explanasi: ${quizData[currentQuiz].explanation}</b>`
       labelOption.setAttribute("style","color:rgb(255,0,0)")
       correctOption.setAttribute("style","color:rgb(0,255,0)")
       labelOption.innerText += " ❌"
@@ -335,6 +335,7 @@ submit.addEventListener("click",() => {
     </button></center>`
         agj.innerHTML = "Sangat Baik A+"
       }
+      agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore/quizData.length*100).."%"
     }
   }
 }})

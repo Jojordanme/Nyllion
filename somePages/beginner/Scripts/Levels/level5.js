@@ -45,64 +45,18 @@ const quizData = [
     c: "were",
     d: "was",
     correct: "c",
-  explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
+    explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
-    question: "",
-    a: "Morning",
-    b: "Noon",
-    c: "Afternoon",
-    d: "Night",
-    correct: "a",
-    explanation: "Bahasa Inggris dari 'Pagi' adalah 'Morning'",
-  },
-  {
-    question: "",
-    a: "No",
-    b: "Never",
-    c: "Yes",
-    d: "Yet",
-    correct: "c",
-    explanation: "Bahasa Inggris dari 'iya' adalah 'yes'",
-  },
-  {
-    question: "Devon __ decent at math",
-    a: "Is",
-    b: "Pencil",
-    c: "Are",
-    d: "Were",
-    correct: "a",
-    explanation: "Kata 'is' digunakan untuk 1 orang saja, Sehingga kata 'Are' dan 'Were' untuk 2 atau lebih orang",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Siang'",
-    a: "Evening",
-    b: "Afternoon",
-    c: "Night",
-    d: "Noon",
-    correct: "d",
-    explanation: "'Evening' arti setelah sore. 'Afternoon' arti dalam waktu sore. 'Night'arti malam. 'Noon' arti siang ",
-  },
-
-  {
-    question: "Bahasa Inggrisnya 'Kenapa?'",
-    a: "Why?",
-    b: "Who?",
-    c: "Where?",
-    d: "How?",
-    correct: "a",
-    explanation: "Kata 'Kenapa' artinya 'Why'",
-  },
-  {
-    question: "They ___ winning!",
+    question: "I ___ just about to take out the trash",
     a: "is",
     b: "are",
-    c: "was",
-    d: "Semua jawaban salah",
-    correct: "b",
-
-    explanation: "Kata 'Are' digunakan untuk 2 atau lebih orang. 'Is' untuk 1 orang.",
+    c: "were",
+    d: "was",
+    correct: "d",
+    explanation: "...",
   },
+ 
 ];
 
 const quizData2 = []
@@ -203,85 +157,28 @@ function setaquestionanumberthingy(idx) {
 // 2,3
 const test = document.getElementById("test")
 
-function loadQuiz() {
+function loadQuiz(){
   deselectAnswers()
-  if (questiontext) { questiontext.setAttribute("style", "color:white") }
+  if (questiontext){questiontext.setAttribute("style","color:white")}
 
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
   answers.forEach(answer => {
-    answer.disabled = false;
-  })
+      answer.disabled = false;
+    })
   if (currentQuiz == quizData.length - 1) {
     count.style.color = "red"
 
   } else {
     count.style.color = "white"
   }
-  esay.value = ''
-  if (currentQuize.a) {
-    test.innerHTML = `<ul>
-        <li>
-         <div class="radio">
-           <input type="radio" name="answer" id="a" class="answer" checked>
-          <label for="a" id="a_text" class="radio-label">Question</label>
-         </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="b" class="answer">
-          <label for="b" id="b_text" class="radio-label">Question</label>
-          </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="c" class="answer">
-          <label for="c" id="c_text" class="radio-label">Question</label>
-          </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="d" class="answer">
-          <label for="d" id="d_text" class="radio-label">Question</label>
-          </div>
-
-
-        </li>
-      </ul>`
-    opt1 = document.getElementById("a_text")
-    opt2 = document.getElementById("b_text")
-    opt3 = document.getElementById("c_text")
-    opt4 = document.getElementById("d_text")
-    answers = document.querySelectorAll(".answer")
-    esay.classList.add("hide")
-
-    opt1.classList.remove("hide")
-    opt2.classList.remove("hide")
-    opt3.classList.remove("hide")
-    opt4.classList.remove("hide")
-    opt1.innerText = currentQuize.a
-    opt2.innerText = currentQuize.b
-    opt3.innerText = currentQuize.c
-    opt4.innerText = currentQuize.d
-
-  } else {
-    console.log("no")
-    esay.classList.remove("hide")
-
-    opt1.classList.add("hide")
-    opt2.classList.add("hide")
-    opt3.classList.add("hide")
-    opt4.classList.add("hide")
-    test.innerHTML = ""
-
-  }
-
+  opt1.innerText = currentQuize.a
+  opt2.innerText = currentQuize.b
+  opt3.innerText = currentQuize.c
+  opt4.innerText = currentQuize.d
   explanation.innerHTML = ""
-  submit.innerHTML = `<span class="button-pathway-shadow"></span>
+    submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
       <span class="button-pathway-front text" style="background-color:rgb(0,180,0)!important">
         <b>Check</b>

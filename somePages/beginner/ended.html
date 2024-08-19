@@ -6,9 +6,9 @@
 </head>
 <body>
   <center><h1>Test ended</h1></center>
-    <center><p class="errorPara">Test ended due to tab switching
+    <center><p class="errorPara">Sus banget
     </p>
-      <p class="errorPara">During the test, We did not allow students to switch tabs
+      <p class="errorPara" id="randomTextIG">Jangan buka tab lain
         </p>
     <img src="This tab.png" width="500px" height="450px">
     </center>
@@ -19,5 +19,9 @@
       <b>Back</b>
     </span>
   </button></center>
+  <script>
+    const text = ["Jangan buka tab lain","-999,999 aura","Fokus lah","Jangan buka tab lain karena anda sedang belajar"]
+    document.getElementByID("randomTextIG").innerHTML = text[Math.floor(Math.random() * text.length)]
+  </script>
 </body>
 </html>

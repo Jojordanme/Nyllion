@@ -335,7 +335,7 @@ submit.addEventListener("click",() => {
     </button></center>`
         agj.innerHTML = "Sangat Baik A+"
       }
-      agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore/quizData.length*100).."%"
+      agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore/quizData.length*100) + "%"
     }
   }
 }})

@@ -204,23 +204,80 @@ setaquestionanumberthingy(8) // question number 9
 function loadQuiz(){
   deselectAnswers()
   if (questiontext){questiontext.setAttribute("style","color:white")}
-  
+
   const currentQuize = quizData[currentQuiz]
+  questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
-  if (currentQuiz == quizData.length - 1) {
-    count.style.color = "red"
-    
-  } else {
-    count.style.color = "white"
-  }
   answers.forEach(answer => {
       answer.disabled = false;
     })
-  questiontext.innerText = currentQuize.question
-  opt1.innerText = currentQuize.a
-  opt2.innerText = currentQuize.b
-  opt3.innerText = currentQuize.c
-  opt4.innerText = currentQuize.d
+  if (currentQuiz == quizData.length - 1) {
+    count.style.color = "red"
+
+  } else {
+    count.style.color = "white"
+  }
+  esay.value = ''
+  if (currentQuize.a){
+    test.innerHTML = `<ul>
+        <li>
+         <div class="radio">
+           <input type="radio" name="answer" id="a" class="answer" checked>
+          <label for="a" id="a_text" class="radio-label">Question</label>
+         </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="b" class="answer">
+          <label for="b" id="b_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="c" class="answer">
+          <label for="c" id="c_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="d" class="answer">
+          <label for="d" id="d_text" class="radio-label">Question</label>
+          </div>
+
+
+        </li>
+      </ul>`
+    opt1 = document.getElementById("a_text")
+    opt2 = document.getElementById("b_text")
+    opt3 = document.getElementById("c_text")
+    opt4 = document.getElementById("d_text")
+    answers = document.querySelectorAll(".answer")
+    esay.classList.add("hide")
+
+    opt1.classList.remove("hide")
+    opt2.classList.remove("hide")
+    opt3.classList.remove("hide")
+    opt4.classList.remove("hide")
+    opt1.innerText = currentQuize.a
+    opt2.innerText = currentQuize.b
+    opt3.innerText = currentQuize.c
+    opt4.innerText = currentQuize.d
+
+  } else {
+    console.log("no")
+    esay.classList.remove("hide")
+
+    opt1.classList.add("hide")
+    opt2.classList.add("hide")
+    opt3.classList.add("hide")
+    opt4.classList.add("hide")
+    test.innerHTML=""
+
+  }
+
   explanation.innerHTML = ""
     submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>

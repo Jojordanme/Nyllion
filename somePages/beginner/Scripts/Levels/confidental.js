@@ -12,17 +12,7 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "Objek apa yang ada di gambar ini",
-    image:"l.jpg",
-    a: "Apple",
-    b: "Strawberry",
-    c: "Travies Mewing",
-    d: "Matpat",
-    correct: "c",
-    explanation: "skill issue",
-  },
-  {
-    question: "",
+    question: "jawab 'd'",
     a: "is",
     b: "are",
     c: "were",
@@ -31,13 +21,24 @@ const quizData = [
     explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
+    question: "Objek apa yang ada di gambar ini",
+    image: "l.jpg",
+    a: "Apple",
+    b: "Strawberry",
+    c: "Travies Mewing",
+    d: "Matpat",
+    correct: "c",
+    explanation: "skill issue",
+  },
+ 
+  {
     question: `Falco and Travies ___ the smart kids at school`,
     a: "is",
     b: "are",
     c: "were",
     d: "was",
 
-    
+
     correct: "b",
     explanation: "'Is' itu buat satu subjek. Walau 'Are' itu buat dua atau lebih subjek. Kalau 'was' dan 'were' itu sama seperti 'is' dan 'are' tetapi buat masa lalu atau 'Past tense'",
   },
@@ -59,7 +60,7 @@ const quizData = [
     correct: "d",
     explanation: "...",
   },
- 
+
 ];
 
 
@@ -160,16 +161,16 @@ function setaquestionanumberthingy(idx) {
 
 // 2,3
 const test = document.getElementById("test")
-function loadQuiz(){
+function loadQuiz() {
   deselectAnswers()
-  if (questiontext){questiontext.setAttribute("style","color:white")}
+  if (questiontext) { questiontext.setAttribute("style", "color:white") }
 
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
   answers.forEach(answer => {
-      answer.disabled = false;
-    })
+    answer.disabled = false;
+  })
   if (currentQuiz == quizData.length - 1) {
     count.style.color = "red"
 
@@ -177,7 +178,7 @@ function loadQuiz(){
     count.style.color = "white"
   }
   esay.value = ''
-  if (currentQuize.a){
+  if (currentQuize.a) {
     test.innerHTML = `<ul>
         <li>
          <div class="radio">
@@ -233,15 +234,18 @@ function loadQuiz(){
     opt2.classList.add("hide")
     opt3.classList.add("hide")
     opt4.classList.add("hide")
-    test.innerHTML=""
+    test.innerHTML = ""
 
   }
   if (currentQuize.image) {
+    document.getElementById("imageTag").classList.remove("hide")
     document.getElementById("imageTag").setAttribute("src", "Scripts/Levels/Images/" + currentQuize.image)
+  } else {
+    document.getElementById("imageTag").classList.add("hide")
   }
 
   explanation.innerHTML = ""
-    submit.innerHTML = `<span class="button-pathway-shadow"></span>
+  submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
       <span class="button-pathway-front text" style="background-color:rgb(0,180,0)!important">
         <b>Check</b>

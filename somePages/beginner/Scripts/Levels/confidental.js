@@ -32,15 +32,16 @@ const quizData = [
   },
  
   {
-    question: `Falco and Travies ___ the smart kids at school`,
-    a: "is",
-    b: "are",
-    c: "were",
-    d: "was",
+    question: `what logo is thi?`,
+    image: "laga.png",
+    a: "Nike",
+    b: "Crocs",
+    c: "Gabriel Matthew",
+    d: "Nyllion",
 
 
-    correct: "b",
-    explanation: "'Is' itu buat satu subjek. Walau 'Are' itu buat dua atau lebih subjek. Kalau 'was' dan 'were' itu sama seperti 'is' dan 'are' tetapi buat masa lalu atau 'Past tense'",
+    correct: "d",
+    explanation: "HOW DID YOU NOT KNOW THIS YOU MORON IT LITERALLY SAYS IN THE LOGO LIKE HOW grrrrrrr",
   },
   {
     question: `They ____ eliminated in the laser tag game`,

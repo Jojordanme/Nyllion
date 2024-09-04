@@ -12,37 +12,37 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "Identify the object in the image",
+    question: "Identifikasikan gambar tersebut!",
     image:'apple.png',
     a: "pencil",
     b: "strawberry",
     c: "mango",
     d: "apple",
     correct: "d",
-    explanation: "Ini adalah gambar apel, Apel merupakan arti dari bahasa inggris 'Apple'",
+    explanation: "Gambar tersebut merupakan apel, Apel merupakan arti dari bahasa inggris 'Apple'",
   },
   {
-    question: "Identify the object in the image",
-    image: "durian.png",
-    a: "Apple",
-    b: "Durian",
-    c: "Mango",
-    d: "Pineapple",
-    correct: "b",
-    explanation: "skill issue",
+    question: "Damien is eating ___.",
+    image: "damien1.png",
+    a: "Vegetables",
+    b: "Soup",
+    c: "Fruits",
+    d: "Candy",
+    correct: "a",
+    explanation: "Gambar tersebut mensimbolkan merupakan Damien memakan sayuran. ",
   },
 
   {
-    question: `what logo is this?`,
-    image: "laga.png",
-    a: "Nike",
-    b: "Crocs",
-    c: "Gabriel Matthew",
-    d: "Nyllion",
+    question: `Thomas and Kate are watching at a _______`,
+    image: "Untitled design (1).gif",
+    a: "Theatre",
+    b: "Café",
+    c: "Park",
+    d: "Office",
 
 
-    correct: "d",
-    explanation: "HOW DID YOU NOT KNOW THIS YOU MORON IT LITERALLY SAYS IN THE LOGO LIKE HOW grrrrrrr",
+    correct: "a",
+    explanation: "Gambar tersebut mensimbolkan sebuah Bioskop yang ditonton oleh Thomas dan Kate. Ciri-ciri Bioskop merupakan adanya kursi merah dan adanya layar untuk menonton filem diinginkan",
   },
   {
     question: `They ____ eliminated in the laser tag game`,
@@ -85,6 +85,22 @@ const explanation = document.getElementById("explanation")
 let currentScore = 0
 let currentQuiz = 0
 let phase = 0
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
 
 function setaquestionanumberthingy(idx) {
   const number = Math.floor(Math.random() * 31)
@@ -161,6 +177,10 @@ function setaquestionanumberthingy(idx) {
 
 }
 
+
+function deselectAnswers() {
+  answers.forEach(answer => answer.checked = false)
+}
 // 2,3
 const test = document.getElementById("test")
 function loadQuiz() {
@@ -223,11 +243,13 @@ function loadQuiz() {
     opt2.classList.remove("hide")
     opt3.classList.remove("hide")
     opt4.classList.remove("hide")
+
+
     opt1.innerText = currentQuize.a
     opt2.innerText = currentQuize.b
     opt3.innerText = currentQuize.c
     opt4.innerText = currentQuize.d
-
+    
   } else {
     console.log("no")
     esay.classList.remove("hide")
@@ -266,9 +288,12 @@ function getSelected() {
   return answer
 }
 
-function deselectAnswers() {
-  answers.forEach(answer => answer.checked = false)
+
+
+function filterCharacter(inputString, characterToFilter) {
+    return inputString.split(characterToFilter).join('');
 }
+
 
 loadQuiz()
 let ansuorOpt

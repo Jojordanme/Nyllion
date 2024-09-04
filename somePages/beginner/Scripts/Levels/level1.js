@@ -106,7 +106,6 @@ const quizData = [
 const quizData2 = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
-const esay = document.getElementById("essay")
 
 const count = document.getElementById("counter")
 const questiontext = document.getElementById("question")
@@ -219,67 +218,10 @@ function loadQuiz(){
   } else {
     count.style.color = "white"
   }
-  esay.value = ''
-  if (currentQuize.a){
-    test.innerHTML = `<ul>
-        <li>
-         <div class="radio">
-           <input type="radio" name="answer" id="a" class="answer" checked>
-          <label for="a" id="a_text" class="radio-label">Question</label>
-         </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="b" class="answer">
-          <label for="b" id="b_text" class="radio-label">Question</label>
-          </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="c" class="answer">
-          <label for="c" id="c_text" class="radio-label">Question</label>
-          </div>
-
-        </li>
-        <li>
-          <div class="radio">
-            <input type="radio" name="answer" id="d" class="answer">
-          <label for="d" id="d_text" class="radio-label">Question</label>
-          </div>
-
-
-        </li>
-      </ul>`
-    opt1 = document.getElementById("a_text")
-    opt2 = document.getElementById("b_text")
-    opt3 = document.getElementById("c_text")
-    opt4 = document.getElementById("d_text")
-    answers = document.querySelectorAll(".answer")
-    esay.classList.add("hide")
-
-    opt1.classList.remove("hide")
-    opt2.classList.remove("hide")
-    opt3.classList.remove("hide")
-    opt4.classList.remove("hide")
-    opt1.innerText = currentQuize.a
-    opt2.innerText = currentQuize.b
-    opt3.innerText = currentQuize.c
-    opt4.innerText = currentQuize.d
-
-  } else {
-    console.log("no")
-    esay.classList.remove("hide")
-
-    opt1.classList.add("hide")
-    opt2.classList.add("hide")
-    opt3.classList.add("hide")
-    opt4.classList.add("hide")
-    test.innerHTML=""
-
-  }
-
+  opt1.innerText = currentQuize.a
+  opt2.innerText = currentQuize.b
+  opt3.innerText = currentQuize.c
+  opt4.innerText = currentQuize.d
   explanation.innerHTML = ""
     submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
@@ -288,7 +230,6 @@ function loadQuiz(){
       </span>`
   canActive = true
 }
-
 function getSelected(){
   let answer
   answers.forEach(answerd => {

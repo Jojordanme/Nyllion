@@ -106,6 +106,8 @@ const quizData = [
 const quizData2 = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
+const esay = document.getElementById("essay")
+
 const count = document.getElementById("counter")
 const questiontext = document.getElementById("question")
 const opt1 = document.getElementById("a_text")

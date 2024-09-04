@@ -12,33 +12,37 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "He ___ really good at the game",
-    a: "is",
-    b: "are",
-    c: "were",
-    d: "was",
+    question: "Identify the object in the image",
+    image:'apple.png',
+    a: "pencil",
+    b: "strawberry",
+    c: "mango",
+    d: "apple",
     correct: "d",
-    explanation: "Ini adalah past tense karena verb tersebut memakai versi 2 verb nya",
+    explanation: "Ini adalah gambar apel, Apel merupakan arti dari bahasa inggris 'Apple'",
   },
   {
-    question: "",
-    a: "is",
-    b: "are",
-    c: "were",
-    d: "was",
-    correct: "d",
-    explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
-  },
-  {
-    question: `Falco and Travies ___ the smart kids at school`,
-    a: "is",
-    b: "are",
-    c: "were",
-    d: "was",
-
-    
+    question: "Identify the object in the image",
+    image: "durian.png",
+    a: "Apple",
+    b: "Durian",
+    c: "Mango",
+    d: "Pineapple",
     correct: "b",
-    explanation: "'Is' itu buat satu subjek. Walau 'Are' itu buat dua atau lebih subjek. Kalau 'was' dan 'were' itu sama seperti 'is' dan 'are' tetapi buat masa lalu atau 'Past tense'",
+    explanation: "skill issue",
+  },
+
+  {
+    question: `what logo is this?`,
+    image: "laga.png",
+    a: "Nike",
+    b: "Crocs",
+    c: "Gabriel Matthew",
+    d: "Nyllion",
+
+
+    correct: "d",
+    explanation: "HOW DID YOU NOT KNOW THIS YOU MORON IT LITERALLY SAYS IN THE LOGO LIKE HOW grrrrrrr",
   },
   {
     question: `They ____ eliminated in the laser tag game`,
@@ -58,8 +62,9 @@ const quizData = [
     correct: "d",
     explanation: "...",
   },
- 
+
 ];
+
 
 const quizData2 = []
 let canActive = true
@@ -158,29 +163,91 @@ function setaquestionanumberthingy(idx) {
 
 // 2,3
 const test = document.getElementById("test")
-
-function loadQuiz(){
+function loadQuiz() {
   deselectAnswers()
-  if (questiontext){questiontext.setAttribute("style","color:white")}
+  if (questiontext) { questiontext.setAttribute("style", "color:white") }
 
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
   answers.forEach(answer => {
-      answer.disabled = false;
-    })
+    answer.disabled = false;
+  })
   if (currentQuiz == quizData.length - 1) {
     count.style.color = "red"
 
   } else {
     count.style.color = "white"
   }
-  opt1.innerText = currentQuize.a
-  opt2.innerText = currentQuize.b
-  opt3.innerText = currentQuize.c
-  opt4.innerText = currentQuize.d
+  esay.value = ''
+  if (currentQuize.a) {
+    test.innerHTML = `<ul>
+        <li>
+         <div class="radio">
+           <input type="radio" name="answer" id="a" class="answer" checked>
+          <label for="a" id="a_text" class="radio-label">Question</label>
+         </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="b" class="answer">
+          <label for="b" id="b_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="c" class="answer">
+          <label for="c" id="c_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="d" class="answer">
+          <label for="d" id="d_text" class="radio-label">Question</label>
+          </div>
+
+
+        </li>
+      </ul>`
+    opt1 = document.getElementById("a_text")
+    opt2 = document.getElementById("b_text")
+    opt3 = document.getElementById("c_text")
+    opt4 = document.getElementById("d_text")
+    answers = document.querySelectorAll(".answer")
+    esay.classList.add("hide")
+
+    opt1.classList.remove("hide")
+    opt2.classList.remove("hide")
+    opt3.classList.remove("hide")
+    opt4.classList.remove("hide")
+    opt1.innerText = currentQuize.a
+    opt2.innerText = currentQuize.b
+    opt3.innerText = currentQuize.c
+    opt4.innerText = currentQuize.d
+
+  } else {
+    console.log("no")
+    esay.classList.remove("hide")
+
+    opt1.classList.add("hide")
+    opt2.classList.add("hide")
+    opt3.classList.add("hide")
+    opt4.classList.add("hide")
+    test.innerHTML = ""
+
+  }
+  if (currentQuize.image) {
+    document.getElementById("imageTag").classList.remove("hide")
+    document.getElementById("imageTag").setAttribute("src", "Scripts/Levels/Images/" + currentQuize.image)
+  } else {
+    document.getElementById("imageTag").classList.add("hide")
+  }
+
   explanation.innerHTML = ""
-    submit.innerHTML = `<span class="button-pathway-shadow"></span>
+  submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
       <span class="button-pathway-front text" style="background-color:rgb(0,180,0)!important">
         <b>Check</b>

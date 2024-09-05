@@ -34,7 +34,7 @@ const quizData = [
 
   {
     question: `Thomas and Kate are watching at a _______`,
-    image: "Untitled design (1).gif",
+    image: "2ppl.png",
     a: "Theatre",
     b: "Café",
     c: "Park",
@@ -45,7 +45,8 @@ const quizData = [
     explanation: "Gambar tersebut mensimbolkan sebuah Bioskop yang ditonton oleh Thomas dan Kate. Ciri-ciri Bioskop merupakan adanya kursi merah dan adanya layar untuk menonton filem diinginkan",
   },
   {
-    question: `They ____ eliminated in the laser tag game`,
+    question: `Identifikasikan objek di gambar tersebut!`,
+    image: "bag.jpg",
     a: "is",
     b: "are",
     c: "were",

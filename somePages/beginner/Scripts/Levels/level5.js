@@ -11,6 +11,7 @@ function englishNumbersWord(num) {
 }
 
 const quizData = [
+  
   {
     question: "John __ very good at his job",
     a: "is",
@@ -27,7 +28,7 @@ const quizData = [
     c: "were",
     d: "was",
     correct: "d",
-    explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
+  explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
     question: `Falco and Travies ___ the smart kids at school`,
@@ -45,7 +46,7 @@ const quizData = [
     c: "were",
     d: "was",
     correct: "c",
-    explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
+  explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
     question: "I ___ just about to take out the trash",

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Lexend:wght@100..900&family=Roboto:wght@700&display=swap');
+
 body {
   color:white;
   background-color:rgb(40,40,50);
@@ -22,6 +23,7 @@ button {
   border: none;
   background: transparent;
   padding: 0;
+  
   cursor: pointer;
   outline-offset: 4px;
   transition: filter 250ms;

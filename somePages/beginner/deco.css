@@ -8,6 +8,7 @@ background-color : rgb(40,40,50);
 }
 
 .slightly-more-up {
+  margin-right: 45px;
   position: relative;
   bottom:50px;
 }
@@ -126,6 +127,7 @@ ul li {
 
 }
 .button-pathway-pushable {
+  top: 50;
   position: relative;
   border: none;
   background: transparent;

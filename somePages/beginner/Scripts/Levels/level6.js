@@ -56,13 +56,14 @@ const quizData = [
   },
   {
     question: `Identifikasikan tempat di gambar tersebut!`,
-    image: "ok.jpg",
-    a: "sigma",
-    b: "Backpack",
-    c: "Suitcase",
-    d: "Briefcase",
-    correct: "b",
-    explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
+    image: "verynormalmountain.png",
+    width:400,
+    a: "Island",
+    b: "Mountain",
+    c: "Cliff",
+    d: "Volcano",
+    correct: "d",
+    explanation: "Gambar ini merupakan sebuah Gunung berapi yang diartikan dalam bahasa Inggris Volcano ",
   },
 ];
 
@@ -183,6 +184,7 @@ function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
 // 2,3
+shuffle(quizData)
 const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
@@ -264,7 +266,14 @@ function loadQuiz() {
   }
   if (currentQuize.image) {
     document.getElementById("imageTag").classList.remove("hide")
-    document.getElementById("imageTag").setAttribute("src", "Scripts/Levels/Images/" + currentQuize.image)
+
+    document.getElementById("imageTag").removeAttribute("src");
+    document.getElementById("imageTag").src = "Scripts/Levels/Images/" + currentQuize.image
+    if (currentQuize.width){
+      document.getElementById("imageTag").width = currentQuize.width
+    } else {
+      document.getElementById("imageTag").width = 250
+    }
   } else {
     document.getElementById("imageTag").classList.add("hide")
   }

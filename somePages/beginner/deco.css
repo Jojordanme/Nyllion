@@ -13,6 +13,8 @@ background-color : rgb(40,40,50);
   bottom:50px;
 }
 
+img { background:rgb(40,40,50);}
+
 .hide {
   display: none;
   visibility: hidden;

@@ -1,0 +1,25 @@
+body {
+  display:flex!important;
+  padding: 0 10px!important;
+  align-items:center!important;
+  justify-content:center!important;
+  min-height: 100vh!important;
+  background-image: url("../bg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  width:770px;
+  padding:35px;
+  height: 350px;
+  background:rgb(40,50,50);
+  border-radius: 10px;
+  box-shadow: 0 10px 15px rgba(0,0,0,0.05);;
+
+}
+
+.logout {
+  bottom: 50px!important;
+}
+

@@ -36,6 +36,8 @@ onAuthStateChanged(auth, (user) =>{
     }).catch((error) => {
       console.log("Error Getting Document")
     })
+  } else {
+    location.replace("../login.html")
   }
 })
 /*

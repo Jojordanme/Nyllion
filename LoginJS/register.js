@@ -2,6 +2,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,12 +28,13 @@ document.getElementById("submit-register-btn").addEventListener("click", () => {
   const password = document.querySelector(".password").value;
   const db = getFirestore(app);
   const auth = getAuth(app);
+  
   createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
     const userData = {
       email: email,
       username: username,
-      password: password,
+      
       nyllex: 0,
       money: 0,
     }
@@ -42,14 +45,18 @@ document.getElementById("submit-register-btn").addEventListener("click", () => {
     }).catch(error => {
       console.log("Error writing document:" + error)
     })
-      
+
   }).catch(error => {
-    if (error.code == 'auth/email-already-in-use'){
+    if (error.code == 'auth/email-already-in-use') {
       alert("That email already exists")
     }
     else {
       alert("Unable to create account")
     }
   })
+
+
+
+
 
 })

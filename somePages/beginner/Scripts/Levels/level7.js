@@ -12,8 +12,8 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "Identifikasi objek di gambar tersebut!",
-    image:'apple.png',
+    question: "Identifikasi objek di gambar tersebut!", 
+    image:'Shoes.png',
     a: "Pencil",
     b: "Strawberry",
     c: "Mango",

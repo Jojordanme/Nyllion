@@ -15,3 +15,8 @@ lvl3btn.addEventListener("click",() => {
     window.location.replace("errorpage.html")
 })
 
+window.onload = () => {
+  if (!localStorage.getItem("loggedInUserId")){
+    document.getElementById("registerMessage").classList.remove("hide")
+  }
+}

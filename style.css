@@ -16,7 +16,10 @@ button {
   
 }
 
-
+.hide {
+    display: none;
+    visibility: hidden;
+}
 
 
 /* CSS */

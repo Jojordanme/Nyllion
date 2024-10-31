@@ -52,7 +52,7 @@ const quizData = [
     c: "Suitcase",
     d: "Briefcase",
     correct: "b",
-    explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
+    explanation: "Gambar tersebut merupakan Tas, Jenis tas ini merupakan arti dari bahasa inggris 'Backpack'",
   },
   {
     question: `Identifikasikan tempat di gambar tersebut!`,

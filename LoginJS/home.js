@@ -26,6 +26,8 @@ onAuthStateChanged(auth, (user) =>{
     getDoc(docRef).then((docSnap) => {
       if (docSnap.exists()){
         const userData = docSnap.data()
+        document.getElementById("title").innerHTML = userData.username + " - Nyllion"
+
         document.getElementById("greetings").innerHTML = "Hello, "+userData.username+"!"
         document.getElementById("yourEmail").innerHTML = "Email:  "+userData.email+"!"
         document.getElementById("nyllex").innerHTML = "Nyllex:  "+userData.nyllex+""

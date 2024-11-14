@@ -304,8 +304,8 @@ submit.addEventListener("click",() => {
     }else{
       
       
-      if (currentScore < 6) {
-        agj.innerHTML = "Butuh Latihan Lagi"
+if (currentScore <= Math.round(quizData.length / 2)) {
+        agj.innerHTML = "Butuh Latihan Lagi..."
         quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
       <span class="button-pathway-shadow"></span>
@@ -314,7 +314,7 @@ submit.addEventListener("click",() => {
         <b>Retry</b>
       </span>
     </button></center>`
-      } else if (currentScore >= 6 && currentScore < 10){
+      } else if (currentScore >= Math.round(quizData.length / 2) && currentScore != quizData.length){
         agj.innerHTML = "Bagus"
         quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="window.location.replace('${"pathway.html"}')">
@@ -324,8 +324,7 @@ submit.addEventListener("click",() => {
         <b>Back</b>
       </span>
     </button></center>`
-      } else if (currentScore == 10){
-        count.innerHTML="Thats all folks"
+      } else if (currentScore == quizData.length){
         quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.replace('${"pathway.html"}')">
       <span class="button-pathway-shadow" style="background-color:rgb(120,0,0)!important"></span>
@@ -334,10 +333,9 @@ submit.addEventListener("click",() => {
         <b>Back</b>
       </span>
     </button></center>`
-        agj.innerHTML = "Sangat Baik A+"
+        agj.innerHTML = "Sangat Baik"
       }
       agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore/quizData.length*100) + "%"
-
     }
   }
 }})

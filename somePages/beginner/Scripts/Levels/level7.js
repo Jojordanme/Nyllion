@@ -12,59 +12,16 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "Identifikasi objek di gambar tersebut!", 
-    image:"Shoes.png",
-    a: "Apple",
-    b: "Shoes",
-    c: "Footwear",
-    d: "Man",
+    question: `Adam asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
+    a: "Goodbye!",
+    b: "Sure! here you go",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-    explanation: "Gambar tersebut merupakan sepatu, Sepatu merupakan arti dari bahasa inggris 'shoes'",
+    explanation: "",
   },
-  {
-    question: "Identifikasi objek di gambar tersebut!",
-    image:"Pen.png",
-    a: "Pencil",
-    b: "Writer",
-    c: "Pen",
-    d: "Tape",
-    correct: "a",
-    explanation: "Gambar tersebut merupakan pena, Pena merupakan arti bahasa inggris 'Pen'",
-  },
-
-  {
-    question: `Identifikasi objek di gambar tersebut!`,
-    image: "table.png",
-    a: "Chair",
-    b: "Stand",
-    c: "Table",
-    d: "Drawer",
-
-
-    correct: "c",
-    explanation: "Gambar ini merupakan meja, Meja merupakan arti bahasa inggris 'Table' ",
-  },
-  {
-    question: `Identifikasikan objek di dalam gelas tersebut!`,
-    image: "water.png",
-    a: "Water",
-    b: "Lava",
-    c: "Glass",
-    d: "Soda",
-    correct: "a",
-    explanation: "Gelas tersebut merupakan air, Air merupakan arti dari bahasa inggris 'Water'",
-  },
-  {
-    question: `Identifikasikan tempat di gambar tersebut!`,
-    image: "verynormalmountain.png",
-    width:400,
-    a: "Island",
-    b: "Mountain",
-    c: "Cliff",
-    d: "Volcano",
-    correct: "d",
-    explanation: "Gambar ini merupakan sebuah Gunung berapi yang diartikan dalam bahasa Inggris Volcano ",
-  },
+  
+  
 ];
 
 

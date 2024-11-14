@@ -288,7 +288,7 @@ submit.addEventListener("click", () => {
 
 
         if (currentScore <= Math.round(quizData.length / 2)) {
-          agj.innerHTML = "Butuh Latihan Lagi"
+          agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
       <span class="button-pathway-shadow"></span>
@@ -316,7 +316,7 @@ submit.addEventListener("click", () => {
         <b>Back</b>
       </span>
     </button></center>`
-          agj.innerHTML = "Sangat Baik A+"
+          agj.innerHTML = "Sangat Baik"
         }
         agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }

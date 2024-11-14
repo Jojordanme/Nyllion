@@ -65,6 +65,60 @@ const quizData = [
     correct: "d",
     explanation: "Gambar ini merupakan sebuah Gunung berapi yang diartikan dalam bahasa Inggris Volcano ",
   },
+  {
+    question: "Identifikasi objek di gambar tersebut!", 
+    image:"Shoes.png",
+    a: "Apple",
+    b: "Shoes",
+    c: "Sandals",
+    d: "Flippers",
+    correct: "b",
+    explanation: "Gambar tersebut merupakan sepatu, Sepatu merupakan arti dari bahasa inggris 'shoes'",
+  },
+  {
+    question: "Identifikasi objek di gambar tersebut!",
+    image:"Pen.png",
+    a: "Pencil",
+    b: "Writer",
+    c: "Pen",
+    d: "Tape",
+    correct: "c",
+    explanation: "Gambar tersebut merupakan pena, Pena merupakan arti bahasa inggris 'Pen'",
+  },
+
+  {
+    question: `Identifikasi objek di gambar tersebut!`,
+    image: "table.png",
+    a: "Chair",
+    b: "Stand",
+    c: "Table",
+    d: "Drawer",
+
+
+    correct: "c",
+    explanation: "Gambar ini merupakan meja, Meja merupakan arti bahasa inggris 'Table' ",
+  },
+  {
+    question: `Identifikasikan objek di dalam gelas tersebut!`,
+    image: "water.png",
+    a: "Water",
+    b: "Lava",
+    c: "White",
+    d: "Soda",
+    correct: "a",
+    explanation: "Air merupakan arti dari bahasa inggris 'Water'",
+  },
+  {
+    question: `Identifikasikan objek di gambar tersebut!`,
+    image: "keys.png",
+
+    a: "Kitchen",
+    b: "Key",
+    c: "Lock",
+    d: "Water",
+    correct: "b",
+    explanation: "Gambar ini merupakan Kunci-kunci, Kunci merupakan arti bahasa inggris 'Key' ",
+  },
 ];
 
 
@@ -391,7 +445,7 @@ submit.addEventListener("click", () => {
 
 
         if (currentScore <= Math.round(quizData.length / 2)) {
-          agj.innerHTML = "Butuh Latihan Lagi"
+          agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
       <span class="button-pathway-shadow"></span>
@@ -419,7 +473,7 @@ submit.addEventListener("click", () => {
         <b>Back</b>
       </span>
     </button></center>`
-          agj.innerHTML = "Sangat Baik A+"
+          agj.innerHTML = "Sangat Baik"
         }
         agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }

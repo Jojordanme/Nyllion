@@ -12,97 +12,34 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: `He ____ to the gym every morning.`,
-    a: "Go",
-    b: "Goes",
-    c: "Gone",
-    d: "Going",
+    question: `Sylvi asks Jules for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Sylvi?`,
+    a: "Goodbye!",
+    b: "Sure! here you go",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-    explanation: `Kata kerja "go" berubah menjadi "goes" jika digunakan dengan subjek orang ketiga (he, she, it).`,
+    explanation: "",
   },
   {
-    question: `Erika ____ to the store.`,
-    a: "going",
-    b: "go",
-    c: "goes",
-    d: "gone",
-    correct: "c",
-    explanation: `Dalam present simple tense, untuk subjek orang ketiga tunggal (he, she, it, *nama orang*), kita menambahkan "s" atau "es" pada kata kerja. Bentuk yang benar adalah "goes" untuk "Erika" (nama orang).`,
-  },
-  {
-    question: `Choose the correct sentence:`,
-    a: "Sylvi study English every day.",
-    b: "Caetlin studies English every day.",
-    c: "Nikki studying English every day.",
-    d: "Cassie will studying English every day.",
+    question: `Bennett asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
+    a: "Goodbye!",
+    b: "Sure! here you go",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-    explanation: `Kata kerja "study" berubah menjadi "studies" jika digunakan dengan nama orang`,
+    explanation: "",
   },
   {
-    question: `Rayden ______ to the office by bus.`,
-    a: "Travel",
-    b: "Traveling",
-    c: "Traveled",
-    d: "Travels",
-    correct: "d",
-    explanation: `Untuk subjek orang ketiga (he, she, it), kita menambahkan "s" pada kata kerja. Bentuk yang benar adalah travels.`,
-  },
-  {
-    question: "Which of the following sentences is in the negative form?",
-    a: "Cynthia does not write emails every day.",
-    b: "Stevie writes emails every day.",
-    c: "Gibson is writing emails every day.",
-    d: "Rusty write emails every day.",
-    correct: "a",
-    explanation: `Kata "does not" merupakan kata negatif karena "not" adalah bahasa inggris dari "tidak"`,
-  },
-  {
-    question: "They ______ home at 6 PM every day.",
-    a: "arrive",
-    b: "arrives",
-    c: "arriving",
-    d: "arrived",
-    correct: "a",
-    explanation: `Untuk subjek lebih dari satu (they), kata kerja tidak perlu ditambah "s". Bentuk yang benar adalah arrive.`,
-  },
-  {
-    question: "Which of the following sentences is correct?",
-    a: "Budi is wrote a book",
-    b: "Braidy has reading the book.",
-    c: "Nova reads books every day",
-    d: "Merton will reading a book tomorrow.",
-    correct: "c",
-    explanation: "Penggunaan kata kerja yang baik dan benar adalah di pilihan c",
-  },
-  {
-    question: "She always _____ a cup of tea in the morning.",
-    a: "drink",
-    b: "drinked",
-    c: "drank",
-    d: "drinks",
-    correct: "d",
-    explanation: `Untuk subjek orang ketiga (she), kita menambahkan "s" pada kata kerja. Bentuk yang benar adalah drinks.`,
-  },
-  {
-    question: `What is the correct negative form of this sentence: "Harper plays soccer on Sundays"`,
-    a: "Harper doesn't play soccer on Sundays.",
-    b: "Harper don't plays soccer on Sundays.",
-    c: "Harper don't play soccer on Sundays.",
-    d: "Harper not play soccer on Sundays.",
-    correct: "a",
-    explanation: `Kita mengunakan kata "doesn't" jika digunakan dengan nama orang`,
-  },
-  {
-    question: "She _______ work on Saturdays.",
-    a: "don't",
-    b: "doesn't",
-    c: "isn't",
-    d: "aren't",
+    question: `Caetlin asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
+    a: "Goodbye!",
+    b: "Sure! here you go",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-    explanation: `Bentuk negatif untuk subjek orang ketiga tunggal (she, he, it) adalah "doesn't," yang merupakan singkatan dari "does not."`,
+    explanation: "",
   },
-
-
+  
+  
 ];
 
 
@@ -290,7 +227,7 @@ function loadQuiz() {
     opt2.innerText = currentQuize.b
     opt3.innerText = currentQuize.c
     opt4.innerText = currentQuize.d
-
+    
   } else {
     console.log("no")
     esay.classList.remove("hide")
@@ -307,7 +244,7 @@ function loadQuiz() {
 
     document.getElementById("imageTag").removeAttribute("src");
     document.getElementById("imageTag").src = "Scripts/Levels/Images/" + currentQuize.image
-    if (currentQuize.width) {
+    if (currentQuize.width){
       document.getElementById("imageTag").width = currentQuize.width
     } else {
       document.getElementById("imageTag").width = 250
@@ -339,7 +276,7 @@ function getSelected() {
 
 
 function filterCharacter(inputString, characterToFilter) {
-  return inputString.split(characterToFilter).join('');
+    return inputString.split(characterToFilter).join('');
 }
 
 
@@ -428,7 +365,7 @@ submit.addEventListener("click", () => {
       } else {
 
 
-        if (currentScore <= Math.round(quizData.length / 2)) {
+if (currentScore <= Math.round(quizData.length / 2)) {
           agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">

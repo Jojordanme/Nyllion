@@ -53,13 +53,13 @@ const quizData = [
     explanation: "Nah ini adalah sesuatu kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kalimat tersebut memakai verb dua",
   },
   {
-    question: "I ___ just about to take out the trash",
-    a: "is",
-    b: "are",
-    c: "were",
-    d: "was",
-    correct: "d",
-    explanation: "...",
+    question: "",
+    a: "",
+    b: "",
+    c: "",
+    d: "",
+    correct: "a",
+    explanation: ``,
   },
 
 ];

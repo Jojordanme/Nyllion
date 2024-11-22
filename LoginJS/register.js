@@ -28,13 +28,15 @@ document.getElementById("submit-register-btn").addEventListener("click", () => {
   const password = document.querySelector(".password").value;
   const db = getFirestore(app);
   const auth = getAuth(app);
+  auth.languangeCode = "en";
+  
   
   createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
     const user = userCredential.user;
     const userData = {
       email: email,
       username: username,
-      
+      level:1,  
       nyllex: 0,
       money: 0,
     }

@@ -41,7 +41,7 @@ const quizData = [
   {
     question: "I know! He is the one who _____ the drums last night. (play)",
     a: "playing",
-    b: "play",
+    b: "player",
     c: "play",
     d: "played",
     correct: "a",

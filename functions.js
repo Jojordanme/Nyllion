@@ -24,17 +24,33 @@ const lvl1btn = document.getElementById("beginner")
 const lvl2btn = document.getElementById("intermidiate")
 const lvl3btn = document.getElementById("advanced")
 
+const loggedInUserId = localStorage.getItem('loggedInUserId');
+const docRef = doc(db,"users",loggedInUserId)
+const docSnap = await getDoc(docRef)
+const userData = docSnap.data()
+
+
 lvl1btn.addEventListener("click",() => {
   console.log("yesyesyes")
     window.location.replace("somePages/beginner/pathway.html")
 })
 lvl2btn.addEventListener("click",() => {
   console.log("yesyesyes")
+  if (userData.level >= 10){
     window.location.replace("errorpage.html")
+  } else {
+    window.location.replace("ineligable.html")
+
+  }
 })
 lvl3btn.addEventListener("click",() => {
   console.log("yesyesyes")
+  if (userData.level >= 25){
     window.location.replace("errorpage.html")
+  } else {
+    window.location.replace("ineligable.html")
+
+  }
 })
 
 window.onload = async () => {
@@ -42,13 +58,6 @@ window.onload = async () => {
 
   if (!localStorage.getItem("loggedInUserId")){
     document.getElementById("registerMessage").classList.remove("hide")
-  } else {
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
-    const docRef = doc(db,"users",loggedInUserId)
-    const docSnap = await getDoc(docRef)
-    const userData = docSnap.data()
-    if (userData.level == 1){
-      
-    }
+   
   }
 }

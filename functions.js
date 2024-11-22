@@ -37,10 +37,9 @@ lvl3btn.addEventListener("click",() => {
     window.location.replace("errorpage.html")
 })
 
-lvl2btn.addEventListener("change")
-
 window.onload = async () => {
-  lvl2btn.setAttribute("disabled","disabled")
+
+
   if (!localStorage.getItem("loggedInUserId")){
     document.getElementById("registerMessage").classList.remove("hide")
   } else {
@@ -48,5 +47,8 @@ window.onload = async () => {
     const docRef = doc(db,"users",loggedInUserId)
     const docSnap = await getDoc(docRef)
     const userData = docSnap.data()
+    if (userData.level == 1){
+      
+    }
   }
 }

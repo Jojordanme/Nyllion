@@ -84,7 +84,7 @@ const quizData = [
     explanation: `Untuk subjek orang ketiga (she), kita menambahkan "s" pada kata kerja. Bentuk yang benar adalah drinks.`,
   },
   {
-    question: `What is the correct negative form of this sentence: "Harper plays soccer on Sundays"`,
+    question: `Which of these correct negative form of this sentence: "Harper plays soccer on Sundays"`,
     a: "Harper doesn't play soccer on Sundays.",
     b: "Harper don't plays soccer on Sundays.",
     c: "Harper don't play soccer on Sundays.",

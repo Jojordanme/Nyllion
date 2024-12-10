@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, updateDoc, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,6 +26,10 @@ const lvl3btn = document.getElementById("advanced")
 
 window.onload = async () => {
   const loggedInUserId = localStorage.getItem('loggedInUserId');
+  if (!localStorage.getItem("loggedInUserId")) {
+    document.getElementById("registerMessage").classList.remove("hide")
+    return
+  }
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
@@ -54,9 +58,6 @@ window.onload = async () => {
     }
   })
 
-  if (!localStorage.getItem("loggedInUserId")) {
-    document.getElementById("registerMessage").classList.remove("hide")
-
-  }
+  
 
 }

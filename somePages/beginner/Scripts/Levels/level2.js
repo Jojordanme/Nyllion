@@ -1,3 +1,25 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAKGaSBlKuGY3WTZXgA5TBuTD6FOXQDcGk",
+  authDomain: "nyllion-2f95f.firebaseapp.com",
+  databaseURL: "https://nyllion-2f95f-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "nyllion-2f95f",
+  storageBucket: "nyllion-2f95f.appspot.com",
+  messagingSenderId: "440220527602",
+  appId: "1:440220527602:web:8ad8398b24bd72a65ad96b"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+
+const loggedInUserId = localStorage.getItem('loggedInUserId');
 const numbers = [
   "Nol","Satu","Dua","Tiga","Empat","Lima","Enam","Tujuh","Delapan","Sembilan","Sepuluh","Sebelas",
   "Dua belas","Tiga belas","Empat belas","Lima belas","Enam belas","Tujuh belas","Delapan belas","Sembilan belas","Dua puluh","Dua puluh satu","Dua puluh dua","Dua puluh tiga","Dua puluh empat","Dua puluh lima","Dua puluh enam","Dua puluh tujuh","Dua puluh delapan","Dua puluh sembilan","Tiga puluh"
@@ -103,6 +125,7 @@ const quizData = [
     explanation:"Kata 'Are' digunakan untuk 2 atau lebih orang. 'Is' untuk 1 orang.",
   },
 ];
+let eligble = false
 const quizData2 = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
@@ -250,7 +273,7 @@ function deselectAnswers(){
 loadQuiz()
 let ansuorOpt
 var audio = new Audio("sfx/Click.mp3");
-submit.addEventListener("click",() => {
+submit.addEventListener("click",async () => {
   if (canActive){
  
     if (phase == 0){
@@ -337,6 +360,23 @@ if (currentScore <= Math.round(quizData.length / 2)) {
         agj.innerHTML = "Sangat Baik"
       }
       agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore/quizData.length*100) + "%"
+      if (currentScore/quizData.length*100 >= 80) {
+        if (loggedInUserId){;
+
+      const docRef = doc(db, "users", loggedInUserId)
+      const docSnap = await getDoc(docRef)
+      const userData = docSnap.data()
+      if (userData.level <= 2) {
+        await updateDoc(docRef, {
+          level: 3
+
+        });
+      }
+                           }
     }
   }
-}})
+}
+  }
+}
+                       
+                       )

@@ -1,3 +1,25 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAKGaSBlKuGY3WTZXgA5TBuTD6FOXQDcGk",
+  authDomain: "nyllion-2f95f.firebaseapp.com",
+  databaseURL: "https://nyllion-2f95f-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "nyllion-2f95f",
+  storageBucket: "nyllion-2f95f.appspot.com",
+  messagingSenderId: "440220527602",
+  appId: "1:440220527602:web:8ad8398b24bd72a65ad96b"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app)
+
+
 const numbers = [
   "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
   "Dua belas", "Tiga belas", "Empat belas", "Lima belas", "Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh", "Dua puluh satu", "Dua puluh dua", "Dua puluh tiga", "Dua puluh empat", "Dua puluh lima", "Dua puluh enam", "Dua puluh tujuh", "Dua puluh delapan", "Dua puluh sembilan", "Tiga puluh"
@@ -12,22 +34,22 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: `Sylvi asks Jules for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Sylvi?`,
+    question: `Sylvi: "May I borrow your pen?" Manakah kalimat yang paling tepat untuk menjawab Sylvi?`,
     a: "Goodbye!",
     b: "Sure! here you go",
     c: "No, here you go!",
     d: "Yes, I can't",
     correct: "b",
-    explanation: "",
+    explanation: "Pilihan tersebut salah karena pilihan tersebut merupakan grammar yang salah atau kurang tepat.",
   },
   {
-    question: `Bennett asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
-    a: "Goodbye!",
-    b: "Sure! here you go",
-    c: "No, here you go!",
-    d: "Yes, I can't",
-    correct: "b",
-    explanation: "",
+    question: `Bennett: "How's the weather outside?" Manakah kalimat yang paling tepat untuk menjawab Bennett?`,
+    a: "Its sunny.",
+    b: "Sure! My name is Adam",
+    c: "What?",
+    d: "Sure! here you go",
+    correct: "a",
+    explanation: "Kalimat tersebut tidak tepat untuk menjawab pertanyaan tersebut.",
   },
   {
     question: `Caetlin asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
@@ -283,7 +305,7 @@ function filterCharacter(inputString, characterToFilter) {
 loadQuiz()
 let ansuorOpt
 var audio = new Audio("sfx/Click.mp3");
-submit.addEventListener("click", () => {
+submit.addEventListener("click", async () => {
   if (canActive) {
 
     if (phase == 0) {
@@ -395,6 +417,21 @@ if (currentScore <= Math.round(quizData.length / 2)) {
       </span>
     </button></center>`
           agj.innerHTML = "Sangat Baik"
+        }
+        if (currentScore / quizData.length * 100 >= 80) {
+          if (loggedInUserId) {
+
+
+            const docRef = doc(db, "users", loggedInUserId)
+            const docSnap = await getDoc(docRef)
+            const userData = docSnap.data()
+            if (userData.level <= 9) {
+              await updateDoc(docRef, {
+                level: 10
+
+              });
+            }
+          }
         }
         agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }

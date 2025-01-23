@@ -28,35 +28,47 @@ window.onload = async () => {
   const loggedInUserId = localStorage.getItem('loggedInUserId');
   if (!localStorage.getItem("loggedInUserId")) {
     document.getElementById("registerMessage").classList.remove("hide")
-    return
+    lvl2btn.addEventListener("click", () => {
+      console.log("yesyesyes")
+      window.location.replace("ineligable.html")
+
+    })
+    lvl3btn.addEventListener("click", () => {
+      console.log("yesyesyes")
+      window.location.replace("ineligable.html")
+
+    })
+  } else {
+    const docRef = doc(db, "users", loggedInUserId)
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    lvl2btn.addEventListener("click", () => {
+      console.log("yesyesyes")
+      if (userData.level >= 10) {
+        window.location.replace("errorpage.html")
+      } else {
+        window.location.replace("ineligable.html")
+
+      }
+    })
+    lvl3btn.addEventListener("click", () => {
+      console.log("yesyesyes")
+      if (userData.level >= 25) {
+        window.location.replace("errorpage.html")
+      } else {
+        window.location.replace("ineligable.html")
+
+      }
+    })
   }
-  const docRef = doc(db, "users", loggedInUserId)
-  const docSnap = await getDoc(docRef)
-  const userData = docSnap.data()
+ 
 
 
   lvl1btn.addEventListener("click", () => {
     console.log("yesyesyes")
-    window.location.replace("somePages/beginner/pathway.html")
+  window.location.replace("somePages/beginner/pathway.html")
   })
-  lvl2btn.addEventListener("click", () => {
-    console.log("yesyesyes")
-    if (userData.level >= 10) {
-      window.location.replace("errorpage.html")
-    } else {
-      window.location.replace("ineligable.html")
-
-    }
-  })
-  lvl3btn.addEventListener("click", () => {
-    console.log("yesyesyes")
-    if (userData.level >= 25) {
-      window.location.replace("errorpage.html")
-    } else {
-      window.location.replace("ineligable.html")
-
-    }
-  })
+  
 
   
 

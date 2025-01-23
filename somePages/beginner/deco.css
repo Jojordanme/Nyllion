@@ -179,7 +179,7 @@ ul li {
   border-radius: 100px;
   font-size: 1.1rem;
   color:white;
-
+  font-family:"Lexend";
   background: hsl(345deg 100% 47%);
   background-color:#008c00;
   will-change: transform;
@@ -230,4 +230,13 @@ ul li {
 
 .button-pathway-pushable:focus:not(:focus-visible) {
   outline: none;
+}
+.locked .button-pathway-front {
+  background-color: rgb(120, 120, 120);
+}
+.locked .button-pathway-edge {
+  background-color: rgb(60, 60, 60);
+}
+.locked .button-pathway-shadow {
+  background-color: rgb(60, 60, 60);
 }

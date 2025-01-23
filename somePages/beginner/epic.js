@@ -11,9 +11,3 @@ document.addEventListener('visibilitychange', function() {
     }
     
 });
-
-document.body.onload = function(){
-    music384.play()
-    
-}
-

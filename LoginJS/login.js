@@ -19,6 +19,11 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+const loggedInUserId = localStorage.getItem('loggedInUserId');
+if (loggedInUserId) {
+  window.location.replace("profile.html")
+}
+
 document.getElementById("submit-login-btn").addEventListener("click",(event) => {
   event.preventDefault();
   const email = document.querySelector(".email").value;

@@ -18,6 +18,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
+const loggedInUserId = localStorage.getItem('loggedInUserId');
 
 const numbers = [
   "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
@@ -514,3 +515,16 @@ submit.addEventListener("click", async () => {
     }
   }
   }})
+
+window.onload = async () => {
+  if (loggedInUserId) {
+
+
+    const docRef = doc(db, "users", loggedInUserId)
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    if (userData.level < 6) {
+      window.location.replace("ineligable.html")
+    }
+  }
+}

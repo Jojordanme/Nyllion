@@ -360,22 +360,25 @@ submit.addEventListener("click", async () => {
     </button></center>`
           agj.innerHTML = "Sangat Baik"
         }
-        if (currentScore/quizData.length*100 >= 80) {
-          if (loggedInUserId){;
-        
-          const docRef = doc(db, "users", loggedInUserId)
-          const docSnap = await getDoc(docRef)
-          const userData = docSnap.data()
-          if (userData.level <= 1) {
-            await updateDoc(docRef, {
-              level: userData.level + 1
+        if (currentScore / quizData.length * 100 >= 80) {
+          if (loggedInUserId) {
+            ;
 
-            });
+            const docRef = doc(db, "users", loggedInUserId)
+            const docSnap = await getDoc(docRef)
+            const userData = docSnap.data()
+            if (userData.level <= 1) {
+              await updateDoc(docRef, {
+                level: userData.level + 1
+
+              });
+            }
           }
-                             }
         }
         agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }
     }
   }
 })
+
+

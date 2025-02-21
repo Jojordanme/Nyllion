@@ -27,11 +27,11 @@ window.onload = async () => {
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  for (let i = 1; i <= 8; i++) {
+  for (let i = 1; i <= 9; i++) {
    
     if (userData.level < i) {
       document.getElementById(`lvl${i}`).classList.add("locked")
-
+      document.getElementById(`lvl${i}`).onclick = window.location.replace('ineligable.html')
     }
 
   }

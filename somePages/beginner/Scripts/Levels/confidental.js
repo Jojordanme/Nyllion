@@ -1,3 +1,5 @@
+import {getRandomName} from "../../../../Modules/names.js"
+
 const numbers = [
   "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
   "Dua belas", "Tiga belas", "Empat belas", "Lima belas", "Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh", "Dua puluh satu", "Dua puluh dua", "Dua puluh tiga", "Dua puluh empat", "Dua puluh lima", "Dua puluh enam", "Dua puluh tujuh", "Dua puluh delapan", "Dua puluh sembilan", "Tiga puluh"
@@ -12,7 +14,7 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "jawab 'd'",
+    question: getRandomName(0) + " menjawab 'd'",
     a: "is",
     b: "are",
     c: "were",
@@ -35,7 +37,7 @@ const quizData = [
     question: `what logo is thi?`,
     image: "laga.png",
     a: "Nike",
-    b: "Crocs",
+    b: getRandomName(0),
     c: "Gabriel Matthew",
     d: "Nyllion",
 
@@ -54,12 +56,12 @@ const quizData = [
   },
   {
     question: "",
-    a: "",
+    a: "yipee",
     b: "",
     c: "",
     d: "",
     correct: "a",
-    explanation: ``,
+    explanation: `Womp womp`,
   },
 
 ];
@@ -299,6 +301,7 @@ submit.addEventListener("click", () => {
           labelOption.innerText += " ❌"
 
           questiontext.innerHTML = "SALAH!"
+          location.replace("../../../../miscellaneous/youmessedup.html")
         }
 
         console.log(answer)

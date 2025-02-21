@@ -21,12 +21,7 @@ const db = getFirestore(app)
 const loggedInUserId = localStorage.getItem('loggedInUserId');
 
 
-const numbers = [
-  "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
-  "Dua belas", "Tiga belas", "Empat belas", "Lima belas", "Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh", "Dua puluh satu", "Dua puluh dua", "Dua puluh tiga", "Dua puluh empat", "Dua puluh lima", "Dua puluh enam", "Dua puluh tujuh", "Dua puluh delapan", "Dua puluh sembilan", "Tiga puluh"
-]
 
-const numberseng = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty one", "Twenty two", "Twenty three", "Twenty four", "Twenty five", "Twenty six", "Twenty seven", "Twenty eight", "Twenty nine", "Thirty"]
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay * 1000))
 
 function englishNumbersWord(num) {
@@ -45,7 +40,7 @@ const quizData = [
   },
   {
     question: `Bennett: "How's the weather outside?" Manakah kalimat yang paling tepat untuk menjawab Bennett?`,
-    a: "Its sunny.",
+    a: "Its sunny.", 
     b: "Sure! My name is Adam",
     c: "What?",
     d: "Sure! here you go",
@@ -53,7 +48,7 @@ const quizData = [
     explanation: "Kalimat tersebut tidak tepat untuk menjawab pertanyaan tersebut.",
   },
   {
-    question: `Caetlin asks Kenneth for a pen: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
+    question: `Caetlin bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
     a: "Goodbye!",
     b: "Sure! here you go",
     c: "No, here you go!",
@@ -61,7 +56,15 @@ const quizData = [
     correct: "b",
     explanation: "",
   },
-  
+  {
+      question: `Jason bertanya kepada Adam untuk ke Supermarket: "Hey, when will i be able to go to the supermarket?" Apakah kalimat yang paling tepat untuk menjawab Jason?`,
+    a: "I dont know",
+    b: "Yesn't",
+    c: "No, here you go!",
+    d: "at 4 PM we'll go to the supermarket",
+    correct: "d",
+    explanation: "",
+  },
   
 ];
 

@@ -62,7 +62,7 @@ const quizData = [
   explanation: `kata "wake up" di past tense (masa lalu) adalah "woke up"`,
   },
   {
-    question: "I know! He is the one who _____(play) the drums last night.",
+    question: "I know! He is the one who was _____(play) the drums last night.",
     a: "playing",
     b: "player",
     c: "play",

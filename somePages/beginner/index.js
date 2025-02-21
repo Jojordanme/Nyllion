@@ -31,7 +31,7 @@ window.onload = async () => {
    
     if (userData.level < i) {
       document.getElementById(`lvl${i}`).classList.add("locked")
-      document.getElementById(`lvl${i}`).onclick = window.location.replace('ineligable.html')
+      document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
     }
 
   }

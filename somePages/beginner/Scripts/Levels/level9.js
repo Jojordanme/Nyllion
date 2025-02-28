@@ -32,7 +32,7 @@ const quizData = [
   {
     question: `Sylvi: "May I borrow your pen?" Manakah kalimat yang paling tepat untuk menjawab Sylvi?`,
     a: "Goodbye!",
-    b: "Sure! here you go",
+    b: "Sure! here you go.",
     c: "No, here you go!",
     d: "Yes, I can't",
     correct: "b",
@@ -63,6 +63,15 @@ const quizData = [
     c: "No, here you go!",
     d: "at 4 PM we'll go to the supermarket",
     correct: "d",
+    explanation: "",
+  },
+  {
+      question: `Bryan bertanya kepada Reynard untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Jason?`,
+    a: "I would like some chips please",
+    b: "Fine Chips",
+    c: "Who is that?",
+    d: "I cant see him.",
+    correct: "a",
     explanation: "",
   },
   

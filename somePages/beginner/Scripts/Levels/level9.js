@@ -123,14 +123,14 @@ for (let i = 0; i < quizData.length; i++){
     v.correct = v[correctold]
     for (let i=0; i<4; i++){
       function pick(){
-        let alphabet = alphabetsOptions[Math.round(Math.random() * alphabetsOptions.length)]
+        let alphabet = alphabetsOptions[Math.floor(Math.random() * alphabetsOptions.length)]
         console.log(alphabet)
         if (!doneAlphabets.includes(alphabet)){
           doneAlphabets.push(alphabet)
           
           return alphabet
         }
-        pick()
+        return pick() // Need to return the recursive call
       }
       let a = pick()
       console.log(v[a] + a + " what")

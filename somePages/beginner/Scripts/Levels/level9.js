@@ -113,6 +113,32 @@ function shuffle(array) {
       array[randomIndex], array[currentIndex]];
   }
 }
+for (let i = 0; i < quizData.length; i++){
+  let v = quizData[i]
+
+  if (v.a){
+    let doneAlphabets = []
+    let alphabetsOptions = ["a","b","c","d"]
+    let correctold = v.correct
+    v.correct = v[correctold]
+    for (let i=0; i<4; i++){
+      function pick(){
+        let alphabet = alphabetsOptions[Math.round(Math.random() * alphabetsOptions.length)]
+        console.log(alphabet)
+        if (!doneAlphabets.includes(alphabet)){
+          doneAlphabets.push(alphabet)
+          
+          return alphabet
+        }
+        pick()
+      }
+      let a = pick()
+      console.log(v[a] + a + " what")
+      v[alphabetsOptions[i]] = v[a]
+    }
+   
+  }
+}
 
 function setaquestionanumberthingy(idx) {
   const number = Math.floor(Math.random() * 31)
@@ -331,7 +357,7 @@ submit.addEventListener("click", async () => {
         const labelOption = document.getElementById(answer + "_text")
         const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
         phase = 1
-        if (answer === quizData[currentQuiz].correct) {
+        if (quizData[currentQuiz][answer] === quizData[currentQuiz].correct) {
           questiontext.innerHTML = "BENAR!"
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")

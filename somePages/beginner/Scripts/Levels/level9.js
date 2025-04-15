@@ -335,8 +335,8 @@ submit.addEventListener("click", async () => {
       const answer = getSelected()
       ansuorOpt = answer
       if (answer) {
-        answers.forEach(answer => {
-          answer.disabled = true;
+        answers.forEach(answerio => {
+          answerio.disabled = true;
         })
         const labelOption = document.getElementById(answer + "_text")
         const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")

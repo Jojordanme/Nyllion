@@ -1,23 +1,51 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Idk</title>
-  <link href="style.css" rel="stylesheet">
+  <title>Error Occurred</title>
+  <style>
+    .error-container {
+      text-align: center;
+      padding: 50px;
+      font-family: Arial, sans-serif;
+    }
+    .error-code {
+      font-size: 72px;
+      color: #e74c3c;
+    }
+    .error-message {
+      font-size: 24px;
+      margin: 20px 0;
+    }
+    .back-button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <center><h1>waduh</h1></center>
-    <center><p class="errorPara">Maaf kamu masih belum selesai level sebelumnya
-    </p>
-      <p class="errorPara">Sementara itu, selesaikan level sebelum level ini
-        </p>
-    <img src="panda.png" width="200px" height="180">
-    </center>
-  <center><button class="button-82-pushable" style="bottom:-40px" role="button"  onclick="window.location.replace('levels.html')">
-    <span class="button-82-shadow" style="background-color:rgb(120,0,0)!important"></span>
-    <span class="button-82-edge" style="background-color:rgb(120,0,0)!important"></span>
-    <span class="button-82-front text" style="background-color:rgb(180,0,0)!important">
-      <b>Back</b>
-    </span>
-  </button></center>
+  <div class="error-container">
+    <div class="error-code" id="errorCode">500</div>
+    <div class="error-message" id="errorMessage">An unexpected error occurred</div>
+    <button class="back-button" onclick="window.history.back()">Go Back</button>
+  </div>
+  <script>
+    window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const error = params.get('error');
+      const errorMessages = {
+        'database_connection': 'Unable to connect to database',
+        'unauthorized': 'You are not authorized to access this page',
+        'not_found': 'Page not found',
+        'default': 'An unexpected error occurred'
+      };
+      document.getElementById('errorMessage').textContent = 
+        errorMessages[error] || errorMessages.default;
+    };
+  </script>
 </body>
 </html>

@@ -48,7 +48,7 @@ const quizData = [
     explanation: "Kalimat tersebut tidak tepat untuk menjawab pertanyaan tersebut.",
   },
   {
-    question: `Caetlin bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Apakah kalimat yang paling tepat untuk menjawab Adam?`,
+    question: `Caetlin bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Kalimat apa yang paling tepat untuk menjawab Adam?`,
     a: "Goodbye!",
     b: "Sure! here you go",
     c: "No, here you go!",
@@ -57,22 +57,31 @@ const quizData = [
     explanation: "",
   },
   {
-      question: `Jason bertanya kepada Adam untuk ke Supermarket: "Hey, when will i be able to go to the supermarket?" Apakah kalimat yang paling tepat untuk menjawab Jason?`,
+      question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarketv" Kalimat apa yang paling tepat untuk menjawab Jason?`,
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",
-    d: "at 4 PM we'll go to the supermarket",
+    d: `at ${Math.floor(Math.random * 5) + 1} PM we'll go to the supermarket`,
     correct: "d",
     explanation: "",
   },
   {
-      question: `Bryan bertanya kepada Reynard untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Jason?`,
+      question: `Bryan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
     a: "I would like some chips please",
     b: "Fine Chips",
     c: "Who is that?",
     d: "I cant see him.",
     correct: "a",
     explanation: "",
+  },
+  {
+      question: `Jordan bertanya kepada anda untuk menjawab pertanyaan dia tersebut: "What will you do in chinese new year?" Kalimat apa yang paling formal dan tepat untuk menjawab Jordan?`,
+    a: "Me and my gang are going to the mall",
+    b: "We gonna do this rn",
+    c: "I am going to the mall",
+    d: "What are you doing?",
+    correct: "c",
+    explanation: "Jawaban benar tersebut itu paling tepat dan formal untuk menjawab pertanyaan Jordan tersebut",
   },
   
 ];

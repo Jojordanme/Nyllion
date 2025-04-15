@@ -42,24 +42,22 @@ window.onload = async () => {
     const docRef = doc(db, "users", loggedInUserId)
     const docSnap = await getDoc(docRef)
     const userData = docSnap.data()
-    lvl2btn.addEventListener("click", () => {
-      console.log("yesyesyes")
-      if (userData.level >= 10) {
-        window.location.replace("errorpage.html")
-      } else {
-        window.location.replace("ineligable.html")
-
-      }
-    })
-    lvl3btn.addEventListener("click", () => {
-      console.log("yesyesyes")
-      if (userData.level >= 25) {
-        window.location.replace("errorpage.html")
-      } else {
-        window.location.replace("ineligable.html")
-
-      }
-    })
+    const handleLevelNavigation = (requiredLevel, btn) => {
+      btn.addEventListener("click", () => {
+        if (!loggedInUserId) {
+          window.location.replace("ineligable.html");
+          return;
+        }
+        if (userData.level >= requiredLevel) {
+          window.location.replace("errorpage.html");
+        } else {
+          window.location.replace("ineligable.html");
+        }
+      });
+    };
+    
+    handleLevelNavigation(10, lvl2btn);
+    handleLevelNavigation(25, lvl3btn);
   }
  
 

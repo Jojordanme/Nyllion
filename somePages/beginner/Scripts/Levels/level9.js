@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -30,13 +30,13 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: `Sylvi: "May I borrow your pen?" Manakah kalimat yang paling tepat untuk menjawab Sylvi?`,
-    a: "Goodbye!",
-    b: "Sure! here you go.",
-    c: "No, here you go!",
-    d: "Yes, I can't",
+    question: `Sylvi: "What food are we going to eat?" Manakah kalimat yang paling tepat untuk menjawab Sylvi?`,
+    a: "No",
+    b: "We can eat some food in the fridge.",
+    c: "Maybe a nice walk by the river",
+    d: "Lets go to the mall",
     correct: "b",
-    explanation: "Pilihan tersebut salah karena pilihan tersebut merupakan grammar yang salah atau kurang tepat.",
+    explanation: "",
   },
   {
     question: `Bennett: "How's the weather outside?" Manakah kalimat yang paling tepat untuk menjawab Bennett?`,
@@ -61,7 +61,7 @@ const quizData = [
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",
-    d: `at ${Math.floor(Math.random * 5) + 1} PM we'll go to the supermarket`,
+    d: `at ${Math.floor(Math.random() * 5) + 1} PM we'll go to the supermarket`,
     correct: "d",
     explanation: "",
   },
@@ -330,9 +330,9 @@ let ansuorOpt
 var audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-
+     const answer = getSelected()
     if (phase == 0) {
-      const answer = getSelected()
+     
       ansuorOpt = answer
       if (answer) {
         answers.forEach(answerio => {

@@ -80,7 +80,7 @@ const quizData = [
     explanation: `Kata "does not" merupakan kata negatif karena "not" adalah bahasa inggris dari "tidak"`,
   },
   {
-    question: "They ______ home at 6 PM every day.",
+    question: "They always ______ home at 6 PM every day.",
     a: "arrive",
     b: "arrives",
     c: "arriving",

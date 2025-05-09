@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -21,12 +21,7 @@ const db = getFirestore(app)
 const loggedInUserId = localStorage.getItem('loggedInUserId');
 
 
-const numbers = [
-  "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
-  "Dua belas", "Tiga belas", "Empat belas", "Lima belas", "Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh", "Dua puluh satu", "Dua puluh dua", "Dua puluh tiga", "Dua puluh empat", "Dua puluh lima", "Dua puluh enam", "Dua puluh tujuh", "Dua puluh delapan", "Dua puluh sembilan", "Tiga puluh"
-]
 
-const numberseng = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty one", "Twenty two", "Twenty three", "Twenty four", "Twenty five", "Twenty six", "Twenty seven", "Twenty eight", "Twenty nine", "Thirty"]
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay * 1000))
 
 function englishNumbersWord(num) {
@@ -35,96 +30,60 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {
-    question: "Which of these sentences is the correct simple PAST tense? (go)",
-    a: "Carina is going to the beach",
-    b: "Carina are go to the beach",
-    c: "Carina went to the beach",
-    d: "Carina go to the beach",
-    correct: "c",
-    explanation: `Bentuk past tense (masa lalu) dari kata "go" adalah "went"`,
-  },
-  {
-    question: "The post man ___ very busy delivering ",
-    a: "was",
-    b: "were",
-    c: "is",
-    d: "are",
-    correct: "a",
-  explanation: ``,
-  },
-  {
-    question: "Which of these sentences is the correct simple PAST tense? (wake up)",
-    a: "Carmen wake up at 7 AM",
-    b: "Carmen woke up at 7 AM",
-    c: "Carmen going to wake up at 7 AM",
-    d: "Carmen waking up at 7 AM",
+    question: `Sylvi: "May I borrow your pen?" Manakah kalimat yang paling tepat untuk menjawab Sylvi?`,
+    a: "Goodbye!",
+    b: "Sure! here you go.",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-  explanation: `kata "wake up" di past tense (masa lalu) adalah "woke up"`,
+    explanation: "Pilihan tersebut salah karena pilihan tersebut merupakan grammar yang salah atau kurang tepat.",
   },
   {
-    question: "I know! He is the one who was _____(play) the drums last night.",
-    a: "playing",
-    b: "player",
-    c: "play",
-    d: "played",
+    question: `Bennett: "How's the weather outside?" Manakah kalimat yang paling tepat untuk menjawab Bennett?`,
+    a: "Its sunny.", 
+    b: "Sure! My name is Adam",
+    c: "What?",
+    d: "Sure! here you go",
     correct: "a",
-  explanation: ``,
+    explanation: "Kalimat tersebut tidak tepat untuk menjawab pertanyaan tersebut.",
   },
   {
-    question: "Yesterday, I _______(go) to the park.",
-    a: "go",
-    b: "went",
-    c: "going",
-    d: "goes",
+    question: `Caetlin bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Kalimat apa yang paling tepat untuk menjawab Adam?`,
+    a: "Goodbye!",
+    b: "Sure! here you go",
+    c: "No, here you go!",
+    d: "Yes, I can't",
     correct: "b",
-  explanation: `"Yesterday" menunjukkan waktu lampau, sehingga kata kerja harus menggunakan bentuk lampau (past tense). Kata kerja lampau dari "go" adalah "went".`,
+    explanation: "",
   },
   {
-    question: "They ___ (play) soccer last weekend.",
-    a: "play",
-    b: "were playing",
-    c: "are playing",
-    d: "played",
+      question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarketv" Kalimat apa yang paling tepat untuk menjawab Jason?`,
+    a: "I dont know",
+    b: "Yesn't",
+    c: "No, here you go!",
+    d: `at ${Math.floor(Math.random * 5) + 1} PM we'll go to the supermarket`,
     correct: "d",
-  explanation: `"Play" berubah menjadi "played" karena menunjukkan aksi yang selesai minggu lalu.`,
+    explanation: "",
   },
   {
-    question: "I ___ (eat) an apple this morning.",
-    a: "eaten",
-    b: "eat",
-    c: "ate",
-    d: "aten",
-    correct: "c",
-  explanation: `"Eat" berubah menjadi "ate" dalam bentuk past tense untuk kegiatan yang sudah selesai pagi ini.`,
-  },
-  {
-    question: "We ___ (visit) the museum last year.",
-    a: "visit",
-    b: "visiting",
-    c: "visited",
-    d: "are visiting",
-    correct: "c",
-  explanation: `Bentuk lampau dari "visit" adalah "visited" karena menunjukkan aksi tahun lalu.`,
-  },
-  {
-    question: "She ___ (study) hard for the test last night.",
-    a: "studied",
-    b: "study",
-    c: "studying",
-    d: "studing",
+      question: `Bryan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
+    a: "I would like some chips please",
+    b: "Fine Chips",
+    c: "Who is that?",
+    d: "I cant see him.",
     correct: "a",
-  explanation: `Kata kerja "study" ditambahkan "-ed" menjadi "studied" karena aksi selesai semalam.`,
+    explanation: "",
   },
   {
-    question: "I ___ (see) her at the mall two days ago.",
-    a: "see",
-    b: "saw",
-    c: "seen",
-    d: "seeing",
-    correct: "b",
-  explanation: `"See" berubah menjadi "saw" dalam bentuk verb 2.`,
-
+      question: `Jordan bertanya kepada anda untuk menjawab pertanyaan dia tersebut: "What will you do in chinese new year?" Kalimat apa yang paling formal dan tepat untuk menjawab Jordan?`,
+    a: "Me and my gang are going to the mall",
+    b: "We gonna do this rn",
+    c: "I am going to the mall",
+    d: "What are you doing?",
+    correct: "c",
+    explanation: "Jawaban benar tersebut itu paling tepat dan formal untuk menjawab pertanyaan Jordan tersebut",
   },
+  {question}
   
 ];
 
@@ -164,6 +123,7 @@ function shuffle(array) {
       array[randomIndex], array[currentIndex]];
   }
 }
+
 
 function setaquestionanumberthingy(idx) {
   const number = Math.floor(Math.random() * 31)
@@ -371,13 +331,13 @@ let ansuorOpt
 var audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-    const answer = getSelected()
+
     if (phase == 0) {
-      
+      const answer = getSelected()
       ansuorOpt = answer
       if (answer) {
-        answers.forEach(answer => {
-          answer.disabled = true;
+        answers.forEach(answerio => {
+          answerio.disabled = true;
         })
         const labelOption = document.getElementById(answer + "_text")
         const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
@@ -433,7 +393,7 @@ submit.addEventListener("click", async () => {
         }
       }
     } else {
-      const answer = ansuorOpt
+  
       const labelOption = document.getElementById(answer + "_text")
       const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
 
@@ -451,7 +411,7 @@ submit.addEventListener("click", async () => {
       } else {
 
 
-        if (currentScore <= Math.round(quizData.length / 2)) {
+if (currentScore <= Math.round(quizData.length / 2)) {
           agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
@@ -489,9 +449,9 @@ submit.addEventListener("click", async () => {
             const docRef = doc(db, "users", loggedInUserId)
             const docSnap = await getDoc(docRef)
             const userData = docSnap.data()
-            if (userData.level <= 8) {
+            if (userData.level <= 9) {
               await updateDoc(docRef, {
-                level: 9
+                level: 10
 
               });
             }
@@ -510,7 +470,7 @@ window.onload = async () => {
     const docRef = doc(db, "users", loggedInUserId)
     const docSnap = await getDoc(docRef)
     const userData = docSnap.data()
-    if (userData.level < 8) {
+    if (userData.level < 9) {
       window.location.replace("ineligable.html")
     }
   }

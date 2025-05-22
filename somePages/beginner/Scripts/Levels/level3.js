@@ -116,12 +116,12 @@ const quizData = [
     explanation: "Kata 'Kenapa' artinya 'Why'",
   },
   {
-    question: "They ___ winning!",
-    a: "is",
-    b: "are",
-    c: "was",
-    d: "Semua jawaban salah",
-    correct: "b",
+    question: "Bahasa Inggrisnya 'Pintu'",
+    a: "Door",
+    b: "Shore",
+    c: "Wall",
+    d: "Store",
+    correct: "a",
 
     explanation: "Kata 'Are' digunakan untuk 2 atau lebih orang. 'Is' untuk 1 orang.",
   },

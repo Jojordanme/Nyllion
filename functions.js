@@ -56,14 +56,14 @@ window.onload = async () => {
           return;
         }
         if (userData.level >= requiredLevel) {
-          window.location.replace("errorpage.html");
+          window.location.replace("notfound.html");
         } else {
           window.location.replace("ineligable.html");
         }
       });
     };
     
-    handleLevelNavigation(10, lvl2btn);
+    handleLevelNavigation(15, lvl2btn);
     handleLevelNavigation(25, lvl3btn);
   }
  

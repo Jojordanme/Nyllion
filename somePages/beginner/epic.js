@@ -17,22 +17,32 @@ let placement = document.getElementById("stopwatchplacement")
 
 let stopwatch = document.createElement("p")
 stopwatch.id = "stopwatch"
+stopwatch.innerHTML = "0:00"
 placement.appendChild(stopwatch)
 let num  = 0
+let min = 0
 stopwatch.innerHTML = "0"
 
 let interval = setInterval(() => {
     if (stopwatch){
-        num += 0.01
-        stopwatch.innerHTML = (Math.round(num * 100) / 100).toFixed(2) +  "s" 
+        num += 1
+        if (num == 60){
+            num = 0
+            min += 1
+        }
+        if (num <= 9){
+            stopwatch.innerHTML = min + ":0" + num
+        } else {
+            stopwatch.innerHTML = min + ":" + num
+        }
         if (agj.innerHTML != ""){
             clearInterval(interval)
             setTimeout(() => {
                 agj.innerHTML =`${agj.innerHTML}
                 ${stopwatch.innerHTML}`
-            },100)
+            },10)
         }
     }
-},10)
+},1000)
 
 

@@ -57,7 +57,7 @@ const quizData = [
     explanation: "",
   },
   {
-      question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarketv" Kalimat apa yang paling tepat untuk menjawab Jason?`,
+      question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarket" Kalimat apa yang paling tepat untuk menjawab Jason?`,
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",

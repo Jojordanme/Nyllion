@@ -1,56 +1,169 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Nyllion</title>
-  <link href="css/menu.css" rel="stylesheet" type="text/css" />
-</head>
-  <body>
-    <header id="skibidiheader" class="header">
-      
-  <a href="index.html" class="logo"> Nyllion </a>
-  <nav class="nav-items">
-    <a href="aboutus.html">About Us</a>
-    <a href="levels.html">Difficulties</a>
-    <a href="profile.html">My Profile</a>
-    
+<html lang="en">
 
-  </nav>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyllion</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <nav navaos="fade-down" data-aos-duration="800">
+            <button class="menu-btn">☰</button>
+            <button class="close-btn">✕</button>
+            <div class="logo">
+                <img src="logo.png" alt="Logo" data-aos="zoom-in">
+            </div>
+            <ul>
+                
+                <li><a href="#Feature" data-aos="fade-down" data-aos-delay="200">Features</a></li>
+                <li class="nav-purchase-btn" data-aos="fade-down" data-aos-delay="200"><button
+              onclick="signin()"          class="btn">Sign In</button></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-  <div class="intro">
-    <h1 style="color:white">Nyllion</h1><br>
-    <button class="button-82-pushable" role="button" onclick="onClick()">
-  <span class="button-82-shadow"></span>
-  <span class="button-82-edge"></span>
-  <span class="button-82-front text">
-    Get Started
-  </span>
-</button>
-  </div>
- 
-  </div>
-</main>
-    <footer class="footer">
-    <div class="bottom-links">
-      <div class="links">
+    <section class="main">
+        <div class="textmain" data-aos="fade-right" data-aos-delay="300">
+            <h2 data-aos="fade-up" data-aos-delay="350">Nyllion <br><span class="mainspan"></span>
+                </h2>
+            <p class="mainp" data-aos="fade-up" data-aos-delay="400">Speak Clearly. Write Confidently. Think in English.</p>
+            <div class="buttons" data-aos="fade-up" data-aos-delay="450">
+                <button class="btn secondary" onclick="getStarted()">Get Started</button>
+                
+            </div>
+        </div>
+
+        <div class="imagesmain" data-aos="fade-left" data-aos-delay="500">
+            <img class="img1" src="macbook.png" alt="laptop" data-aos="zoom-in" data-aos-delay="550">
+            <img class="img2" src="mobile.png" alt="mobile" data-aos="zoom-in" data-aos-delay="600">
+        </div>
+    </section>
+
+
+
+
+
+<section class="features" id="Feature" data-aos="fade-up" data-aos-duration="900">
+
+    <p class="demosp fp">Our Features</p>
+    <h2 class="demosh2 fh2">Countless Key Features</h2>
+     
         
-        <a href="index.html">Home</a>
-        <a href="aboutus.html">About Us</a>
-        <a href="levels.html">Difficulties</a>
         
-        
-      </div>
-      
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="app dev.png" alt="App Development">
+                </div>
+                <h3 class="feature-title">App Development</h3>
+                <p class="feature-desc">Your customers will never have to wait for too long with our algorithms and optimizations.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="online doc.png" alt="Online Documentation">
+                </div>
+                <h3 class="feature-title">Online Documentation</h3>
+                <p class="feature-desc">We are making the Online Documentation. It will be available soon.</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="browser.png" alt="Browser compatibility">
+                </div>
+                <h3 class="feature-title">Browser compatibility</h3>
+                <p class="feature-desc">PixSaaS will behave identically on Google Chrome, Mozilla Firefox, Safari, and IE.</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="rich typ.png" alt="Rich typography">
+                </div>
+                <h3 class="feature-title">Rich typography</h3>
+                <p class="feature-desc">Google Fonts make it easy to bring quality typography to your website.</p>
+            </div>
+            
+            <!-- Feature 5 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="life.png" alt="Lifetime free updates">
+                </div>
+                <h3 class="feature-title">Lifetime free updates</h3>
+                <p class="feature-desc">Stay up-to-date with the latest version of our theme without needing to do it manually.</p>
+            </div>
+            
+            <!-- Feature 6 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <img src="custormer.png" alt="Customer Support">
+                </div>
+                <h3 class="feature-title">Customer Support</h3>
+                <p class="feature-desc">Stuck? Need help? Visit our support portal to find FAQ and a way to contact us.</p>
+            </div>
+        </div>
     </div>
-    </footer>
-    <script>
-      function onClick(){
-        window.location.href = "levels.html"
-      }
-    </script>
-    
-  </body>
+
+
+
+</section>
+
+
+
+
+<section class="footer" data-aos="fade-up" data-aos-duration="900">
+
+
+<h4>Everything you need to Learn English <br></h4>
+<div class="buton">
+ <button class="btn secondary" onclick="signin()">Sign In</button>
+ </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+    <script src="functions.js" type="module"></script>
+     <script src="Modules/globaljs.js" type="module"></script>
+</body>
+
+
 </html>

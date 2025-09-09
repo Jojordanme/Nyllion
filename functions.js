@@ -27,54 +27,114 @@ try {
 }
 
 
-const lvl1btn = document.getElementById("beginner")
-const lvl2btn = document.getElementById("intermidiate")
-const lvl3btn = document.getElementById("advanced")
 
-window.onload = async () => {
-  const loggedInUserId = localStorage.getItem('loggedInUserId');
-  if (!localStorage.getItem("loggedInUserId")) {
-    document.getElementById("registerMessage").classList.remove("hide")
-    lvl2btn.addEventListener("click", () => {
-      console.log("yesyesyes")
-      window.location.replace("ineligable.html")
 
-    })
-    lvl3btn.addEventListener("click", () => {
-      console.log("yesyesyes")
-      window.location.replace("ineligable.html")
 
-    })
-  } else {
-    const docRef = doc(db, "users", loggedInUserId)
-    const docSnap = await getDoc(docRef)
-    const userData = docSnap.data()
-    const handleLevelNavigation = (requiredLevel, btn) => {
-      btn.addEventListener("click", () => {
-        if (!loggedInUserId) {
-          window.location.replace("ineligable.html");
-          return;
-        }
-        if (userData.level >= requiredLevel) {
-          window.location.replace("notfound.html");
-        } else {
-          window.location.replace("ineligable.html");
-        }
-      });
-    };
-    
-    handleLevelNavigation(15, lvl2btn);
-    handleLevelNavigation(25, lvl3btn);
+const loggedInUserId = localStorage.getItem('loggedInUserId');
+if (!localStorage.getItem("loggedInUserId")) {
+
+
+} else {
+  const docRef = doc(db, "users", loggedInUserId)
+  const docSnap = await getDoc(docRef)
+  const userData = docSnap.data()
+  const handleLevelNavigation = (requiredLevel, btn) => {
+    btn.addEventListener("click", () => {
+      if (!loggedInUserId) {
+        window.location.replace("ineligable.html");
+        return;
+      }
+      if (userData.level >= requiredLevel) {
+        window.location.replace("notfound.html");
+      } else {
+        window.location.replace("ineligable.html");
+      }
+    });
+  };
+
+  handleLevelNavigation(15, lvl2btn);
+  handleLevelNavigation(25, lvl3btn);
+  if (userData.Settings.darkmode){
+    document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important"
+document.getElementById('main-section').style = "color:white"    
   }
- 
-
-
-  lvl1btn.addEventListener("click", () => {
-    console.log("yesyesyes")
-  window.location.replace("somePages/beginner/pathway.html")
-  })
-  
-
-  
 
 }
+
+async function getData(userId) {
+  const docRef = doc(db, "users", userId)
+  const docSnap = await getDoc(docRef)
+  const userData = docSnap.data()
+  return userData
+}
+
+function lvl1() {
+
+  window.location.replace("somePages/beginner/pathway.html");
+
+
+}
+async function lvl2() {
+  if (!loggedInUserId) {
+    window.location.replace("ineligable.html");
+    return;
+  }
+
+  const userData = await getData(loggedInUserId);
+
+  if (userData.level >= 10) {
+    window.location.replace("notfound.html");
+  } else {
+    window.location.replace("ineligable.html");
+
+  }
+
+}
+async function lvl3() {
+  if (!loggedInUserId) {
+    window.location.replace("ineligable.html");
+    return;
+  }
+  const userData = await getData(loggedInUserId);
+
+  if (userData.level >= 25) {
+    window.location.replace("notfound.html");
+  } else {
+    window.location.replace("ineligable.html");
+
+  }
+
+}
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                observer.disconnect();
+                resolve(document.querySelector(selector));
+            }
+        });
+
+   
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+waitForElm('#beginner').then((elm) => {
+    console.log('Element is ready');
+    elm.addEventListener("click", lvl1)
+});
+waitForElm('#intermidiate').then((elm) => {
+    console.log('Element is ready');
+    elm.addEventListener("click", lvl2)
+});
+waitForElm('#advanced').then((elm) => {
+    console.log('Element is ready');
+    elm.addEventListener("click", lvl3)
+});

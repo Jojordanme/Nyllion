@@ -8,9 +8,9 @@ background-color : rgb(40,40,50);
 }
 
 .slightly-more-up {
-  margin-right: 45px;
   position: relative;
-  bottom:50px;
+  margin-top: 150px; /* 👈 pushes buttons down */
+  z-index: 1;
 }
 
 img { background:rgb(40,40,50);}
@@ -110,6 +110,47 @@ ul li {
   background-color:darkgreen;
 }
 */
+
+.header {
+  position: absolute;
+  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #375fd7;
+}
+
+.header a {
+  font-size: 20px;
+  font-family: "Lexend";
+
+  color: white !important;
+}
+
+.header .logo {
+  font-size: 25px;
+  font-family: "Lexend";
+
+  color: white;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #375fd7;
+  margin-right: 20px;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #000;
+  padding: 35px 20px;
+}
 
 
 #reloadbtn {
@@ -239,4 +280,11 @@ ul li {
 }
 .locked .button-pathway-shadow {
   background-color: rgb(60, 60, 60);
+}
+
+.constellation-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow-x: visible; /* if you want scrollbars when it overflows */
 }

@@ -63,7 +63,9 @@ document.getElementById("logout").addEventListener("click",()=>{
       location.replace("login.html")
     }).catch((error)=>{
       alert("Unable to logout")
+      console.log(error)
     })
   }
  
 })
+

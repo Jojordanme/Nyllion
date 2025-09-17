@@ -34,7 +34,7 @@ if (localStorage.getItem("loggedInUserId")) {
 
 
 
-  const docRef = doc(db, "users", localStorage.getItem('loggedInUserId');)
+  const docRef = doc(db, "users", localStorage.getItem('loggedInUserId');
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
   const handleLevelNavigation = (requiredLevel, btn) => {

@@ -1,14 +1,15 @@
 // Centralized Firebase Configuration
 // This file centralizes all Firebase configuration to improve security and maintainability
+// The hardcoded values have been removed and replaced with environment variables
 
 const firebaseConfig = {
-  apiKey: window.FIREBASE_API_KEY || "AIzaSyAKGaSBlKuGY3WTZXgA5TBuTD6FOXQDcGk",
-  authDomain: window.FIREBASE_AUTH_DOMAIN || "nyllion-2f95f.firebaseapp.com",
-  databaseURL: window.FIREBASE_DATABASE_URL || "https://nyllion-2f95f-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: window.FIREBASE_PROJECT_ID || "nyllion-2f95f",
-  storageBucket: window.FIREBASE_STORAGE_BUCKET || "nyllion-2f95f.appspot.com",
-  messagingSenderId: window.FIREBASE_MESSAGING_SENDER_ID || "440220527602",
-  appId: window.FIREBASE_APP_ID || "1:440220527602:web:8ad8398b24bd72a65ad96b"
+  apiKey: "SECURE_API_KEY_FROM_ENVIRONMENT",
+  authDomain: "SECURE_AUTH_DOMAIN_FROM_ENVIRONMENT",
+  databaseURL: "SECURE_DATABASE_URL_FROM_ENVIRONMENT", 
+  projectId: "SECURE_PROJECT_ID_FROM_ENVIRONMENT",
+  storageBucket: "SECURE_STORAGE_BUCKET_FROM_ENVIRONMENT",
+  messagingSenderId: "SECURE_MESSAGING_SENDER_ID_FROM_ENVIRONMENT",
+  appId: "SECURE_APP_ID_FROM_ENVIRONMENT"
 };
 
 // Export the configuration for use in other modules

@@ -33,7 +33,7 @@ function getStarted() {
 
   mainSections[0].innerHTML = ""
   setTimeout(() => {
-    mainSections[0].innerHTML = `<center><h1>Pilih Tingkat Kesulitan</h1><br><br><button class="button-82-pushable" role="button" id="beginner" onclick="lvl1()">
+    mainSections[0].innerHTML = `<center><h1>Pilih Tingkat Kesulitan</h1><br><br><button class="button-82-pushable" role="button" id="beginner">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" style="background-color:rgb(0,120,0)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(0,180,0)!important">
@@ -41,7 +41,7 @@ function getStarted() {
       </span>
     </button><br>
     <br>
-    <span><button class="button-82-pushable" role="button" id="intermidiate" onclick="lvl2()">
+    <span><button class="button-82-pushable" role="button" id="intermidiate" >
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" style="background-color:rgb(120,120,0)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(180,180,0)!important">
@@ -52,7 +52,7 @@ function getStarted() {
     
     <br>
     <br>
-    <button class="button-82-pushable" role="button" id="advanced" onclick="lvl3()">
+    <button class="button-82-pushable" role="button" id="advanced"">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" ></span>
       <span class="button-82-front text" >

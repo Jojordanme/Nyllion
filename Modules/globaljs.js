@@ -26,7 +26,7 @@ try {
   window.location.replace("errorpage.html?error=database_connection");
 }
 
-const loggedInUserId = localStorage.getItem('loggedInUserId');
+
 
 async function getData(userId) {
   const docRef = doc(db, "users", userId)
@@ -34,18 +34,25 @@ async function getData(userId) {
   const userData = docSnap.data()
   return {userData, docRef}
 }
-if (loggedInUserId){
+if (localStorage.getItem('loggedInUserId')){
   const {userData, docRef} = await getData(localStorage.getItem('loggedInUserId'))
+  console.log(docRef)
   if (!userData.Settings){
-    await updateDoc(docRef, {
-      Settings:{
-        soundvolume:100,
-          sfxvolume:100,
-          darkMode: false,
-          language: "en"
-      }
+    try {
+      await updateDoc(docRef, {
+        Settings:{
+          soundvolume:100,
+            sfxvolume:100,
+            darkMode: false,
+            language: "en"
+        }
 
-    });
+      });
+    }
+    catch (error){
+      console.log(error)
+    }
+    
 
   }
 }

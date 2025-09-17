@@ -1,20 +1,18 @@
- const menuBtn = document.querySelector('.menu-btn');
-        const closeBtn = document.querySelector('.close-btn');
-        const navUl = document.querySelector('nav ul');
+const menuBtn = document.querySelector('.menu-btn');
+const closeBtn = document.querySelector('.close-btn');
+const navUl = document.querySelector('nav ul');
 
-        menuBtn.addEventListener('click', function () {
-            navUl.classList.add('active');
-            menuBtn.style.display = 'none';
-            closeBtn.style.display = 'block';
-        });
+menuBtn.addEventListener('click', function() {
+  navUl.classList.add('active');
+  menuBtn.style.display = 'none';
+  closeBtn.style.display = 'block';
+});
 
-        closeBtn.addEventListener('click', function () {
-            navUl.classList.remove('active');
-            menuBtn.style.display = 'block';
-            closeBtn.style.display = 'none';
-        });
-
-
+closeBtn.addEventListener('click', function() {
+  navUl.classList.remove('active');
+  menuBtn.style.display = 'block';
+  closeBtn.style.display = 'none';
+});
 
 
 
@@ -25,17 +23,17 @@
 
 
 
-const mainSections =  document.getElementsByClassName("main")
-function signin(){
-    window.location.href = "login.html"
+const mainSections = document.getElementsByClassName("main")
+function signin() {
+  window.location.href = "login.html"
 }
 
-function getStarted(){
-    console.log(mainSections.length)
-    
-        mainSections[0].innerHTML = ""
-   setTimeout(()=>{
-       mainSections[0].innerHTML = `<center><h1>Pilih Tingkat Kesulitan</h1><br><br><button class="button-82-pushable" role="button" id="beginner" onclick="lvl1()">
+function getStarted() {
+  console.log(mainSections.length)
+
+  mainSections[0].innerHTML = ""
+  setTimeout(() => {
+    mainSections[0].innerHTML = `<center><h1>Pilih Tingkat Kesulitan</h1><br><br><button class="button-82-pushable" role="button" id="beginner" onclick="lvl1()">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" style="background-color:rgb(0,120,0)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(0,180,0)!important">
@@ -63,25 +61,25 @@ function getStarted(){
       </span>
     </button></center>`
 
- 
-   },1000)
-    
-    
-    
-    
+
+  }, 1000)
+
+
+
+
 
 }
 
-function teleport(htmlfile){
+function teleport(htmlfile) {
   document.location.href = htmlfile
 }
 
 
 
- AOS.init({
-            duration: 800, // Animation duration
-            easing: 'ease-in-out', // Animation easing
-            once: true // Whether animation should happen only once
+AOS.init({
+  duration: 800, // Animation duration
+  easing: 'ease-in-out', // Animation easing
+  once: true // Whether animation should happen only once
 
-        });
+});
 

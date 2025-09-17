@@ -65,7 +65,7 @@ async function getData(userId) {
   const docRef = doc(db, "users", userId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  return userData
+  return {userData, docRef}
 }
 
 function lvl1() {
@@ -80,7 +80,7 @@ async function lvl2() {
     return;
   }
 
-  const userData = await getData(loggedInUserId);
+  const {userData, docRef} = await getData(loggedInUserId);
 
   if (userData.level >= 10) {
     window.location.replace("notfound.html");
@@ -95,7 +95,7 @@ async function lvl3() {
     window.location.replace("ineligable.html");
     return;
   }
-  const userData = await getData(loggedInUserId);
+  const {userData, docRef} = await getData(loggedInUserId);
 
   if (userData.level >= 25) {
     window.location.replace("notfound.html");
@@ -125,6 +125,28 @@ function waitForElm(selector) {
         });
     });
 }
+
+document.getElementById("saveButtonSettings").addEventListener("click", async () => {
+  if (localStorage.getItem('loggedInUserId')){
+    const {userData, docRef}= await getData(localStorage.getItem('loggedInUserId'))
+
+    if (userData && userData.Settings){
+       console.log("saved")
+      await updateDoc(docRef,{
+        Settings:{
+          soundvolume:100,
+          sfxvolume:100,
+          language: "en",
+          darkMode: document.getElementById("darkmode").checked
+        }
+      })
+
+    }
+      document.location.href = "index.html"
+  }
+ 
+
+})
 
 waitForElm('#beginner').then((elm) => {
     console.log('Element is ready');

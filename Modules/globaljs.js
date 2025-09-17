@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -32,18 +32,20 @@ async function getData(userId) {
   const docRef = doc(db, "users", userId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  return userData
+  return {userData, docRef}
 }
 if (loggedInUserId){
-  const userData = await getData(loggedInUserId)
+  const {userData, docRef} = await getData(localStorage.getItem('loggedInUserId'))
   if (!userData.Settings){
-    userData.Settings = {
+    await updateDoc(docRef, {
+      Settings:{
+        soundvolume:100,
+          sfxvolume:100,
+          darkMode: false,
+          language: "en"
+      }
 
-      soundvolume:100,
-      sfxvolume:100,
-      darkMode: false,
-      language: "en"
-      
-    }
+    });
+
   }
 }

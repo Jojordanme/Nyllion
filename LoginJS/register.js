@@ -39,6 +39,7 @@ document.getElementById("submit-register-btn").addEventListener("click", () => {
       level:1,  
       nyllex: 0,
       money: 0,
+      Settings:null
     }
     const docRef = doc(db, "users", user.uid)
     setDoc(docRef, userData).then(() => {

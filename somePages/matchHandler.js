@@ -138,9 +138,13 @@ function setaquestionanumberthingy(idx) {
 function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
+function moreQuestions(){
+  quizData.push(possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)])
+
+}
 
 for (let i=0;i<3;i++){
-  quizData.push(possibleQuestions[1][Math.floor(Math.random() * possibleQuestions[1].length)])
+  moreQuestions()
 }
 
 const test = document.getElementById("test")
@@ -333,7 +337,7 @@ submit.addEventListener("click", async () => {
 
       const labelOption = document.getElementById(answer + "_text")
       const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
-      quizData.push(possibleQuestions[1][Math.floor(Math.random() * possibleQuestions[1].length)])
+      moreQuestions()
       canActive = false
       phase = 0
       currentQuiz++

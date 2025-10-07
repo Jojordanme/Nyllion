@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import possibleQuestions from "../Modules/questionBank.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,7 +22,7 @@ const db = getFirestore(app)
 const auth = getAuth(app)
 const loggedInUserId = localStorage.getItem('loggedInUserId');
 
-
+let quizData = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
 const count = document.getElementById("counter")
@@ -137,8 +138,11 @@ function setaquestionanumberthingy(idx) {
 function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
-// 2,3
-shuffle(quizData)
+
+for (let i=0;i<3;i++){
+  quizData.push(possibleQuestions[1][Math.floor(Math.random() * possibleQuestions[1].length)])
+}
+
 const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
@@ -146,7 +150,7 @@ function loadQuiz() {
 
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
-  count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
+  count.innerHTML = "Question " + (currentQuiz + 1)
   answers.forEach(answer => {
     answer.disabled = false;
   })
@@ -329,7 +333,7 @@ submit.addEventListener("click", async () => {
 
       const labelOption = document.getElementById(answer + "_text")
       const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
-
+      quizData.push(possibleQuestions[1][Math.floor(Math.random() * possibleQuestions[1].length)])
       canActive = false
       phase = 0
       currentQuiz++

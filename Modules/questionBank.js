@@ -1,5 +1,5 @@
 const questionData = [
-  [1] = [
+
   {
     question: "John __ very good at his job",
     a: "is",
@@ -283,7 +283,7 @@ const questionData = [
     correct: "c",
     explanation: "Jawaban benar tersebut itu paling tepat dan formal untuk menjawab pertanyaan Jordan tersebut",
   },
-  ]
+
 ]
 
 

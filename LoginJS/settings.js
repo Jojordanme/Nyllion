@@ -34,3 +34,24 @@ async function getData(userId) {
   const userData = docSnap.data()
   return userData
 }
+document.getElementById("saveButtonSettings").addEventListener("click", async () => {
+  if (localStorage.getItem('loggedInUserId')) {
+    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'))
+
+    if (userData && userData.Settings) {
+      console.log("saved")
+      await updateDoc(docRef, {
+        Settings: {
+          soundvolume: 100,
+          sfxvolume: 100,
+          language: "en",
+          darkMode: document.getElementById("darkmode").checked
+        }
+      })
+
+    }
+    document.location.href = "index.html"
+  }
+
+
+})

@@ -23,7 +23,7 @@ try {
   db = getFirestore(app);
 } catch (error) {
   console.error('Firebase initialization error:', error);
-  window.location.replace("errorpage.html?error=database_connection");
+  window.location.href= "errorpage.html?error=database_connection";
 }
 
 
@@ -34,30 +34,14 @@ if (localStorage.getItem("loggedInUserId")) {
 
 
 
-  const docRef = doc(db, "users", localStorage.getItem('loggedInUserId');
+  const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  const handleLevelNavigation = (requiredLevel, btn) => {
-    btn.addEventListener("click", () => {
-      if (!loggedInUserId) {
-        window.location.replace("ineligable.html");
-        return;
-      }
-      if (userData.level >= requiredLevel) {
-        window.location.replace("notfound.html");
-      } else {
-        window.location.replace("ineligable.html");
-      }
-    });
-  };
-
-  handleLevelNavigation(15, lvl2btn);
-  handleLevelNavigation(25, lvl3btn);
-  if (userData.Settings.darkmode) {
+  if (userData && userData.Settings && userData.Settings.darkmode) {
     document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important"
     document.getElementById('main-section').style = "color:white"
   }
-
+  document.getElementById("signInButton").innerHTML = "<a href='profile.html'>Profile</a>"
 }
 
 async function getData(userId) {
@@ -89,27 +73,7 @@ function waitForElm(selector) {
   });
 }
 
-document.getElementById("saveButtonSettings").addEventListener("click", async () => {
-  if (localStorage.getItem('loggedInUserId')) {
-    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'))
 
-    if (userData && userData.Settings) {
-      console.log("saved")
-      await updateDoc(docRef, {
-        Settings: {
-          soundvolume: 100,
-          sfxvolume: 100,
-          language: "en",
-          darkMode: document.getElementById("darkmode").checked
-        }
-      })
-
-    }
-    document.location.href = "index.html"
-  }
-
-
-})
 
 waitForElm('#beginner').then((elm) => {
   console.log('Element is ready');
@@ -121,12 +85,12 @@ waitForElm('#beginner').then((elm) => {
 waitForElm('#intermidiate').then((elm) => {
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
-    if (!loggedInUserId) {
+    if (!localStorage.getItem('loggedInUserId')) {
       window.location.replace("ineligable.html");
       return;
     }
 
-    const { userData, docRef } = await getData(loggedInUserId);
+    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
 
     if (userData.level >= 10) {
       window.location.replace("notfound.html");
@@ -139,11 +103,11 @@ waitForElm('#intermidiate').then((elm) => {
 waitForElm('#advanced').then((elm) => {
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
-    if (!loggedInUserId) {
+    if (!localStorage.getItem('loggedInUserId')) {
       window.location.replace("ineligable.html");
       return;
     }
-    const { userData, docRef } = await getData(loggedInUserId);
+    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
 
     if (userData.level >= 25) {
       window.location.replace("notfound.html");

@@ -19,131 +19,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const auth = getAuth(app)
-
 const loggedInUserId = localStorage.getItem('loggedInUserId');
-const numbers = [
-  "Nol", "Satu", "Dua", "Tiga", "Empat", "Lima", "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas",
-  "Dua belas", "Tiga belas", "Empat belas", "Lima belas", "Enam belas", "Tujuh belas", "Delapan belas", "Sembilan belas", "Dua puluh", "Dua puluh satu", "Dua puluh dua", "Dua puluh tiga", "Dua puluh empat", "Dua puluh lima", "Dua puluh enam", "Dua puluh tujuh", "Dua puluh delapan", "Dua puluh sembilan", "Tiga puluh"
-]
 
-const numberseng = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen", "Twenty", "Twenty one", "Twenty two", "Twenty three", "Twenty four", "Twenty five", "Twenty six", "Twenty seven", "Twenty eight", "Twenty nine", "Thirty"]
-const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay * 1000))
 
-function englishNumbersWord(num) {
-  return numberseng[num]
-}
-
-const quizData = [
-  {
-    question: "Bahasa Inggrisnya 'Nanas'",
-    a: "Apple",
-    b: "Orange",
-    c: "Banana",
-    d: "Pineapple",
-    correct: "d",
-    explanation: "'Nanas' dalam bahasa Inggris merupakan 'Pineapple'.",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Tas'",
-    a: "Pencil",
-    b: "Back",
-    c: "Book",
-    d: "Bag",
-    correct: "d",
-    explanation: "'Tas' dalam bahasa Inggris merupakan 'Bag'",
-  },
-  {
-    question: `Bahasa Inggrisnya "Air"`,
-    a: "Air",
-    b: "Water",
-    c: "Cyan",
-    d: "Yellow",
-    correct: "b",
-    explanation: "'Air' dalam bahasa Inggris adalah 'Water'",
-  },
-  {
-    question: "Bahasa Indonesianya 'Pencil'",
-    a: "Pensil",
-    b: "Buku",
-    c: "Tas",
-    d: "Tujuh",
-    correct: "a",
-    explanation: "'Pencil' dalam bahasa indonesia adalah 'Pensil'",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Pagi'",
-    a: "Morning",
-    b: "Noon",
-    c: "Afternoon",
-    d: "Night",
-    correct: "a",
-    explanation: "Bahasa Inggris dari 'Pagi' adalah 'Morning'",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Iya' ",
-    a: "No",
-    b: "Never",
-    c: "Yes",
-    d: "Yet",
-    correct: "c",
-    explanation: "Bahasa Inggris dari 'iya' adalah 'yes'",
-  },
-  {
-    question: "Devon __ decent at math",
-    a: "Is",
-    b: "Pencil",
-    c: "Are",
-    d: "Were",
-    correct: "a",
-    explanation: "Kata 'is' digunakan untuk 1 orang saja, Sehingga kata 'Are' dan 'Were' untuk 2 atau lebih orang",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Siang'",
-    a: "Evening",
-    b: "Afternoon",
-    c: "Night",
-    d: "Noon",
-    correct: "d",
-    explanation: "'Evening' arti setelah sore. 'Afternoon' arti dalam waktu sore. 'Night'arti malam. 'Noon' arti siang ",
-  },
-
-  {
-    question: "Bahasa Inggrisnya 'Kenapa?'",
-    a: "Why?",
-    b: "Who?",
-    c: "Where?",
-    d: "How?",
-    correct: "a",
-    explanation: "Kata 'Kenapa' artinya 'Why'",
-  },
-  {
-    question: "Bahasa Inggrisnya 'Pintu'",
-    a: "Door",
-    b: "Shore",
-    c: "Wall",
-    d: "Store",
-    correct: "a",
-
-    explanation: "Kata 'Are' digunakan untuk 2 atau lebih orang. 'Is' untuk 1 orang.",
-  },
-];
-const quizData2 = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
 const count = document.getElementById("counter")
 const questiontext = document.getElementById("question")
-const opt1 = document.getElementById("a_text")
-const opt2 = document.getElementById("b_text")
-const opt3 = document.getElementById("c_text")
-const opt4 = document.getElementById("d_text")
+const esay = document.getElementById("essay")
+let opt1 = document.getElementById("a_text")
+let opt2 = document.getElementById("b_text")
+let opt3 = document.getElementById("c_text")
+let opt4 = document.getElementById("d_text")
+
 const submit = document.getElementById("subm")
 const quiz = document.getElementById("quiz")
-const answers = document.querySelectorAll(".answer")
+let answers = document.querySelectorAll(".answer")
 const explanation = document.getElementById("explanation")
 
 let currentScore = 0
 let currentQuiz = 0
 let phase = 0
+
+function shuffle(array) {
+  let currentIndex = array.length;
+
+  // While there remain elements to shuffle...
+  while (currentIndex != 0) {
+
+    // Pick a remaining element...
+    let randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+}
+
 
 function setaquestionanumberthingy(idx) {
   const number = Math.floor(Math.random() * 31)
@@ -220,11 +133,13 @@ function setaquestionanumberthingy(idx) {
 
 }
 
+
+function deselectAnswers() {
+  answers.forEach(answer => answer.checked = false)
+}
 // 2,3
-setaquestionanumberthingy(3)
-
-
-
+shuffle(quizData)
+const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
   if (questiontext) { questiontext.setAttribute("style", "color:white") }
@@ -241,10 +156,82 @@ function loadQuiz() {
   } else {
     count.style.color = "white"
   }
-  opt1.innerText = currentQuize.a
-  opt2.innerText = currentQuize.b
-  opt3.innerText = currentQuize.c
-  opt4.innerText = currentQuize.d
+  esay.value = ''
+  if (currentQuize.a) {
+    test.innerHTML = `<ul>
+        <li>
+         <div class="radio">
+           <input type="radio" name="answer" id="a" class="answer" checked>
+          <label for="a" id="a_text" class="radio-label">Question</label>
+         </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="b" class="answer">
+          <label for="b" id="b_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="c" class="answer">
+          <label for="c" id="c_text" class="radio-label">Question</label>
+          </div>
+
+        </li>
+        <li>
+          <div class="radio">
+            <input type="radio" name="answer" id="d" class="answer">
+          <label for="d" id="d_text" class="radio-label">Question</label>
+          </div>
+
+
+        </li>
+      </ul>`
+    opt1 = document.getElementById("a_text")
+    opt2 = document.getElementById("b_text")
+    opt3 = document.getElementById("c_text")
+    opt4 = document.getElementById("d_text")
+    answers = document.querySelectorAll(".answer")
+    esay.classList.add("hide")
+
+    opt1.classList.remove("hide")
+    opt2.classList.remove("hide")
+    opt3.classList.remove("hide")
+    opt4.classList.remove("hide")
+
+
+    opt1.innerText = currentQuize.a
+    opt2.innerText = currentQuize.b
+    opt3.innerText = currentQuize.c
+    opt4.innerText = currentQuize.d
+
+  } else {
+    console.log("no")
+    esay.classList.remove("hide")
+
+    opt1.classList.add("hide")
+    opt2.classList.add("hide")
+    opt3.classList.add("hide")
+    opt4.classList.add("hide")
+    test.innerHTML = ""
+
+  }
+  if (currentQuize.image) {
+    document.getElementById("imageTag").classList.remove("hide")
+
+    document.getElementById("imageTag").removeAttribute("src");
+    document.getElementById("imageTag").src = "Scripts/Levels/Images/" + currentQuize.image
+    if (currentQuize.width){
+      document.getElementById("imageTag").width = currentQuize.width
+    } else {
+      document.getElementById("imageTag").width = 250
+    }
+  } else {
+    document.getElementById("imageTag").classList.add("hide")
+  }
+
   explanation.innerHTML = ""
   submit.innerHTML = `<span class="button-pathway-shadow"></span>
       <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
@@ -265,22 +252,25 @@ function getSelected() {
   return answer
 }
 
-function deselectAnswers() {
-  answers.forEach(answer => answer.checked = false)
+
+
+function filterCharacter(inputString, characterToFilter) {
+    return inputString.split(characterToFilter).join('');
 }
+
 
 loadQuiz()
 let ansuorOpt
 var audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-
+     const answer = getSelected()
     if (phase == 0) {
-      const answer = getSelected()
+
       ansuorOpt = answer
       if (answer) {
-        answers.forEach(answer => {
-          answer.disabled = true;
+        answers.forEach(answerio => {
+          answerio.disabled = true;
         })
         const labelOption = document.getElementById(answer + "_text")
         const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
@@ -293,7 +283,7 @@ submit.addEventListener("click", async () => {
 
           currentScore++
         } else {
-          explanation.innerHTML = `<b><br>Explanasi: ${quizData[currentQuiz].explanation}</b>`
+          explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
           labelOption.setAttribute("style", "color:rgb(255,0,0)")
           correctOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ❌"
@@ -309,10 +299,34 @@ submit.addEventListener("click", async () => {
       </span>`
 
       } else {
-        alert("Pilih salah satu jawaban!")
+        const currentQuize = quizData[currentQuiz]
+        if (!currentQuize.a) {
+          phase = 1
+
+          const answerEssay = document.getElementById("essay").value
+          if (currentQuize.correct.includes(answerEssay.toLowerCase())) {
+            currentScore++
+            questiontext.innerHTML = "BENAR!"
+            questiontext.setAttribute("style", "color:rgb(0,255,0)")
+
+          } else {
+            questiontext.innerHTML = "SALAH!"
+
+            explanation.innerHTML = `<b><br>Explanasi: ${quizData[currentQuiz].explanation}</b>`
+
+          }
+          submit.innerHTML = `<span class="button-pathway-shadow" style="background-color:rgb(18,81,119)!important"></span>
+      <span class="button-pathway-edge" style="background-color:rgb(18,81,119)!important"></span>
+      <span class="button-pathway-front text" style="background-color:rgb(29,149,319)!important">
+        <b>Next</b>
+      </span>`
+        } else {
+          alert("Pilih salah satu jawaban!")
+
+        }
       }
     } else {
-      const answer = ansuorOpt
+
       const labelOption = document.getElementById(answer + "_text")
       const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
 
@@ -320,14 +334,17 @@ submit.addEventListener("click", async () => {
       phase = 0
       currentQuiz++
       if (currentQuiz < quizData.length) {
-        labelOption.setAttribute("style", "color:white")
-        correctOption.setAttribute("style", "color:white")
+        if (quizData[currentQuiz - 1].a) {
+          labelOption.setAttribute("style", "color:white")
+          correctOption.setAttribute("style", "color:white")
+        }
+
 
         loadQuiz()
       } else {
 
 
-        if (currentScore <= Math.round(quizData.length / 2)) {
+if (currentScore <= Math.round(quizData.length / 2)) {
           agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
@@ -358,37 +375,23 @@ submit.addEventListener("click", async () => {
     </button></center>`
           agj.innerHTML = "Sangat Baik"
         }
-        agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
         if (currentScore / quizData.length * 100 >= 80) {
           if (loggedInUserId) {
-            ;
+
 
             const docRef = doc(db, "users", loggedInUserId)
             const docSnap = await getDoc(docRef)
             const userData = docSnap.data()
-            if (userData.level <= 3) {
+            if (userData.level <= 9) {
               await updateDoc(docRef, {
-                level: 4
+                level: 10
 
               });
             }
           }
         }
+        agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }
     }
   }
-}
-                       )
-
-window.onload = async () => {
-  if (loggedInUserId) {
-    ;
-
-    const docRef = doc(db, "users", loggedInUserId)
-    const docSnap = await getDoc(docRef)
-    const userData = docSnap.data()
-    if (userData.level < 3) {
-      window.location.replace("ineligable.html")
-    }
-  }
-}
+})

@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
-
+import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,12 +18,14 @@ const firebaseConfig = {
 // Initialize Firebase
 let app;
 let db;
+let auth;
 try {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
+  auth = getAuth(app);
 } catch (error) {
   console.error('Firebase initialization error:', error);
-  window.location.replace("errorpage.html?error=database_connection");
+  window.location.href ="errorpage.html?error=database_connection";
 }
 
 
@@ -34,6 +36,10 @@ async function getData(userId) {
   const userData = docSnap.data()
   return {userData, docRef}
 }
+
+async function addFieldsThatHasntBeenAdded(){
+  
+
 if (localStorage.getItem('loggedInUserId')){
   const {userData, docRef} = await getData(localStorage.getItem('loggedInUserId'))
   console.log(docRef)
@@ -56,3 +62,5 @@ if (localStorage.getItem('loggedInUserId')){
 
   }
 }
+}
+addFieldsThatHasntBeenAdded()

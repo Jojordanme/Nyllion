@@ -1,12 +1,7 @@
-const menuBtn = document.querySelector('.menu-btn');
+
 const closeBtn = document.querySelector('.close-btn');
 const navUl = document.querySelector('nav ul');
 
-menuBtn.addEventListener('click', function() {
-  navUl.classList.add('active');
-  menuBtn.style.display = 'none';
-  closeBtn.style.display = 'block';
-});
 
 closeBtn.addEventListener('click', function() {
   navUl.classList.remove('active');
@@ -52,7 +47,7 @@ function getStarted() {
     
     <br>
     <br>
-    <button class="button-82-pushable" role="button" id="advanced"">
+    <button class="button-82-pushable" role="button" id="advanced">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" ></span>
       <span class="button-82-front text" >

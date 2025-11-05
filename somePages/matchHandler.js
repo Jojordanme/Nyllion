@@ -277,6 +277,8 @@ let ansuorOpt
 let audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
+    const { matchDocRef, matchDocSnap } = getMatchDoc(idTrust)
+    const matchData = matchDocSnap.data()
     const answer = getSelected()
     if (phase == 0) {
 
@@ -293,7 +295,10 @@ submit.addEventListener("click", async () => {
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
-          await
+          
+          await updateDoc(matchData, {
+            ["point" + player]: currentScore + 1
+          })
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
           labelOption.setAttribute("style", "color:rgb(255,0,0)")

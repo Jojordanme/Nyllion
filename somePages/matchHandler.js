@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, getDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, getDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 import possibleQuestions from "../Modules/questionBank.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -37,11 +37,12 @@ const submit = document.getElementById("subm")
 const quiz = document.getElementById("quiz")
 let answers = document.querySelectorAll(".answer")
 const explanation = document.getElementById("explanation")
-
+let idTrust
 let currentScore = 0
 let currentQuiz = 0
 let phase = 0
-
+let player = 1
+let opponentPlayer = 2
 function shuffle(array) {
   let currentIndex = array.length;
 
@@ -138,12 +139,12 @@ function setaquestionanumberthingy(idx) {
 function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
-function moreQuestions(){
+function moreQuestions() {
   quizData.push(possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)])
 
 }
 
-for (let i=0;i<3;i++){
+for (let i = 0; i < 3; i++) {
   moreQuestions()
 }
 
@@ -151,7 +152,7 @@ const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
   if (questiontext) { questiontext.setAttribute("style", "color:white") }
-
+  moreQuestions()
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1)
@@ -231,7 +232,7 @@ function loadQuiz() {
 
     document.getElementById("imageTag").removeAttribute("src");
     document.getElementById("imageTag").src = "Scripts/Levels/Images/" + currentQuize.image
-    if (currentQuize.width){
+    if (currentQuize.width) {
       document.getElementById("imageTag").width = currentQuize.width
     } else {
       document.getElementById("imageTag").width = 250
@@ -263,16 +264,20 @@ function getSelected() {
 
 
 function filterCharacter(inputString, characterToFilter) {
-    return inputString.split(characterToFilter).join('');
+  return inputString.split(characterToFilter).join('');
+}
+async function getMatchDoc(matchId) {
+  const docRef = doc(db, "matches", matchId)
+  const docSnap = await getDoc(docRef)
+
+  return { docRef, docSnap }
 }
 
-
-loadQuiz()
 let ansuorOpt
-var audio = new Audio("sfx/Click.mp3");
+let audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-     const answer = getSelected()
+    const answer = getSelected()
     if (phase == 0) {
 
       ansuorOpt = answer
@@ -288,8 +293,7 @@ submit.addEventListener("click", async () => {
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
-
-          currentScore++
+          await
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
           labelOption.setAttribute("style", "color:rgb(255,0,0)")
@@ -337,7 +341,7 @@ submit.addEventListener("click", async () => {
 
       const labelOption = document.getElementById(answer + "_text")
       const correctOption = document.getElementById(quizData[currentQuiz].correct + "_text")
-      moreQuestions()
+
       canActive = false
       phase = 0
       currentQuiz++
@@ -352,7 +356,7 @@ submit.addEventListener("click", async () => {
       } else {
 
 
-if (currentScore <= Math.round(quizData.length / 2)) {
+        if (currentScore <= Math.round(quizData.length / 2)) {
           agj.innerHTML = "Butuh Latihan Lagi..."
           quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
       <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
@@ -403,3 +407,126 @@ if (currentScore <= Math.round(quizData.length / 2)) {
     }
   }
 })
+async function waitForValueAsync(myValue, targetValue, timeoutMs) {
+  const start = Date.now();
+
+  // Keep looping until target is reached or timeout
+  while (true) {
+    if (myValue === targetValue) {
+      console.log("✅ Value reached:", targetValue);
+      return true;
+    }
+    if (Date.now() - start >= timeoutMs) {
+      console.log("⏰ Timeout reached!");
+      return false;
+    }
+
+    // Wait a bit before checking again (to prevent CPU overload)
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
+}
+let mainInterval
+function keepGoingUntilTimesUp(matchData) {
+  if (matchData) {
+    if (matchData["timerfromu1"] < 0 || matchData["timerfromu2"] < 0) {
+      quiz.classList.add("hide")
+
+      agj.innerHTML = "Waktu Habis"
+      if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
+        agj.innerHTML = "Kalah"
+      } else {
+        agj.innerHTML = "Menang"
+      }
+    } else {
+      setTimeout(() => {
+        keepGoingUntilTimesUp(matchData)
+      }, 200)
+    }
+  }
+
+}
+
+
+window.onload = async () => {
+  quiz.classList.add("hide")
+
+  if (loggedInUserId) {
+
+    const docRef = doc(db, "users", loggedInUserId)
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    quiz.classList.add("hide")
+
+    // Extract the part between "?=$&" and "|"
+    const match = window.location.url.match(/\?=\$&([^|]+)/);
+    idTrust = match[1];
+    // If it matches, get the value
+
+
+    if (match) {
+
+      const { matchDocRef, matchDocSnap } = getMatchDoc(idTrust)
+      const matchData = matchDocSnap.data()
+      if (matchData.user2ID == loggedInUserId) {
+        player = 2
+        opponentPlayer = 1
+      }
+      agj.innerHTML = "Tunggu lawan"
+      await updateDoc(matchDocRef, {
+        ["point" + player]: 919394
+      });
+      const success = await waitForValueAsync(matchData.point1, 913943, 20000);
+      const success2 = await waitForValueAsync(matchData.point2, 913943, 20000);
+
+      if (success && success2) {
+
+        await updateDoc(matchDocRef, {
+          ["point" + player]: 0,
+          ["timerfromu" + player]: 304,
+
+        });
+        mainInterval = setInterval(async () => {
+          await updateDoc(matchDocRef, {
+
+            ["timerfromu" + player]: 304,
+
+          });
+        }, 1000)
+        mainInterval = setInterval(() => {
+          updateDoc(matchDocRef, {
+
+            ["timerfromu" + player]: matchData["timerfromu" + player] - 1,
+          });
+          document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu1"]
+          if (matchData["timerfromu" + player] < 0 || matchData["timerfromu1"] < 0) {
+            clearInterval(mainInterval)
+          }
+
+        }, 1000)
+        keepGoingUntilTimesUp(matchData)
+        quiz.classList.remove("hide")
+        loadQuiz()
+      } else {
+        agj.innerHTML = "Lawan disconnect"
+        if (matchDocSnap.exists()) {
+          try {
+            await deleteDoc(matchDocRef)
+
+          } catch (Err) {
+            console.log("deleting doc (WENT WRONG): " + Err)
+          }
+
+        }
+
+      }
+
+
+    } else {
+      window.location.replace("../levels.html")
+    }
+
+
+
+
+  }
+}

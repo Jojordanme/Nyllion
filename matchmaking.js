@@ -70,6 +70,9 @@ async function foundANewMatch(docd, docRef) {
         point2: 0,
         user1ID: docd.data().startedId,
         user2ID: localStorage.getItem('loggedInUserId'),
+        timerfromu1: 0,
+        timerfromu2:0,
+        
       }
       try {
         await setDoc(newMatchDocRef, data)
@@ -100,6 +103,7 @@ async function matchmakingFunction() {
     try {
 
       await deleteDoc(docRef)
+      document.getElementById("matchmakingText").innerHTML = "Press the button to begin matchmaking"
       document.getElementById("matchmaking").innerHTML = `<span class="button-82-shadow"></span>
         <span class="button-82-edge" style="background-color:rgb(0,120,0)!important"></span>
         <span class="button-82-front text" style="background-color:rgb(0,180,0)!important">

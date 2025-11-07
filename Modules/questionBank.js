@@ -287,4 +287,4 @@ const questionData = [
 ]
 
 
-export {questionData}
+export default questionData

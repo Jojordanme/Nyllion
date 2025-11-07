@@ -554,6 +554,7 @@ window.onload = async () => {
            
 
             document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu" + player] + " Seconds"
+            document.getElementById("ptsCounter").innerHTML = `Accuracy: ${currentScore}/${currentQuiz}`
 
           }, 1000)
 

@@ -414,7 +414,7 @@ submit.addEventListener("click", async () => {
 
 let mainInterval
 
-let timeLeft = 180; // start value
+let timeLeft = 184; // start value
 
 window.onload = async () => {
   quiz.classList.add("hide")
@@ -472,6 +472,7 @@ window.onload = async () => {
         }
         async function keepGoingUntilTimesUp() {
           if (matchData) {
+            document.getElementById("ptsCounter").innerHTML = `Accuracy: ${currentScore}/${currentQuiz}`
 
             if (timeLeft < 0 || matchData["timerfromu2"] < 0) {
               quiz.classList.add("hide")
@@ -489,18 +490,18 @@ window.onload = async () => {
                 agj.innerHTML = "Menghitung..."
                 setTimeout(async () => {
                   if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
-                    agj.innerHTML = "Kau Kalah"
+                    agj.innerHTML = `Kau Kalah\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
                     await updateDoc(docRef, {
                       Nyllex: resultLoss.newRating
                     });
                   } else {
-                    agj.innerHTML = "Kau Menang"
+                    agj.innerHTML = `Kau Menang\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
                     await updateDoc(docRef, {
                       Nyllex: resultWin.newRating
                     });
                   }
                  setTimeout(async()=>{
-                   agj.innerHTML = `${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
+                   
                    try {
 
                      await deleteDoc(matchDocRef)
@@ -554,24 +555,43 @@ window.onload = async () => {
            
 
             document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu" + player] + " Seconds"
-            document.getElementById("ptsCounter").innerHTML = `Accuracy: ${currentScore}/${currentQuiz}`
-
+            
           }, 1000)
-
+          agj.innerHTML = ""
           keepGoingUntilTimesUp(matchDocRef, matchData)
-          quiz.classList.remove("hide")
+          
           loadQuiz()
+         for (let i=5;i>0;i--){
+           
+           
+           await new Promise (resolve => {
+             setTimeout(()=>{
+               if (i > 2){
+                 agj.innerHTML = i - 2
+               } else if (i == 2){
+                 agj.innerHTML = "GO!"
+               } else {
+                 agj.innerHTML = ""
+                 quiz.classList.remove("hide")
+               }
+               resolve()
+              },1000)
+           });
+         }
         } else {
           agj.innerHTML = "Lawan disconnect"
-          if (matchDocSnap.exists()) {
-            try {
-              await deleteDoc(matchDocRef)
-              window.location.replace("../levels.html")
-            } catch (Err) {
-              console.log("deleting doc (WENT WRONG): " + Err)
-            }
+          setTimeout(async()=>{
+            if (matchDocSnap.exists()) {
+              try {
+                await deleteDoc(matchDocRef)
+                window.location.replace("../levels.html")
+              } catch (Err) {
+                console.log("deleting doc (WENT WRONG): " + Err)
+              }
 
-          }
+            }
+          })
+          
 
         }
 

@@ -261,7 +261,19 @@ function getSelected() {
   return answer
 }
 
+function calculateElo(playerRating, opponentRating, score, K = 24) {
+  // Expected score for the player
+  const expectedScore = 1 / (1 + Math.pow(10, (opponentRating - playerRating) / 400));
 
+  // New rating
+  const newRating = playerRating + K * (score - expectedScore);
+
+  return {
+    newRating,
+    eloChange: newRating - playerRating,
+    expectedScore
+  };
+}
 
 function filterCharacter(inputString, characterToFilter) {
   return inputString.split(characterToFilter).join('');
@@ -431,17 +443,42 @@ async function waitForValueAsync(myValue, targetValue, timeoutMs) {
   }
 }
 let mainInterval
-function keepGoingUntilTimesUp(matchData) {
+async function keepGoingUntilTimesUp(matchDocRef,matchData) {
   if (matchData) {
+    document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu"+player]+" Seconds"
     if (matchData["timerfromu1"] < 0 || matchData["timerfromu2"] < 0) {
       quiz.classList.add("hide")
 
       agj.innerHTML = "Waktu Habis"
+      const docRef = doc(db, "users", matchData["user" + player + "ID"])
+      const docSnap = await getDoc(docRef)
+      const userData = docSnap.data()
+      const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
+      const docSna2p = await getDoc(docRe2f)
+      const userDat2a = docSna2p.data()
+      const resultWin = calculateElo(userData.Nyllex, userDat2a.Nyllex, 1);   // player wins
+      const resultLoss = calculateElo(userData.Nyllex, userDat2a.Nyllex, 0);  // player loses
       if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
         agj.innerHTML = "Kalah"
+        await updateDoc(docRef, {
+          Nyllex: resultLoss.newRating
+        });
       } else {
         agj.innerHTML = "Menang"
+        await updateDoc(docRef, {
+          Nyllex: resultWin.newRating
+        });
       }
+      setTimeout(async() => {
+       
+        try {
+          
+          await deleteDoc(matchDocRef)
+        } catch (error) {
+          console.log("Error deleting waiting document:" + error)
+        }
+        window.location.replace("../levels.html")
+      })
     } else {
       setTimeout(() => {
         keepGoingUntilTimesUp(matchData)
@@ -508,7 +545,8 @@ window.onload = async () => {
           }
 
         }, 1000)
-        keepGoingUntilTimesUp(matchData)
+        
+        keepGoingUntilTimesUp(matchDocRef,matchData)
         quiz.classList.remove("hide")
         loadQuiz()
       } else {

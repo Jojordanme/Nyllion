@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getFirestore, getDoc, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { getFirestore, getDoc, doc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import {possibleQuestions} from "../Modules/questionBank.js";
+import { possibleQuestions } from "../Modules/questionBank.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -282,14 +282,15 @@ async function getMatchDoc(matchId) {
   const docRef = doc(db, "matches", matchId)
   const docSnap = await getDoc(docRef)
 
-  return { docRef, docSnap }
+  return docRef
 }
 
 let ansuorOpt
 let audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-    const { matchDocRef, matchDocSnap } = getMatchDoc(idTrust)
+    const matchDocRef  = await getMatchDoc(idTrust)
+    const matchDocSnap = await getDoc(matchDocRef)
     const matchData = matchDocSnap.data()
     const answer = getSelected()
     if (phase == 0) {
@@ -307,9 +308,9 @@ submit.addEventListener("click", async () => {
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
-          
-          await updateDoc(matchData, {
-            ["point" + player]: currentScore + 1
+          currentScore++
+          updateDoc(matchDocRef, {
+            ["point" + player]: currentScore
           })
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
@@ -404,170 +405,181 @@ submit.addEventListener("click", async () => {
     </button></center>`
           agj.innerHTML = "Sangat Baik"
         }
-        if (currentScore / quizData.length * 100 >= 80) {
-          if (loggedInUserId) {
-
-
-            const docRef = doc(db, "users", loggedInUserId)
-            const docSnap = await getDoc(docRef)
-            const userData = docSnap.data()
-            if (userData.level <= 9) {
-              await updateDoc(docRef, {
-                level: 10
-
-              });
-            }
-          }
-        }
+      
         agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
       }
     }
   }
 })
-async function waitForValueAsync(myValue, targetValue, timeoutMs) {
-  const start = Date.now();
 
-  // Keep looping until target is reached or timeout
-  while (true) {
-    if (myValue === targetValue) {
-      console.log("✅ Value reached:", targetValue);
-      return true;
-    }
-    if (Date.now() - start >= timeoutMs) {
-      console.log("⏰ Timeout reached!");
-      return false;
-    }
-
-    // Wait a bit before checking again (to prevent CPU overload)
-    await new Promise(resolve => setTimeout(resolve, 500));
-  }
-}
 let mainInterval
-async function keepGoingUntilTimesUp(matchDocRef,matchData) {
-  if (matchData) {
-    document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu"+player]+" Seconds"
-    if (matchData["timerfromu1"] < 0 || matchData["timerfromu2"] < 0) {
-      quiz.classList.add("hide")
 
-      agj.innerHTML = "Waktu Habis"
-      const docRef = doc(db, "users", matchData["user" + player + "ID"])
-      const docSnap = await getDoc(docRef)
-      const userData = docSnap.data()
-      const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
-      const docSna2p = await getDoc(docRe2f)
-      const userDat2a = docSna2p.data()
-      const resultWin = calculateElo(userData.Nyllex, userDat2a.Nyllex, 1);   // player wins
-      const resultLoss = calculateElo(userData.Nyllex, userDat2a.Nyllex, 0);  // player loses
-      if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
-        agj.innerHTML = "Kalah"
-        await updateDoc(docRef, {
-          Nyllex: resultLoss.newRating
-        });
-      } else {
-        agj.innerHTML = "Menang"
-        await updateDoc(docRef, {
-          Nyllex: resultWin.newRating
-        });
-      }
-      setTimeout(async() => {
-       
-        try {
-          
-          await deleteDoc(matchDocRef)
-        } catch (error) {
-          console.log("Error deleting waiting document:" + error)
-        }
-        window.location.replace("../levels.html")
-      })
-    } else {
-      setTimeout(() => {
-        keepGoingUntilTimesUp(matchData)
-      }, 200)
-    }
-  }
-
-}
-
+let timeLeft = 180; // start value
 
 window.onload = async () => {
   quiz.classList.add("hide")
-
+  agj.innerHTML = "Test"
   if (loggedInUserId) {
 
     const docRef = doc(db, "users", loggedInUserId)
     const docSnap = await getDoc(docRef)
     const userData = docSnap.data()
-    quiz.classList.add("hide")
 
     // Extract the part between "?=$&" and "|"
-    const match = window.location.url.match(/\?=\$&([^|]+)/);
+    const match = window.location.href.match(/\?=\$&([^|]+)/);
+    console.log(match[1])
     idTrust = match[1];
     // If it matches, get the value
 
 
+
     if (match) {
+      agj.innerHTML = idTrust
 
-      const { matchDocRef, matchDocSnap } = getMatchDoc(idTrust)
-      const matchData = matchDocSnap.data()
-      if (matchData.user2ID == loggedInUserId) {
-        player = 2
-        opponentPlayer = 1
-      }
-      agj.innerHTML = "Tunggu lawan"
-      await updateDoc(matchDocRef, {
-        ["point" + player]: 919394
-      });
-      const success = await waitForValueAsync(matchData.point1, 913943, 20000);
-      const success2 = await waitForValueAsync(matchData.point2, 913943, 20000);
-
-      if (success && success2) {
-
+      var matchDocRef = await getMatchDoc(idTrust)
+      var matchDocSnap = await getDoc(matchDocRef)
+      var matchData = matchDocSnap.data()
+      if (matchData) {
+        if (matchData.user2ID == loggedInUserId) {
+          player = 2
+          opponentPlayer = 1
+        }
+        agj.innerHTML = "Tunggu lawan"
         await updateDoc(matchDocRef, {
-          ["point" + player]: 0,
-          ["timerfromu" + player]: 304,
-
+          ["point" + player]: 919394
         });
-        mainInterval = setInterval(async () => {
-          await updateDoc(matchDocRef, {
+        async function waitForFirestoreValueAsync(field, targetValue, timeoutMs) {
+          return new Promise((resolve) => {
+            let timer;
 
-            ["timerfromu" + player]: 304,
+            const unsub = onSnapshot(matchDocRef, (snapshot) => {
+              const data = snapshot.data();
+              if (data && data[field] === targetValue) {
+                console.log("works");
+                clearTimeout(timer);
+                unsub();
+                resolve(true);
+              }
+            });
 
+            // timeout fallback
+            timer = setTimeout(() => {
+              console.log("⏰ Timeout reached!");
+              unsub();
+              resolve(false);
+            }, timeoutMs);
           });
-        }, 1000)
-        mainInterval = setInterval(() => {
-          updateDoc(matchDocRef, {
+        }
+        async function keepGoingUntilTimesUp() {
+          if (matchData) {
 
-            ["timerfromu" + player]: matchData["timerfromu" + player] - 1,
-          });
-          document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu1"]
-          if (matchData["timerfromu" + player] < 0 || matchData["timerfromu1"] < 0) {
-            clearInterval(mainInterval)
+            if (timeLeft < 0 || matchData["timerfromu2"] < 0) {
+              quiz.classList.add("hide")
+
+              agj.innerHTML = "Waktu Habis"
+              const docRef = doc(db, "users", matchData["user" + player + "ID"])
+              const docSnap = await getDoc(docRef)
+              const userData = docSnap.data()
+              const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
+              const docSna2p = await getDoc(docRe2f)
+              const userDat2a = docSna2p.data()
+              const resultWin = calculateElo(userData.Nyllex, userDat2a.Nyllex, 1);   // player wins
+              const resultLoss = calculateElo(userData.Nyllex, userDat2a.Nyllex, 0);  // player loses
+              setTimeout(()=>{
+                agj.innerHTML = "Menghitung..."
+                setTimeout(async () => {
+                  if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
+                    agj.innerHTML = "Kau Kalah"
+                    await updateDoc(docRef, {
+                      Nyllex: resultLoss.newRating
+                    });
+                  } else {
+                    agj.innerHTML = "Kau Menang"
+                    await updateDoc(docRef, {
+                      Nyllex: resultWin.newRating
+                    });
+                  }
+                 setTimeout(async()=>{
+                   agj.innerHTML = `${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
+                   try {
+
+                     await deleteDoc(matchDocRef)
+                   } catch (error) {
+                     console.log("Error deleting waiting document:" + error)
+                   }
+                   setTimeout(async()=>{
+                      window.location.replace("../levels.html")
+
+                   },4000)
+                 },2000)
+                },4000)
+              },3900)
+
+
+            } else {
+              setTimeout(() => {
+                keepGoingUntilTimesUp(matchData)
+              }, 200)
+            }
           }
 
-        }, 1000)
-        
-        keepGoingUntilTimesUp(matchDocRef,matchData)
-        quiz.classList.remove("hide")
-        loadQuiz()
-      } else {
-        agj.innerHTML = "Lawan disconnect"
-        if (matchDocSnap.exists()) {
-          try {
-            await deleteDoc(matchDocRef)
+        }
+        const success = await waitForFirestoreValueAsync("point1", 919394, 20000);
+        const success2 = await waitForFirestoreValueAsync("point2", 919394, 20000);
+        if (success && success2) {
 
-          } catch (Err) {
-            console.log("deleting doc (WENT WRONG): " + Err)
+          await updateDoc(matchDocRef, {
+            ["point" + player]: 0,
+            ["timerfromu" + player]: timeLeft,
+
+          });
+
+          mainInterval = setInterval(async() => {
+            timeLeft--
+           await onSnapshot(matchDocRef, async (snap) => {
+              if (snap.exists()) {
+                matchData = snap.data();
+
+                } else {
+                  window.location.replace("../levels.html")
+                }
+
+            });
+
+            console.log(matchData["timerfromu" + player])
+            await updateDoc(matchDocRef, {
+
+              ["timerfromu" + player]: timeLeft,
+            });
+           
+
+            document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu" + player] + " Seconds"
+
+          }, 1000)
+
+          keepGoingUntilTimesUp(matchDocRef, matchData)
+          quiz.classList.remove("hide")
+          loadQuiz()
+        } else {
+          agj.innerHTML = "Lawan disconnect"
+          if (matchDocSnap.exists()) {
+            try {
+              await deleteDoc(matchDocRef)
+              window.location.replace("../levels.html")
+            } catch (Err) {
+              console.log("deleting doc (WENT WRONG): " + Err)
+            }
+
           }
 
         }
 
+
       }
-
-
     } else {
-      window.location.replace("../levels.html")
+        window.location.replace("../levels.html")
+      
     }
-
 
 
 

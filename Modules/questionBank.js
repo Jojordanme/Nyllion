@@ -1,4 +1,4 @@
-const questionData = [
+const possibleQuestions = [
 
   {
     question: "John __ very good at his job",
@@ -287,4 +287,4 @@ const questionData = [
 ]
 
 
-export default questionData
+export {possibleQuestions}

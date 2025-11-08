@@ -322,6 +322,15 @@ const possibleQuestions = [
     correct: "d",
     explanation: "Kata 'am' merupakan kata kunci untuk present tense"
   },
+  {
+    question: `Mana kalimat di bawah ini yang menunjukkan <b>present tense</b> yang benar?`,
+    a: `${getRandomName(0)} will work at home`,
+    b: `${getRandomName(0)} works at home`,
+    c: `${getRandomName(0)} was called by the manager`,
+    d: `${getRandomName(0)} is going to work at the office`,
+    correct: "b",
+    explanation: "Kata 'works' merupakan kata kunci untuk present tense"
+  }
 ]
 
 

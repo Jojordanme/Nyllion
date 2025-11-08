@@ -61,6 +61,18 @@ if (localStorage.getItem('loggedInUserId')){
     
 
   }
+  if (userData.Nyllex<100){
+    try {
+      await updateDoc(docRef, {
+        Nyllex:100
+
+      });
+    }
+    catch (error){
+      console.log(error)
+    }
+
+  }
 }
 }
 addFieldsThatHasntBeenAdded()

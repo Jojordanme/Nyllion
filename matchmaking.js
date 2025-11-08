@@ -64,11 +64,15 @@ async function foundANewMatch(docd, docRef) {
     const newMatchDocRef = doc(db, "matches", matchIsd)
     const docSnap = await getDoc(newMatchDocRef)
     if (!docSnap.exists()) {
+      let idForP1=docd.data().startedId
+      if (idForP1 == localStorage.getItem('loggedInUserId')){
+        idForP1 = docd.data().foundId
+      }
       let data = {
         matchId: matchIsd,
         point1: 0,
         point2: 0,
-        user1ID: docd.data().startedId,
+        user1ID: idForP1,
         user2ID: localStorage.getItem('loggedInUserId'),
         timerfromu1: 0,
         timerfromu2:0,

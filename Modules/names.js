@@ -10,7 +10,7 @@ const boyNames = [
   "Silas", "Seth", "Jaxon", "Cole", "Riley", "Adrian", "Dean", "Landon", "Tyson", "Nolan",
   "Brandon", "Blake", "Chase", "Carter", "Derek", "Jace", "Kai", "Milo", "Felix", "Theo",
   "Reid", "Asher", "Miles", "Zane", "Cole", "Jude", "Jasper", "Harvey", "Soren", "Roman",
-  "Cody", "Jack", "Zane", "Drew", "Spencer", "Mason", "Levi", "Graham", "Aaron", "Jared","Nelson","Damien"
+  "Cody", "Jack", "Zane", "Drew", "Spencer", "Mason", "Levi", "Graham", "Aaron", "Jared","Nelson","Damien","Jensen","Alvaro","Bennett","Brayden","Braydon","Brandon"
 ];
 
 
@@ -26,7 +26,7 @@ const girlNames = [
   "Holly", "Lacey", "Marley", "Catherine", "Julia", "Rory", "Roxanne", "Allison", "Addison", "Lily",
   "Brianna", "Jasmine", "Sierra", "Savannah", "Gwendolyn", "Holly", "Maria", "Katherine", "Piper", "Aurora",
   "Emery", "Ruby", "Sienna", "Sophie", "Dakota", "Eva", "Tessa", "Isabel", "Megan", "Adeline",
-  "Jade", "Rory", "Willow", "Georgia", "Vivian", "Tatum", "Vivienne", "Arabella", "Riley", "Aspen","Janet","Sylvi"
+  "Jade", "Rory", "Willow", "Georgia", "Vivian", "Tatum", "Vivienne", "Arabella", "Riley", "Aspen","Janet","Sylvi","Caetlin","Erika","Nova","Gibson","Rusty","Stevie","Harper","Rayden","Cynthia"
 ];
 
 export function getRandomName(gender){

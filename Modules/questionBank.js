@@ -1,3 +1,5 @@
+import { getRandomName } from "../Modules/names.js"
+
 const possibleQuestions = [
 
   {
@@ -89,7 +91,7 @@ const possibleQuestions = [
     a: "Cynthia does not write emails every day.",
     b: "Stevie writes emails every day.",
     c: "Gibson is writing emails every day.",
-    d: "Rusty write emails every day.",
+    d: "Brandon write emails every day.",
     correct: "a",
     explanation: `Kata "does not" merupakan kata negatif karena "not" adalah bahasa inggris dari "tidak"`,
   },
@@ -261,7 +263,7 @@ const possibleQuestions = [
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",
-    d: `at ${Math.floor(Math.random * 5) + 1} PM we'll go to the supermarket`,
+    d: `at ${Math.floor(Math.Random() * 5) + 1} PM we'll go to the supermarket`,
     correct: "d",
     explanation: "",
   },
@@ -276,7 +278,7 @@ const possibleQuestions = [
   },
   {
       question: `Jordan bertanya kepada anda untuk menjawab pertanyaan dia tersebut: "What will you do in chinese new year?" Kalimat apa yang paling formal dan tepat untuk menjawab Jordan?`,
-    a: "Me and my gang are going to the mall",
+    a: "Me and my friends are going to the mall",
     b: "We gonna do this rn",
     c: "I am going to the mall",
     d: "What are you doing?",
@@ -284,6 +286,42 @@ const possibleQuestions = [
     explanation: "Jawaban benar tersebut itu paling tepat dan formal untuk menjawab pertanyaan Jordan tersebut",
   },
 
+  {
+      question: `Mana kalimat di bawah ini <b>yang salah?</b>`,
+    a: "I went to Entrepreneur Week yesterday",
+    b: "The sun is shining",
+    c: "We visited the museum today",
+    d: "John play the drum yesterday",
+    correct: "d",
+    explanation: "",
+  },
+  {
+    question: `Mana kalimat di bawah ini yang menunjukkan <b>future tense</b> yang benar?`,
+    a: "I was going to go to the museum",
+    b: "I will go to the museum",
+    c: "I went to the museum",
+    d: "I am in the museum",
+    correct: "b",
+    explanation: "Kata 'will' merupakan kata kunci untuk future tense"
+  },
+  {
+    question: `Mana kalimat di bawah ini yang menunjukkan <b>past tense</b> yang benar?`,
+    a: "The sun rose 3 hours ago",
+    b: "Alvaro has gone to university to study economics",
+    c: `${getRandomName(0)} is going to the supermarket tomorrow`,
+    d: `${getRandomName(0)} will call ${getRandomName(1)} to check on her`,
+    correct: "a",
+    explanation: "Kata 'rose' merupakan verb 2 kepada kata 'rise', Verb 2 adalah verb past tense"
+  },
+  {
+   question: `Mana kalimat di bawah ini yang menunjukkan <b>present tense</b> yang benar?`,
+    a: "I was going to go to the festival",
+    b: "I will go to the festival",
+    c: "I went to the festival",
+    d: "I am in the festival",
+    correct: "d",
+    explanation: "Kata 'am' merupakan kata kunci untuk present tense"
+  },
 ]
 
 

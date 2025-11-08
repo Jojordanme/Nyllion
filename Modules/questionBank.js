@@ -263,7 +263,7 @@ const possibleQuestions = [
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",
-    d: `at ${Math.floor(Math.Random() * 5) + 1} PM we'll go to the supermarket`,
+    d: `at ${Math.floor(Math.random() * 5) + 1} PM we'll go to the supermarket`,
     correct: "d",
     explanation: "",
   },

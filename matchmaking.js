@@ -126,7 +126,7 @@ async function matchmakingFunction() {
       startedId: localStorage.getItem('loggedInUserId'),
       waitingId: waitingid,
       soonToBeMatchId: generateShortId(),
-      expirationTimestamp: Timestamp.fromDate(new Date(Date.now() + 60000));
+      expirationTimestamp: Timestamp.fromDate(new Date(Date.now() + 60000))
     }
 
     setDoc(docRef, data).then(async () => {

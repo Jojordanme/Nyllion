@@ -19,11 +19,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 
+
+
 window.onload = async () => {
   const loggedInUserId = localStorage.getItem('loggedInUserId');
   if (!loggedInUserId) {
     return
   }
+  updateBtnHovers()
+
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()

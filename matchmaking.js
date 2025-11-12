@@ -100,12 +100,13 @@ async function foundANewMatch(docd, docRef) {
     }, 500)
   }, Math.random() * 1500)
 }
+let interval;
 async function matchmakingFunction() {
   const docRef = doc(db, "waiting", waitingid)
   const docSnap = await getDoc(docRef)
   if (docSnap.exists()) {
     try {
-
+      clearInterval(interval)
       await deleteDoc(docRef)
       document.getElementById("matchmakingText").innerHTML = "Press the button to begin matchmaking"
       document.getElementById("matchmaking").innerHTML = `<span class="button-82-shadow"></span>
@@ -118,13 +119,14 @@ async function matchmakingFunction() {
     }
 
   } else {
-
+   
     const data = {
       forwhat: "comps",
       foundId: "",
       startedId: localStorage.getItem('loggedInUserId'),
       waitingId: waitingid,
       soonToBeMatchId: generateShortId(),
+      expirationTimestamp: Timestamp.fromDate(new Date(Date.now() + 60000));
     }
 
     setDoc(docRef, data).then(async () => {
@@ -134,7 +136,7 @@ async function matchmakingFunction() {
           <span style="color:rgb(180,0,0)!important">AA</span> Stop Matchmaking <span style="color:rgb(180,0,0)!important">AA</span>
         </span>`
       document.getElementById("matchmakingText").innerHTML = "Waiting for match"
-      let interval = setInterval(async () => {
+      interval = setInterval(async () => {
         let collectionRef = collection(db, "waiting")
         let snapshot = await getDocs(collectionRef)
         for (let i = 0; i < snapshot.docs.length; i++) {

@@ -74,24 +74,46 @@ function waitForElm(selector) {
 }
 
 
+var audio = new Audio('filesafter1211/click.wav')
+audio.volume = 1
+
+function updateBtnHovers(){
+  let buttons = document.querySelectorAll("button")
+  buttons.forEach(button => {
+    button.addEventListener("mouseenter", async () =>{
+      var seperateaudio = new Audio('filesafter1211/hover.wav')
+        seperateaudio.volume = 0.1
+      seperateaudio.play()
+      await new Promise(resolve => setTimeout(resolve, 400))
+
+    })
+  })
+}
+
+updateBtnHovers()
 
 waitForElm('#beginner').then((elm) => {
+  updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
+    audio.play()
+    await new Promise(resolve => setTimeout(resolve, 200))
     window.location.href = "somePages/beginner/pathway.html"
-
+    
   })
 });
 waitForElm('#intermidiate').then((elm) => {
+  updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
+    
     if (!localStorage.getItem('loggedInUserId')) {
       window.location.replace("ineligable.html");
       return;
     }
-
     const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
-
+    audio.play()
+    await new Promise(resolve => setTimeout(resolve, 200))
     if (userData.level >= 10) {
       window.location.replace("notfound.html");
     } else {
@@ -101,6 +123,7 @@ waitForElm('#intermidiate').then((elm) => {
   })
 });
 waitForElm('#advanced').then((elm) => {
+  updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
     if (!localStorage.getItem('loggedInUserId')) {
@@ -108,7 +131,8 @@ waitForElm('#advanced').then((elm) => {
       return;
     }
     const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
-
+    audio.play()
+    await new Promise(resolve => setTimeout(resolve, 200))
     if (userData.level >= 25) {
       window.location.replace("notfound.html");
     } else {

@@ -1,4 +1,18 @@
 window.onload = () => {
+  function updateBtnHovers(){
+    let buttons = document.querySelectorAll("button")
+    buttons.forEach(button => {
+      button.addEventListener("mouseenter", async () =>{
+        var seperateaudio = new Audio("../../../filesafter1211/alternateHover.wav")
+          seperateaudio.volume = 0.7
+        seperateaudio.play()
+        await new Promise(resolve => setTimeout(resolve, 400))
+
+      })
+    })
+  }
+  updateBtnHovers()
+  
   console.log("Window loaded");
   const container = document.getElementById('ButtonContainer');
   const buttons = container.querySelectorAll('.button-pathway-pushable');

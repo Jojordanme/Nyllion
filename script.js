@@ -5,6 +5,10 @@ const navUl = document.querySelector('nav ul');
 
 closeBtn.addEventListener('click', function() {
   navUl.classList.remove('active');
+  var audio = new Audio('filesafter1211/click.wav')
+  audio.volume = 2
+  audio.play()
+  
   menuBtn.style.display = 'block';
   closeBtn.style.display = 'none';
 });

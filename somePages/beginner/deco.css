@@ -288,3 +288,39 @@ ul li {
   position: relative;
   overflow-x: visible; /* if you want scrollbars when it overflows */
 }
+.popup {
+  position: absolute;
+  bottom: 130%; /* place above button */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background: #2f2f2f;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  max-width: 200px;
+  text-align: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Arrow */
+.popup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  border-width: 8px;
+  border-style: solid;
+  border-color: #2f2f2f transparent transparent transparent;
+}
+
+/* Show on hover */
+.button-wrapped:hover .popup {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}

@@ -26,8 +26,7 @@ window.onload = async () => {
   if (!loggedInUserId) {
     return
   }
-  updateBtnHovers()
-
+  
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()

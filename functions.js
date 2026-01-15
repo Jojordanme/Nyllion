@@ -39,9 +39,12 @@ if (localStorage.getItem("loggedInUserId")) {
   const userData = docSnap.data()
   if (userData && userData.Settings && userData.Settings.darkmode) {
     document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important"
-    document.getElementById('main-section').style = "color:white"
+    document.getElementById('main-section').style = "color:white!important"
   }
-  document.getElementById("signInButton").innerHTML = "<a href='profile.html'>Profile</a>"
+  if (document.getElementById("signInButton")){
+    document.getElementById("signInButton").innerHTML = "<a href='profile.html'>Profile</a>"
+
+  }
 }
 
 async function getData(userId) {
@@ -88,6 +91,35 @@ function updateBtnHovers(){
 
     })
   })
+}
+
+document.getElementById("settingsForm").addEventListener("submit",() => {
+  console.log("save settings")
+  if (localStorage.getItem("loggedInUserId")){
+    const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
+    updateDoc(docRef, {
+      Settings: {
+        darkmode: document.getElementById("darkmode").checked
+      }
+    })
+   
+  } else  {
+    window.location.href = "profile.html"
+  }
+  
+})
+
+window.onload = async () => {
+  if (window.location.href.includes("settings.html")){
+    if (localStorage.getItem("loggedInUserId")){
+      const userData = await getData(localStorage.getItem('loggedInUserId'));
+      document.getElementById("darkmode").checked = userData.Settings.darkmode
+
+      
+    } else  {
+      window.location.href = "profile.html"
+    }
+  }
 }
 
 updateBtnHovers()

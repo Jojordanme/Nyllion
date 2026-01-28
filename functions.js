@@ -23,7 +23,7 @@ try {
   db = getFirestore(app);
 } catch (error) {
   console.error('Firebase initialization error:', error);
-  window.location.href= "errorpage.html?error=database_connection";
+  window.location.href = "errorpage.html?error=database_connection";
 }
 
 
@@ -41,7 +41,7 @@ if (localStorage.getItem("loggedInUserId")) {
     document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important"
     document.getElementById('main-section').style = "color:white!important"
   }
-  if (document.getElementById("signInButton")){
+  if (document.getElementById("signInButton")) {
     document.getElementById("signInButton").innerHTML = "<a href='profile.html'>Profile</a>"
 
   }
@@ -80,12 +80,12 @@ function waitForElm(selector) {
 var audio = new Audio('filesafter1211/click.wav')
 audio.volume = 1
 
-function updateBtnHovers(){
+function updateBtnHovers() {
   let buttons = document.querySelectorAll("button")
   buttons.forEach(button => {
-    button.addEventListener("mouseenter", async () =>{
+    button.addEventListener("mouseenter", async () => {
       var seperateaudio = new Audio('filesafter1211/hover.wav')
-        seperateaudio.volume = 0.1
+      seperateaudio.volume = 0.1
       seperateaudio.play()
       await new Promise(resolve => setTimeout(resolve, 400))
 
@@ -93,30 +93,35 @@ function updateBtnHovers(){
   })
 }
 
-document.getElementById("settingsForm").addEventListener("submit",() => {
-  console.log("save settings")
-  if (localStorage.getItem("loggedInUserId")){
-    const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
-    updateDoc(docRef, {
-      Settings: {
-        darkmode: document.getElementById("darkmode").checked
-      }
-    })
-   
-  } else  {
-    window.location.href = "profile.html"
-  }
-  
-})
+
+
+if (document.getElementById("settingsForm")) {
+  document.getElementById("settingsForm").addEventListener("submit", () => {
+    console.log("save settings")
+    if (localStorage.getItem("loggedInUserId")) {
+      const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
+      updateDoc(docRef, {
+        Settings: {
+          darkmode: document.getElementById("darkmode").checked
+        }
+      })
+
+    } else {
+      window.location.href = "profile.html"
+    }
+
+  })
+}
 
 window.onload = async () => {
-  if (window.location.href.includes("settings.html")){
-    if (localStorage.getItem("loggedInUserId")){
+  if (window.location.href.includes("settings.html")) {
+
+    if (localStorage.getItem("loggedInUserId")) {
       const userData = await getData(localStorage.getItem('loggedInUserId'));
       document.getElementById("darkmode").checked = userData.Settings.darkmode
 
-      
-    } else  {
+
+    } else {
       window.location.href = "profile.html"
     }
   }
@@ -131,14 +136,15 @@ waitForElm('#beginner').then((elm) => {
     audio.play()
     await new Promise(resolve => setTimeout(resolve, 200))
     window.location.href = "somePages/beginner/pathway.html"
-    
+
   })
 });
+
 waitForElm('#intermidiate').then((elm) => {
   updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
-    
+
     if (!localStorage.getItem('loggedInUserId')) {
       window.location.replace("ineligable.html");
       return;

@@ -31,6 +31,15 @@ window.onload = async () => {
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
   document.querySelectorAll('.button-pathway-pushable').forEach(function(btn) {
+    btn.innerHTML += `
+
+
+  <div class="chat-popup" id="chatPopup">
+    <p>Hey! 👋</p>
+    <button>test</button>
+    <button>Option B</button>
+  </div>
+`
     btn.addEventListener("click", (e) => {
       e.stopPropagation();
       popup.classList.toggle("active");

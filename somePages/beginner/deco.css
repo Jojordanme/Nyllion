@@ -220,14 +220,13 @@ ul li {
   border: none;
   background: transparent;
   padding: 0;
-  display: inline-block;
   cursor: pointer;
   outline-offset: 4px;
   transition: filter 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  margin: 100px;
+  
 }
 
 .button-pathway-shadow {

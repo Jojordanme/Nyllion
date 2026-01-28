@@ -30,11 +30,29 @@ window.onload = async () => {
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  for (let i = 1; i <= 9; i++) {
+  document.querySelectorAll('.button-pathway-pushable').forEach(function(btn) {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      popup.classList.toggle("active");
+    });
+
+    // prevent popup clicks from closing it
+    popup.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+
+    // click outside to close
+    document.addEventListener("click", () => {
+      popup.classList.remove("active");
+    });
+  });
+  for (let i = 1; i < 10; i++) {
+    
    
     if (userData.level < i) {
       document.getElementById(`lvl${i}`).classList.add("locked")
       document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
+      
     }
 
   }

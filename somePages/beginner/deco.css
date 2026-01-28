@@ -20,6 +20,9 @@ img { background:rgb(40,40,50);}
   visibility: hidden;
 }
 
+
+
+
 .show {
   display: block;
   visibility: visible;
@@ -169,18 +172,62 @@ ul li {
   animation: hovered 1s infinite;
 
 }
+
+.chat-popup {
+  position: absolute;
+  top: 120%;
+  left: 0;
+  width: 220px;
+  padding: 12px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+
+  opacity: 0;
+  transform: scale(0.9) translateY(-5px);
+  transform-origin: top left;
+  pointer-events: none;
+
+  transition:
+    opacity 150ms ease,
+    transform 200ms cubic-bezier(.2,.8,.2,1);
+
+  z-index: 10;
+}
+
+/* arrow */
+.chat-popup::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 20px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  transform: rotate(45deg);
+}
+
+/* visible state */
+.chat-popup.active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
 .button-pathway-pushable {
   top: 50;
   position: relative;
   border: none;
   background: transparent;
   padding: 0;
+  display: inline-block;
   cursor: pointer;
   outline-offset: 4px;
   transition: filter 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  margin: 100px;
 }
 
 .button-pathway-shadow {

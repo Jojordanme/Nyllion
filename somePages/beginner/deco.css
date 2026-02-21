@@ -319,13 +319,13 @@ ul li {
   outline: none;
 }
 .locked .button-pathway-front {
-  background-color: rgb(120, 120, 120);
+  background-color: rgb(120, 120, 120)!important;
 }
 .locked .button-pathway-edge {
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(60, 60, 60)!important;
 }
 .locked .button-pathway-shadow {
-  background-color: rgb(60, 60, 60);
+  background-color: rgb(60, 60, 60)!important;
 }
 
 .constellation-container {

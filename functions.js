@@ -96,21 +96,26 @@ function updateBtnHovers() {
 
 
 if (document.getElementById("settingsForm")) {
-  document.getElementById("settingsForm").addEventListener("submit", () => {
-    console.log("save settings")
-    if (localStorage.getItem("loggedInUserId")) {
-      const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
+  if (localStorage.getItem("loggedInUserId")) {
+    const docRef = doc(db, "users", localStorage.getItem('loggedInUserId'));
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    document.getElementById("darkmode").checked = userData.Settings.darkmode
+    document.getElementById("settingsForm").addEventListener("submit", () => {
+
       updateDoc(docRef, {
         Settings: {
           darkmode: document.getElementById("darkmode").checked
         }
       })
+    })
+  } else {
+    window.location.href = "profile.html"
+  }
 
-    } else {
-      window.location.href = "profile.html"
-    }
+ 
+  
 
-  })
 }
 
 window.onload = async () => {

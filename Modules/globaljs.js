@@ -61,6 +61,19 @@ if (localStorage.getItem('loggedInUserId')){
     
 
   }
+  if (!userData.Level2 || !userData.Level3){
+    try {
+      await updateDoc(docRef, {
+        Level2: 1,
+        Level3: 1,
+      });
+    }
+    catch (error){
+      console.log(error)
+    }
+
+
+  }
   if (userData.Nyllex<100){
     try {
       await updateDoc(docRef, {

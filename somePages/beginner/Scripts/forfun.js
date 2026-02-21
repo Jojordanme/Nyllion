@@ -54,7 +54,6 @@ window.onload = () => {
     ctx.strokeStyle = 'white';  // White lines
     ctx.lineWidth = 4;
     const coords = Array.from(buttons).map(btn => {
-      console.log("aaaaa")
       const rect = btn.getBoundingClientRect();
       return {
         x: rect.left + rect.width / 2,
@@ -63,7 +62,7 @@ window.onload = () => {
     });
 
     for (let i = 0; i < coords.length - 1; i++) {
-      console.log("aaaaaa")
+
       const from = coords[i];
       const to = coords[i + 1];
 

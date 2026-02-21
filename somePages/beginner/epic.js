@@ -45,4 +45,24 @@ let interval = setInterval(() => {
     }
 },1000)
 
+window.onload = () => {
+    function updateRadioHovers(){
+        let buttons = document.querySelectorAll("input")
+        buttons.forEach(button => {
+            if (button.type == "radio"){
+                button.addEventListener("click", async () =>{
+                    var seperateaudio = new Audio("../sfx/Click.mp3")
+                      seperateaudio.volume = 0.7
+                    seperateaudio.play()
+                    await new Promise(resolve => setTimeout(resolve, 400))
+
+                  })
+            }
+         
+        })
+      }
+         
+    updateRadioHovers()
+}
+
 

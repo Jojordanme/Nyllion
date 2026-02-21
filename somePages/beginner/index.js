@@ -22,6 +22,7 @@ const db = getFirestore(app)
 
 
 window.onload = async () => {
+  
   const loggedInUserId = localStorage.getItem('loggedInUserId');
   if (!loggedInUserId) {
     return
@@ -30,31 +31,7 @@ window.onload = async () => {
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
-  document.querySelectorAll('.button-pathway-pushable').forEach(function(btn) {
-    btn.innerHTML += `
-
-
-  <div class="chat-popup" id="chatPopup">
-    <p>Hey! 👋</p>
-    <button>test</button>
-    <button>Option B</button>
-  </div>
-`
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      popup.classList.toggle("active");
-    });
-
-    // prevent popup clicks from closing it
-    popup.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-
-    // click outside to close
-    document.addEventListener("click", () => {
-      popup.classList.remove("active");
-    });
-  });
+ 
   for (let i = 1; i < 10; i++) {
     
    

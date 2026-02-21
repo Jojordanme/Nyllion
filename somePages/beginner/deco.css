@@ -208,7 +208,7 @@ ul li {
 }
 
 /* visible state */
-.chat-popup.active {
+.chat-popup .active {
   opacity: 1;
   transform: scale(1) translateY(0);
   pointer-events: auto;

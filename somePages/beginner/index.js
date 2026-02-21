@@ -33,9 +33,10 @@ window.onload = async () => {
   const userData = docSnap.data()
  
   for (let i = 1; i < 10; i++) {
-    
+    console.log("test")
    
-    if (userData.level < i) {
+    if (i>userData.level) {
+      console.log("Locked")
       document.getElementById(`lvl${i}`).classList.add("locked")
       document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
       

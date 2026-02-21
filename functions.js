@@ -145,37 +145,22 @@ waitForElm('#intermidiate').then((elm) => {
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
 
-    if (!localStorage.getItem('loggedInUserId')) {
-      window.location.replace("ineligable.html");
-      return;
-    }
-    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
+  
+
     audio.play()
     await new Promise(resolve => setTimeout(resolve, 200))
-    if (userData.level >= 10) {
-      window.location.replace("notfound.html");
-    } else {
-      window.location.replace("ineligable.html");
+    window.location.href = "somePages/intermidiate/pathway.html"
 
-    }
   })
 });
 waitForElm('#advanced').then((elm) => {
   updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
-    if (!localStorage.getItem('loggedInUserId')) {
-      window.location.replace("ineligable.html");
-      return;
-    }
-    const { userData, docRef } = await getData(localStorage.getItem('loggedInUserId'));
+    
     audio.play()
     await new Promise(resolve => setTimeout(resolve, 200))
-    if (userData.level >= 25) {
-      window.location.replace("notfound.html");
-    } else {
-      window.location.replace("ineligable.html");
+    window.location.href = "somePages/challenging/pathway.html"
 
-    }
   })
 });

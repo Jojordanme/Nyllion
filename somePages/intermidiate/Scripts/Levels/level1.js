@@ -368,9 +368,9 @@ submit.addEventListener("click", async () => {
             const docRef = doc(db, "users", loggedInUserId)
             const docSnap = await getDoc(docRef)
             const userData = docSnap.data()
-            if (userData.level <= 1) {
+            if (userData.Level2 <= 1) {
               await updateDoc(docRef, {
-                level: userData.level + 1
+                Level2: userData.Level2 + 1
 
               });
             }
@@ -381,5 +381,3 @@ submit.addEventListener("click", async () => {
     }
   }
 })
-
-

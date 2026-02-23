@@ -425,9 +425,7 @@ window.onload = async () => {
   agj.innerHTML = "Test"
   if (loggedInUserId) {
 
-    const docRef = doc(db, "users", loggedInUserId)
-    const docSnap = await getDoc(docRef)
-    const userData = docSnap.data()
+    
 
     // Extract the part between "?=$&" and "|"
     const match = window.location.href.match(/\?=\$&([^|]+)/);
@@ -471,7 +469,7 @@ window.onload = async () => {
               console.log("⏰ Timeout reached!");
               unsub();
               resolve(false);
-            }, timeoutMs);
+            }, 20000);
           });
         }
         async function keepGoingUntilTimesUp() {

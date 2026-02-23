@@ -166,13 +166,31 @@ window.onload = async() => {
     window.location.href = "login.html"
     return
   }
-  let {userData, docRef} = getData(localStorage.getItem('loggedInUserId'))
   
-  if (userData) return;
-  if (!userData.Nyllex){
-    await updateDoc(docRef, {
-      Nyllex: 0,
-    })
-  }
-  document.getElementById("nyllexAmount") = `Nyllex: ${userData.Nyllex}`
+  do{
+    let {userData, docRef} = await getData(localStorage.getItem('loggedInUserId'))
+    console.log(userData)
+    if (!userData) return;
+
+    if (userData.nyllex == null || !userData.nyllex){
+      try {
+        await updateDoc(docRef, {
+          nyllex:100
+
+        });
+      }
+      catch (error){
+        console.log(error)
+      }
+
+    }
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    try {
+      document.getElementById("nyllexAmount").innerHTML = `Nyllex: ${userData.nyllex}`
+    } catch (err){
+      console.error(err)
+    }
+  } while (true)
+
+  
 }

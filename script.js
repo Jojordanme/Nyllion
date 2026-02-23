@@ -45,7 +45,7 @@ function getStarted() {
       <span class="button-82-edge" style="background-color:rgb(120,120,0)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(180,180,0)!important">
         
-        Intermidiate
+        Intermediate
       </span>
     </button></span>
     

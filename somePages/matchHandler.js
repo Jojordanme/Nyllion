@@ -309,9 +309,7 @@ submit.addEventListener("click", async () => {
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
           currentScore++
-          updateDoc(matchDocRef, {
-            ["point" + player]: currentScore
-          })
+          
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
           labelOption.setAttribute("style", "color:rgb(255,0,0)")
@@ -319,8 +317,14 @@ submit.addEventListener("click", async () => {
           labelOption.innerText += " ❌"
 
           questiontext.innerHTML = "SALAH!"
+          currentScore--
         }
-
+        if(currentScore <= 0){
+          currentScore = 0
+        }
+        updateDoc(matchDocRef, {
+          ["point" + player]: currentScore
+        })
         console.log(answer)
         submit.innerHTML = `<span class="button-pathway-shadow" style="background-color:rgb(18,81,119)!important"></span>
       <span class="button-pathway-edge" style="background-color:rgb(18,81,119)!important"></span>
@@ -434,7 +438,7 @@ window.onload = async () => {
 
 
     if (match) {
-      agj.innerHTML = idTrust
+      
 
       var matchDocRef = await getMatchDoc(idTrust)
       var matchDocSnap = await getDoc(matchDocRef)
@@ -472,7 +476,8 @@ window.onload = async () => {
         }
         async function keepGoingUntilTimesUp() {
           if (matchData) {
-            document.getElementById("ptsCounter").innerHTML = `Accuracy: ${currentScore}/${currentQuiz}`
+            
+            document.getElementById("ptsCounter").innerHTML = `Point: ${currentScore}`
 
             if (timeLeft < 0 || matchData["timerfromu2"] < 0) {
               quiz.classList.add("hide")
@@ -484,21 +489,38 @@ window.onload = async () => {
               const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
               const docSna2p = await getDoc(docRe2f)
               const userDat2a = docSna2p.data()
-              const resultWin = calculateElo(userData.Nyllex, userDat2a.Nyllex, 1);   // player wins
-              const resultLoss = calculateElo(userData.Nyllex, userDat2a.Nyllex, 0);  // player loses
+              const resultWin = calculateElo(userData.nyllex, userDat2a.nyllex, 1);   // player wins
+              const resultLoss = calculateElo(userData.nyllex, userDat2a.nyllex, 0);  // player loses
               setTimeout(()=>{
                 agj.innerHTML = "Menghitung..."
                 setTimeout(async () => {
                   if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
-                    agj.innerHTML = `Kau Kalah\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
+
                     await updateDoc(docRef, {
-                      Nyllex: resultLoss.newRating
+                      nyllex: resultLoss.newRating
                     });
                   } else {
-                    agj.innerHTML = `Kau Menang\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
                     await updateDoc(docRef, {
-                      Nyllex: resultWin.newRating
+                      nyllex: resultWin.newRating
                     });
+                  }
+                  await new Promise(resolve => setTimeout(resolve, 1000))
+                  agj.innerHTML = `${userData.username}: `
+                  await new Promise(resolve => setTimeout(resolve, 1500))
+                  let line1 = `${userData.username}: ${matchData["point" + player]}`
+                  agj.innerHTML = line1
+                  await new Promise(resolve => setTimeout(resolve, 1000))
+                  agj.innerHTML = line1 + `<br>${userDat2a.username}: `
+                  await new Promise(resolve => setTimeout(resolve, 2000))
+                  agj.innerHTML = line1 + `<br>${userDat2a.username}: ${matchData["point" + opponentPlayer]}`
+                  await new Promise(resolve => setTimeout(resolve, 1500))
+                  if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
+                    
+                    agj.innerHTML = agj.innerHTML+`<br>Defeat`
+                    
+                  } else {
+                    agj.innerHTML = agj.innerHTML + `Victory\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
+                    
                   }
                  setTimeout(async()=>{
                    
@@ -528,7 +550,18 @@ window.onload = async () => {
         const success = await waitForFirestoreValueAsync("point1", 919394, 20000);
         const success2 = await waitForFirestoreValueAsync("point2", 919394, 20000);
         if (success && success2) {
-
+          const docRef = doc(db, "users", matchData["user" + player + "ID"])
+          const docSnap = await getDoc(docRef)
+          const userData = docSnap.data()
+          const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
+          const docSna2p = await getDoc(docRe2f)
+          const userDat2a = docSna2p.data()
+          agj.innerHTML = `${userData.username}`
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          agj.innerHTML = `${userData.username} vs`
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          agj.innerHTML = `${userData.username} vs ${userDat2a.username}`
+          await new Promise(resolve => setTimeout(resolve, 2000))
           await updateDoc(matchDocRef, {
             ["point" + player]: 0,
             ["timerfromu" + player]: timeLeft,

@@ -38,104 +38,104 @@ function englishNumbersWord(num) {
 
 const quizData = [
   {    
-    question: "Last night, I ____ a strange noise outside my house while everyone else was asleep.",    
-    a: "hear",    
-    b: "have heard",    
-    c: "was hearing",    
-    d: "heard",    
+    question: "She ____ a book when I entered the room.",    
+    a: "reads",    
+    b: "read",    
+    c: "is reading",    
+    d: "was reading",    
     correct: "d",    
-    explanation: `"Last night" menunjukkan masa lampau, jadi harus menggunakan past tense yaitu "heard".`,    
+    explanation: `Kalimat menunjukkan dua kejadian lampau, sehingga digunakan past continuous yaitu "was reading".`,    
   },
 
   {    
-    question: "She ____ her homework before she went to bed, so she could relax.",    
-    a: "has finished",    
-    b: "had finished",    
-    c: "finished",    
-    d: "was finishing",    
-    correct: "b",    
-    explanation: `Dua kejadian di masa lalu, dan satu terjadi lebih dulu, sehingga menggunakan past perfect yaitu "had finished".`,    
-  },
-
-  {    
-    question: "They ____ to the zoo during the school holiday and took many pictures.",    
-    a: "have gone",    
-    b: "go",    
-    c: "went",    
-    d: "were going",    
+    question: "They ____ football since 4 p.m.",    
+    a: "play",    
+    b: "are playing",    
+    c: "have been playing",    
+    d: "played",    
     correct: "c",    
-    explanation: `Kegiatan terjadi di masa lalu (during the school holiday), jadi gunakan past tense "went".`,    
+    explanation: `"Since 4 p.m." menunjukkan kegiatan yang dimulai di masa lalu dan masih berlangsung, jadi gunakan present perfect continuous.`,    
   },
 
   {    
-    question: "We ____ very tired after we had played three basketball matches yesterday.",    
-    a: "are",    
-    b: "were",    
-    c: "have been",    
-    d: "be",    
-    correct: "b",    
-    explanation: `Karena seluruh kejadian terjadi di masa lalu, bentuk yang tepat adalah "were".`,    
-  },
-
-  {    
-    question: "My parents ____ me a birthday gift after I had finished my exams last week.",    
-    a: "have given",    
-    b: "give",    
-    c: "gave",    
-    d: "had given",    
+    question: "I ____ to music when my phone suddenly rang.",    
+    a: "listen",    
+    b: "am listening",    
+    c: "was listening",    
+    d: "have listened",    
     correct: "c",    
-    explanation: `Kejadian utama terjadi di masa lalu (last week), sehingga menggunakan past tense "gave".`,    
+    explanation: `Kejadian sedang berlangsung di masa lalu lalu terganggu, sehingga menggunakan past continuous.`,    
   },
 
   {    
-    question: "The teacher ____ the lesson clearly, so all the students understood it.",    
-    a: "explains",    
-    b: "has explained",    
-    c: "explained",    
-    d: "was explaining",    
+    question: "We ____ dinner when the lights went out.",    
+    a: "have",    
+    b: "are having",    
+    c: "had",    
+    d: "were having",    
+    correct: "d",    
+    explanation: `Aktivitas sedang terjadi di masa lalu dan terganggu kejadian lain, jadi gunakan "were having".`,    
+  },
+
+  {    
+    question: "My brother ____ TV for two hours before I came home.",    
+    a: "was watching",    
+    b: "has watched",    
+    c: "had been watching",    
+    d: "watched",    
     correct: "c",    
-    explanation: `Kalimat menceritakan kejadian di masa lalu, jadi bentuk yang benar adalah "explained".`,    
+    explanation: `Kegiatan berlangsung sebelum kejadian lain di masa lalu, sehingga menggunakan past perfect continuous.`,    
   },
 
   {    
-    question: "I did not ____ the movie because I had already seen it before.",    
-    a: "watched",    
-    b: "watch",    
-    c: "watching",    
-    d: "watches",    
+    question: "Look! The baby ____ because it is hungry.",    
+    a: "cries",    
+    b: "is crying",    
+    c: "cried",    
+    d: "has cried",    
     correct: "b",    
-    explanation: `Setelah "did not", kata kerja harus kembali ke bentuk dasar (V1), yaitu "watch".`,    
+    explanation: `Kata "Look!" menunjukkan kejadian sedang berlangsung sekarang, jadi gunakan present continuous.`,    
   },
 
   {    
-    question: "____ you call me last night, or was it someone else?",    
+    question: "____ you been studying all night?",    
     a: "Do",    
-    b: "Does",    
-    c: "Are",    
-    d: "Did",    
-    correct: "d",    
-    explanation: `Karena ada "last night", pertanyaan harus menggunakan auxiliary past tense yaitu "Did".`,    
-  },
-
-  {    
-    question: "She ____ breakfast at 6 a.m. yesterday before leaving for school.",    
-    a: "has eaten",    
-    b: "eats",    
-    c: "ate",    
-    d: "had eaten",    
+    b: "Did",    
+    c: "Have",    
+    d: "Are",    
     correct: "c",    
-    explanation: `"Yesterday" menunjukkan masa lampau, sehingga bentuk yang tepat adalah "ate".`,    
+    explanation: `Kalimat tanya present perfect continuous menggunakan "Have" di awal kalimat.`,    
   },
 
   {    
-    question: "The children ____ happily at the park yesterday afternoon until it started to rain.",    
-    a: "have played",    
-    b: "played",    
-    c: "were playing",    
-    d: "play",    
-    correct: "b",    
-    explanation: `Kegiatan terjadi dan selesai di masa lalu, jadi gunakan past tense "played".`,    
+    question: "The students ____ in the classroom when the principal arrived.",    
+    a: "are sitting",    
+    b: "sit",    
+    c: "were sitting",    
+    d: "have sat",    
+    correct: "c",    
+    explanation: `Kegiatan sedang berlangsung di masa lalu saat kejadian lain terjadi, jadi gunakan past continuous.`,    
   },
+
+  {    
+    question: "She ____ not been sleeping well lately.",    
+    a: "is",    
+    b: "has",    
+    c: "was",    
+    d: "does",    
+    correct: "b",    
+    explanation: `Bentuk negatif present perfect continuous menggunakan "has not been".`,    
+  },
+
+  {    
+    question: "Why ____ he been running so fast since morning?",    
+    a: "do",    
+    b: "did",    
+    c: "has",    
+    d: "is",    
+    correct: "c",    
+    explanation: `"Since morning" menunjukkan kegiatan yang dimulai di masa lalu dan masih berlangsung, jadi gunakan "has been".`,    
+  }
 ];
 const quizData2 = []
 let canActive = true
@@ -376,7 +376,7 @@ submit.addEventListener("click", async () => {
             const docRef = doc(db, "users", loggedInUserId)
             const docSnap = await getDoc(docRef)
             const userData = docSnap.data()
-            if (userData.Level2 <= 1) {
+            if (userData.Level2 <= 2) {
               await updateDoc(docRef, {
                 Level2: userData.Level2 + 1
 

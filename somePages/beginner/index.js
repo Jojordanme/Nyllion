@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
 import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,26 +22,27 @@ const db = getFirestore(app)
 
 
 
-window.onload = async () => {
-  
+document.addEventListener("DOMContentLoaded", async () => {
+  await new Promise(resolve => setTimeout(resolve, 1000))
+
   const loggedInUserId = localStorage.getItem('loggedInUserId');
   if (!loggedInUserId) {
     return
   }
-  
+
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
- 
+
   for (let i = 1; i < 10; i++) {
     console.log("test")
-   
-    if (i>userData.level) {
+
+    if (i > userData.level) {
       console.log("Locked")
       document.getElementById(`lvl${i}`).classList.add("locked")
       document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
-      
+
     }
 
   }
-}
+})

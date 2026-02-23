@@ -126,7 +126,6 @@ async function matchmakingFunction() {
       startedId: localStorage.getItem('loggedInUserId'),
       waitingId: waitingid,
       soonToBeMatchId: generateShortId(),
-      expirationTimestamp: Timestamp.fromDate(new Date(Date.now() + 60000))
     }
 
     setDoc(docRef, data).then(async () => {
@@ -162,3 +161,18 @@ async function matchmakingFunction() {
 
 }
 document.getElementById("matchmaking").addEventListener("click", matchmakingFunction)
+window.onload = async() => {
+  if (!localStorage.getItem('loggedInUserId')){
+    window.location.href = "login.html"
+    return
+  }
+  let {userData, docRef} = getData(localStorage.getItem('loggedInUserId'))
+  
+  if (userData) return;
+  if (!userData.Nyllex){
+    await updateDoc(docRef, {
+      Nyllex: 0,
+    })
+  }
+  document.getElementById("nyllexAmount") = `Nyllex: ${userData.Nyllex}`
+}

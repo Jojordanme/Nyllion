@@ -140,7 +140,12 @@ function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
 function moreQuestions() {
-  quizData.push(possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)])
+  if (quizData.length % 4 == 0){
+    quizData.push(possibleQuestions.med[Math.floor(Math.random() * possibleQuestions.med.length)])
+  } else {
+    quizData.push(possibleQuestions.ez[Math.floor(Math.random() * possibleQuestions.ez.length)])
+
+  }
 
 }
 

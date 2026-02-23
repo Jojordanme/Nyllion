@@ -1,8 +1,7 @@
 import { getRandomName } from "../Modules/names.js"
 
-const possibleQuestions = [
-
-  {
+const possibleQuestions = {
+  ez: [{
     question: "John __ very good at his job",
     a: "is",
     b: "are",
@@ -18,7 +17,7 @@ const possibleQuestions = [
     c: "were",
     d: "was",
     correct: "d",
-  explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kita dapat konteks kalau ini terjadi di masa lalu",
+    explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kita dapat konteks kalau ini terjadi di masa lalu",
   },
   {
     question: `Falco and Travies ___ the smart kids at school`,
@@ -36,7 +35,7 @@ const possibleQuestions = [
     c: "were",
     d: "was",
     correct: "c",
-  explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kita dapat konteks kalau ini terjadi di masa lalu",
+    explanation: "Ini adalah kalimat 'Past tense' jadi kita pakai 'was'. Ini past tense karena kita dapat konteks kalau ini terjadi di masa lalu",
   },
   {
     question: "I ___ just about to take out the trash",
@@ -48,7 +47,7 @@ const possibleQuestions = [
     explanation: "...",
   },
 
-  
+
 
   {
     question: `He ____ to the gym every morning.`,
@@ -156,7 +155,7 @@ const possibleQuestions = [
     c: "is",
     d: "are",
     correct: "a",
-  explanation: ``,
+    explanation: ``,
   },
   {
     question: "Which of these sentences is the correct simple PAST tense? (wake up)",
@@ -165,7 +164,7 @@ const possibleQuestions = [
     c: "Carmen going to wake up at 7 AM",
     d: "Carmen waking up at 7 AM",
     correct: "b",
-  explanation: `kata "wake up" di past tense (masa lalu) adalah "woke up"`,
+    explanation: `kata "wake up" di past tense (masa lalu) adalah "woke up"`,
   },
   {
     question: "I know! He is the one who was _____(play) the drums last night.",
@@ -174,7 +173,7 @@ const possibleQuestions = [
     c: "play",
     d: "played",
     correct: "a",
-  explanation: ``,
+    explanation: ``,
   },
   {
     question: "Yesterday, I _______(go) to the park.",
@@ -183,7 +182,7 @@ const possibleQuestions = [
     c: "going",
     d: "goes",
     correct: "b",
-  explanation: `"Yesterday" menunjukkan waktu lampau, sehingga kata kerja harus menggunakan bentuk lampau (past tense). Kata kerja lampau dari "go" adalah "went".`,
+    explanation: `"Yesterday" menunjukkan waktu lampau, sehingga kata kerja harus menggunakan bentuk lampau (past tense). Kata kerja lampau dari "go" adalah "went".`,
   },
   {
     question: "They ___ (play) soccer last weekend.",
@@ -192,7 +191,7 @@ const possibleQuestions = [
     c: "are playing",
     d: "played",
     correct: "d",
-  explanation: `"Play" berubah menjadi "played" karena menunjukkan aksi yang selesai minggu lalu.`,
+    explanation: `"Play" berubah menjadi "played" karena menunjukkan aksi yang selesai minggu lalu.`,
   },
   {
     question: "I ___ (eat) an apple this morning.",
@@ -201,7 +200,7 @@ const possibleQuestions = [
     c: "ate",
     d: "aten",
     correct: "c",
-  explanation: `"Eat" berubah menjadi "ate" dalam bentuk past tense untuk kegiatan yang sudah selesai pagi ini.`,
+    explanation: `"Eat" berubah menjadi "ate" dalam bentuk past tense untuk kegiatan yang sudah selesai pagi ini.`,
   },
   {
     question: "We ___ (visit) the museum last year.",
@@ -210,7 +209,7 @@ const possibleQuestions = [
     c: "visited",
     d: "are visiting",
     correct: "c",
-  explanation: `Bentuk lampau dari "visit" adalah "visited" karena menunjukkan aksi tahun lalu.`,
+    explanation: `Bentuk lampau dari "visit" adalah "visited" karena menunjukkan aksi tahun lalu.`,
   },
   {
     question: "She ___ (study) hard for the test last night.",
@@ -219,7 +218,7 @@ const possibleQuestions = [
     c: "studying",
     d: "studing",
     correct: "a",
-  explanation: `Kata kerja "study" ditambahkan "-ed" menjadi "studied" karena aksi selesai semalam.`,
+    explanation: `Kata kerja "study" ditambahkan "-ed" menjadi "studied" karena aksi selesai semalam.`,
   },
   {
     question: "I ___ (see) her at the mall two days ago.",
@@ -228,7 +227,7 @@ const possibleQuestions = [
     c: "seen",
     d: "seeing",
     correct: "b",
-  explanation: `"See" berubah menjadi "saw" dalam bentuk verb 2.`,
+    explanation: `"See" berubah menjadi "saw" dalam bentuk verb 2.`,
 
   },
   {
@@ -242,7 +241,7 @@ const possibleQuestions = [
   },
   {
     question: `Bennett: "How's the weather outside?" Manakah kalimat yang paling tepat untuk menjawab Bennett?`,
-    a: "Its sunny.", 
+    a: "Its sunny.",
     b: "Sure! My name is Adam",
     c: "What?",
     d: "Sure! here you go",
@@ -259,7 +258,7 @@ const possibleQuestions = [
     explanation: "",
   },
   {
-      question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarketv" Kalimat apa yang paling tepat untuk menjawab Jason?`,
+    question: `Jason bertanya kepada anda untuk ke Supermarket: "Hey, when are we going to the supermarketv" Kalimat apa yang paling tepat untuk menjawab Jason?`,
     a: "I dont know",
     b: "Yesn't",
     c: "No, here you go!",
@@ -268,7 +267,7 @@ const possibleQuestions = [
     explanation: "",
   },
   {
-      question: `Bryan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
+    question: `Bryan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
     a: "I would like some chips please",
     b: "Fine Chips",
     c: "Who is that?",
@@ -277,7 +276,7 @@ const possibleQuestions = [
     explanation: "",
   },
   {
-      question: `Jordan bertanya kepada anda untuk menjawab pertanyaan dia tersebut: "What will you do in chinese new year?" Kalimat apa yang paling formal dan tepat untuk menjawab Jordan?`,
+    question: `Jordan bertanya kepada anda untuk menjawab pertanyaan dia tersebut: "What will you do in chinese new year?" Kalimat apa yang paling formal dan tepat untuk menjawab Jordan?`,
     a: "Me and my friends are going to the mall",
     b: "We gonna do this rn",
     c: "I am going to the mall",
@@ -285,9 +284,8 @@ const possibleQuestions = [
     correct: "c",
     explanation: "Jawaban benar tersebut itu paling tepat dan formal untuk menjawab pertanyaan Jordan tersebut",
   },
-
   {
-      question: `Mana kalimat di bawah ini <b>yang salah?</b>`,
+    question: `Mana kalimat di bawah ini <b>yang salah?</b>`,
     a: "I went to Entrepreneur Week yesterday",
     b: "The sun is shining",
     c: "We visited the museum today",
@@ -314,7 +312,7 @@ const possibleQuestions = [
     explanation: "Kata 'rose' merupakan verb 2 kepada kata 'rise', Verb 2 adalah verb past tense"
   },
   {
-   question: `Mana kalimat di bawah ini yang menunjukkan <b>present tense</b> yang benar?`,
+    question: `Mana kalimat di bawah ini yang menunjukkan <b>present tense</b> yang benar?`,
     a: "I was going to go to the festival",
     b: "I will go to the festival",
     c: "I went to the festival",
@@ -330,8 +328,301 @@ const possibleQuestions = [
     d: `${getRandomName(0)} is going to work at the office`,
     correct: "b",
     explanation: "Kata 'works' merupakan kata kunci untuk present tense"
+  },
+  ],
+  med: [
+    
+      
+    {
+      question: "Last night, I ____ a strange noise outside my house.",
+      a: "hear",
+      b: "heard",
+      c: "hears",
+      d: "hearing",
+      correct: "b",
+      explanation: `Kata "last night" menunjukkan waktu lampau, jadi harus menggunakan bentuk past tense yaitu "heard".`,
+    },
+
+    {
+      question: "She ____ her homework before she went to bed.",
+      a: "finish",
+      b: "finishes",
+      c: "finished",
+      d: "finishing",
+      correct: "c",
+      explanation: `Kalimat ini menceritakan kejadian di masa lalu, sehingga menggunakan bentuk lampau yaitu "finished".`,
+    },
+
+    {
+      question: "They ____ to the zoo during the school holiday.",
+      a: "go",
+      b: "goes",
+      c: "went",
+      d: "going",
+      correct: "c",
+      explanation: `Kegiatan terjadi saat liburan sekolah (masa lalu), jadi kata kerja yang benar adalah "went".`,
+    },
+
+    {
+      question: "We ____ very tired after the basketball match yesterday.",
+      a: "are",
+      b: "were",
+      c: "was",
+      d: "be",
+      correct: "b",
+      explanation: `"Yesterday" menandakan masa lalu dan subjek "We" menggunakan "were" dalam past tense.`,
+    },
+
+    {
+      question: "My parents ____ me a birthday gift last week.",
+      a: "give",
+      b: "gives",
+      c: "gave",
+      d: "given",
+      correct: "c",
+      explanation: `"Last week" menunjukkan masa lampau sehingga bentuk yang benar adalah "gave".`,
+    },
+
+    {
+      question: "The teacher ____ the lesson clearly yesterday.",
+      a: "explain",
+      b: "explained",
+      c: "explains",
+      d: "explaining",
+      correct: "b",
+      explanation: `Karena ada keterangan waktu "yesterday", maka digunakan bentuk lampau yaitu "explained".`,
+    },
+
+    {
+      question: "I did not ____ the movie because I was busy.",
+      a: "watch",
+      b: "watched",
+      c: "watching",
+      d: "watches",
+      correct: "a",
+      explanation: `Setelah "did not", kata kerja harus kembali ke bentuk dasar (V1), yaitu "watch".`,
+    },
+
+    {
+      question: "____ you call me last night?",
+      a: "Do",
+      b: "Does",
+      c: "Did",
+      d: "Are",
+      correct: "c",
+      explanation: `Karena ada "last night", pertanyaan harus menggunakan auxiliary past tense yaitu "Did".`,
+    },
+
+    {
+      question: "The children ____ happily at the park yesterday afternoon.",
+      a: "play",
+      b: "playing",
+      c: "plays",
+      d: "played",
+      correct: "d",
+      explanation: `Kata "yesterday afternoon" menunjukkan past tense, sehingga jawabannya adalah "played".`,
+    },
+    {    
+    question: "She ____ a book right now.",    
+    a: "read",    
+    b: "reads",    
+    c: "is reading",    
+    d: "reading",    
+    correct: "c",    
+    explanation: `"Right now" menunjukkan Present Continuous Tense, sehingga bentuk yang benar adalah "is reading".`,    
+  },
+
+  {    
+    question: "They ____ football at the moment.",    
+    a: "play",    
+    b: "are playing",    
+    c: "plays",    
+    d: "played",    
+    correct: "b",    
+    explanation: `"At the moment" menandakan kejadian sedang berlangsung, jadi menggunakan "are playing".`,    
+  },
+
+  {    
+    question: "I ____ to music now.",    
+    a: "am listening",    
+    b: "listen",    
+    c: "listened",    
+    d: "listens",    
+    correct: "a",    
+    explanation: `"Now" menunjukkan aktivitas sedang terjadi, maka digunakan "am listening".`,    
+  },
+
+  {    
+    question: "We ____ dinner right now.",    
+    a: "have",    
+    b: "are having",    
+    c: "had",    
+    d: "having",    
+    correct: "b",    
+    explanation: `Karena ada "right now", kalimat memakai Present Continuous yaitu "are having".`,    
+  },
+
+  {    
+    question: "My brother ____ TV at the moment.",    
+    a: "watch",    
+    b: "is watching",    
+    c: "watches",    
+    d: "watched",    
+    correct: "b",    
+    explanation: `"At the moment" menandakan kegiatan sedang berlangsung, sehingga jawabannya "is watching".`,    
+  },
+
+  {    
+    question: "Look! The baby ____ .",    
+    a: "cry",    
+    b: "cries",    
+    c: "is crying",    
+    d: "cried",    
+    correct: "c",    
+    explanation: `Kata "Look!" menunjukkan sesuatu sedang terjadi sekarang, jadi menggunakan "is crying".`,    
+  },
+
+  {    
+    question: "____ you studying for the test right now?",    
+    a: "Do",    
+    b: "Did",    
+    c: "Are",    
+    d: "Does",    
+    correct: "c",    
+    explanation: `Pertanyaan Present Continuous menggunakan to be, dan untuk "you" adalah "Are".`,    
+  },
+
+  {    
+    question: "The students ____ in the classroom now.",    
+    a: "sits",    
+    b: "sit",    
+    c: "sat",    
+    d: "are sitting",    
+    correct: "d",    
+    explanation: `"Now" menunjukkan kegiatan sedang berlangsung, jadi bentuk yang benar adalah "are sitting".`,    
+  },
+
+  {    
+    question: "She ____ not sleeping at the moment.",    
+    a: "is",    
+    b: "are",    
+    c: "does",    
+    d: "did",    
+    correct: "a",    
+    explanation: `Kalimat negatif Present Continuous untuk "she" menggunakan "is not".`,    
+  },
+
+  {    
+    question: "Why ____ he running so fast?",    
+    a: "do",    
+    b: "did",    
+    c: "are",    
+    d: "is",    
+    correct: "d",    
+    explanation: `Kalimat tanya Present Continuous dengan subjek "he" menggunakan "is".`,    
+  },
+    {    
+    question: "The classroom ____ cleaned every day.",    
+    a: "cleans",    
+    b: "is cleaned",    
+    c: "cleaned",    
+    d: "cleaning",    
+    correct: "b",    
+    explanation: `"Every day" menunjukkan kebiasaan dan kalimat berbentuk pasif, jadi menggunakan "is cleaned".`,    
+  },
+
+  {    
+    question: "The homework ____ by the teacher yesterday.",    
+    a: "checks",    
+    b: "is checked",    
+    c: "was checked",    
+    d: "checked",    
+    correct: "c",    
+    explanation: `"Yesterday" menunjukkan masa lalu dan bentuknya pasif, jadi jawabannya "was checked".`,    
+  },
+
+  {    
+    question: "English ____ in many countries.",    
+    a: "speaks",    
+    b: "is spoken",    
+    c: "spoke",    
+    d: "speaking",    
+    correct: "b",    
+    explanation: `Kalimat ini berbentuk pasif dan menyatakan fakta umum, sehingga menggunakan "is spoken".`,    
+  },
+
+  {    
+    question: "The cake ____ by my mother last night.",    
+    a: "makes",    
+    b: "is made",    
+    c: "was made",    
+    d: "made",    
+    correct: "c",    
+    explanation: `"Last night" menunjukkan masa lampau dan bentuk pasif, jadi menggunakan "was made".`,    
+  },
+
+  {    
+    question: "The letters ____ every morning.",    
+    a: "deliver",    
+    b: "delivered",    
+    c: "are delivered",    
+    d: "are delivering",    
+    correct: "c",    
+    explanation: `Kalimat menyatakan kebiasaan dan berbentuk pasif, sehingga memakai "are delivered".`,    
+  },
+
+  {    
+    question: "The window ____ by the boy yesterday.",    
+    a: "breaks",    
+    b: "is broken",    
+    c: "was broken",    
+    d: "broken",    
+    correct: "c",    
+    explanation: `"Yesterday" menunjukkan past tense dan kalimat pasif, jadi jawabannya "was broken".`,    
+  },
+
+  {    
+    question: "This book ____ by many students every year.",    
+    a: "reads",    
+    b: "is read",    
+    c: "was read",    
+    d: "reading",    
+    correct: "b",    
+    explanation: `"Every year" menunjukkan fakta umum dalam bentuk pasif, jadi menggunakan "is read".`,    
+  },
+
+  {    
+    question: "The match ____ because of the heavy rain last week.",    
+    a: "cancels",    
+    b: "is canceled",    
+    c: "was canceled",    
+    d: "cancel",    
+    correct: "c",    
+    explanation: `"Last week" menunjukkan masa lalu dan kalimat pasif, jadi jawabannya "was canceled".`,    
+  },
+
+  {    
+    question: "Rice ____ in many Asian countries.",    
+    a: "grows",    
+    b: "is grown",    
+    c: "grew",    
+    d: "growing",    
+    correct: "b",    
+    explanation: `Kalimat ini berbentuk pasif dan menyatakan fakta umum, sehingga menggunakan "is grown".`,    
+  },
+
+  {    
+    question: "The announcement ____ by the principal this morning.",    
+    a: "makes",    
+    b: "is made",    
+    c: "was made",    
+    d: "making",    
+    correct: "c",    
+    explanation: `"This morning" menunjukkan waktu lampau dan bentuk pasif, jadi jawabannya "was made".`,    
   }
-]
+  ]
+
+}
 
 
-export {possibleQuestions}
+export { possibleQuestions }

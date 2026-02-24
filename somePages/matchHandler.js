@@ -528,12 +528,14 @@ window.onload = async () => {
                   if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
                     
                     agj.innerHTML = agj.innerHTML+`<br>Defeat`
-                    
+                    agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(resultLoss.newRating)}`
+
                   } else {
                     agj.innerHTML = agj.innerHTML + `<br>Victory`
-                    
+                    agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(resultWin.newRating)}`
+
                   }
-                  agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(userData.nyllex)}`
+                  
                   
                  setTimeout(async()=>{
                    

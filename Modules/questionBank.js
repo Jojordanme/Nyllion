@@ -87,7 +87,7 @@ const possibleQuestions = {
   },
   {
     question: "Which of the following sentences is in the negative form?",
-    a: "Cynthia does not write emails every day.",
+    a: `${getRandomName(0)} does not write emails every day.`,
     b: "Stevie writes emails every day.",
     c: "Gibson is writing emails every day.",
     d: "Brandon write emails every day.",
@@ -106,7 +106,7 @@ const possibleQuestions = {
   {
     question: "Which of the following sentences is correct?",
     a: "Budi is wrote a book",
-    b: "Braidy has reading the book.",
+    b: `${get} has reading the book.`,
     c: "Nova reads books every day",
     d: "Merton will reading a book tomorrow.",
     correct: "c",
@@ -178,10 +178,10 @@ const possibleQuestions = {
   {
     question: "Yesterday, I _______(go) to the park.",
     a: "go",
-    b: "went",
+    b: "goes",
     c: "going",
-    d: "goes",
-    correct: "b",
+    d: "went",
+    correct: "d",
     explanation: `"Yesterday" menunjukkan waktu lampau, sehingga kata kerja harus menggunakan bentuk lampau (past tense). Kata kerja lampau dari "go" adalah "went".`,
   },
   {
@@ -248,8 +248,8 @@ const possibleQuestions = {
     correct: "a",
     explanation: "Kalimat tersebut tidak tepat untuk menjawab pertanyaan tersebut.",
   },
-  {
-    question: `Caetlin bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Kalimat apa yang paling tepat untuk menjawab Adam?`,
+       {
+    question: `Adam bertanya kepada Kenneth untuk meminjam pena: "May I borrow your pen?" Kalimat apa yang paling tepat untuk menjawab Adam?`,
     a: "Goodbye!",
     b: "Sure! here you go",
     c: "No, here you go!",
@@ -267,7 +267,7 @@ const possibleQuestions = {
     explanation: "",
   },
   {
-    question: `Bryan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
+    question: `Bruan bertanya kepada anda untuk cemilan apa dia mau beli: "Hey, what snacks do you wanna buy?" Apakah kalimat yang paling tepat untuk menjawab Bruan?`,
     a: "I would like some chips please",
     b: "Fine Chips",
     c: "Who is that?",

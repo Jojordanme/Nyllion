@@ -500,11 +500,11 @@ window.onload = async () => {
                   if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
 
                     await updateDoc(docRef, {
-                      nyllex: resultLoss.newRating
+                      nyllex: Math.round(resultLoss.newRating)
                     });
                   } else {
                     await updateDoc(docRef, {
-                      nyllex: resultWin.newRating
+                      nyllex: Math.round(resultWin.newRating)
                     });
                   }
                   await new Promise(resolve => setTimeout(resolve, 1000))

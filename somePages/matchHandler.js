@@ -500,19 +500,21 @@ window.onload = async () => {
               const userDat2a = docSna2p.data()
               const resultWin = calculateElo(userData.nyllex, userDat2a.nyllex, 1);   // player wins
               const resultLoss = calculateElo(userData.nyllex, userDat2a.nyllex, 0);  // player loses
+              if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
+
+                await updateDoc(docRef, {
+                  nyllex: Math.round(resultLoss.newRating)
+                });
+              } else {
+                await updateDoc(docRef, {
+                  nyllex: Math.round(resultWin.newRating)
+                });
+              }
               setTimeout(()=>{
                 agj.innerHTML = "Menghitung..."
+                
                 setTimeout(async () => {
-                  if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
-
-                    await updateDoc(docRef, {
-                      nyllex: Math.round(resultLoss.newRating)
-                    });
-                  } else {
-                    await updateDoc(docRef, {
-                      nyllex: Math.round(resultWin.newRating)
-                    });
-                  }
+                 
                   await new Promise(resolve => setTimeout(resolve, 1000))
                   agj.innerHTML = `${userData.username}: `
                   await new Promise(resolve => setTimeout(resolve, 1500))
@@ -528,9 +530,11 @@ window.onload = async () => {
                     agj.innerHTML = agj.innerHTML+`<br>Defeat`
                     
                   } else {
-                    agj.innerHTML = agj.innerHTML + `Victory\n${matchData["point" + player]} - ${matchData["point" + opponentPlayer]}`
+                    agj.innerHTML = agj.innerHTML + `<br>Victory`
                     
                   }
+                  agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(userData.nyllex)}`
+                  
                  setTimeout(async()=>{
                    
                    try {
@@ -542,7 +546,7 @@ window.onload = async () => {
                    setTimeout(async()=>{
                       window.location.replace("../levels.html")
 
-                   },4000)
+                   },3000)
                  },2000)
                 },4000)
               },3900)
@@ -567,9 +571,9 @@ window.onload = async () => {
           const userDat2a = docSna2p.data()
           agj.innerHTML = `${userData.username}`
           await new Promise(resolve => setTimeout(resolve, 1000))
-          agj.innerHTML = `${userData.username} vs`
+          agj.innerHTML = `${userData.username}<br> vs`
           await new Promise(resolve => setTimeout(resolve, 1000))
-          agj.innerHTML = `${userData.username} vs ${userDat2a.username}`
+          agj.innerHTML = `${userData.username} (${Math.floor(userData.nyllex)})<br> vs<br> ${userDat2a.username} (${Math.floor(userDat2a.nyllex)})`
           await new Promise(resolve => setTimeout(resolve, 2000))
           await updateDoc(matchDocRef, {
             ["point" + player]: 0,

@@ -334,19 +334,3 @@ ul li {
 .button-pathway-pushable:focus:not(:focus-visible) {
   outline: none;
 }
-.locked .button-pathway-front {
-  background-color: rgb(120, 120, 120);
-}
-.locked .button-pathway-edge {
-  background-color: rgb(60, 60, 60);
-}
-.locked .button-pathway-shadow {
-  background-color: rgb(60, 60, 60);
-}
-
-.constellation-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  overflow-x: visible; /* if you want scrollbars when it overflows */
-}

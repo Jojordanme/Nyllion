@@ -389,3 +389,16 @@ submit.addEventListener("click", async () => {
     }
   }
 })
+
+window.onload = async () => {
+  if (loggedInUserId) {
+
+
+    const docRef = doc(db, "users", loggedInUserId)
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    if (userData.Level2 < 2) {
+      window.location.replace("ineligable.html")
+    }
+  }
+}

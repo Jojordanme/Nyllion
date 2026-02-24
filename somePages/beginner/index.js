@@ -33,12 +33,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const docRef = doc(db, "users", loggedInUserId)
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
+  console.log(`ID:${userData.username} Level: ${userData.level}`)
 
-  for (let i = 1; i < 10; i++) {
-    console.log("test")
+  for (let i = 1; i <= 10; i++) {
 
-    if (i > userData.level) {
-      console.log("Locked")
+    if (i-1 >= userData.level) {
       document.getElementById(`lvl${i}`).classList.add("locked")
       document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
 

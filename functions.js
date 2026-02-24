@@ -38,7 +38,7 @@ if (localStorage.getItem("loggedInUserId")) {
   const docSnap = await getDoc(docRef)
   const userData = docSnap.data()
   if (userData && userData.Settings && userData.Settings.darkmode) {
-    document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important;color:white!important"
+    // document.getElementById('main-section').style = "background-color:rgb(30,30,50)!important;color:white!important"
 
   }
   if (document.getElementById("signInButton")) {

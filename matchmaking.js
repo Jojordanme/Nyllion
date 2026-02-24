@@ -186,7 +186,7 @@ window.onload = async() => {
     }
     await new Promise(resolve => setTimeout(resolve, 1500))
     try {
-      document.getElementById("nyllexAmount").innerHTML = `Nyllex: ${userData.nyllex}`
+      document.getElementById("nyllexAmount").innerHTML = `Nyllex: ${Math.round(userData.nyllex)}`
     } catch (err){
       console.error(err)
     }

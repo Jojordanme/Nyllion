@@ -28,7 +28,69 @@ img { background:rgb(40,40,50);}
 .radio {
   margin: 0.5rem;
 }
+#reading-box {
+  border: 3px solid #aa0000;
+  border-radius: 12px;
+  background-color: #111;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+.score-wrapper {
+  position: relative;
+  display: inline-block;
+}
 
+.score-popup {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+  font-family:"Lexend";
+  font-size: 18px;
+  opacity: 0;
+  pointer-events: none;
+  animation: slideFade 1s ease-out forwards;
+}
+
+.score-popup.positive {
+  color: #1eff00;
+}
+
+.score-popup.negative {
+  color: #ff1414;
+}
+
+@keyframes slideFade {
+  0% {
+    opacity: 0;
+    transform: translate(0px, -50%);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(40px, -50%);
+  }
+}
+.reading-title {
+  font-weight: bold;
+  color: #ff1900;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.reading-content {
+  max-height: 250px;     /* Controls box height */
+  overflow-y: scroll;    /* Makes it scroll */
+  padding: 10px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.6;
+}
 
 .radio input[type=radio] {
   position: absolute;

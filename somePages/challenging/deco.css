@@ -22,7 +22,31 @@ img { background:rgb(40,40,50);}
 
 
 
+#reading-box {
+  border: 3px solid #aa0000;
+  border-radius: 12px;
+  background-color: #111;
+  padding: 15px;
+  margin-bottom: 20px;
+}
 
+.reading-title {
+  font-weight: bold;
+  color: #ff1900;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.reading-content {
+  max-height: 250px;     /* Controls box height */
+  overflow-y: scroll;    /* Makes it scroll */
+  padding: 10px;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.6;
+}
 .show {
   display: block;
   visibility: visible;
@@ -70,7 +94,7 @@ h1 {
   font-family:"Lexend";
 }
 
-h2, label,p ,input {
+h2, h3, label,p ,input {
 
   font-family:"Lexend";
   color: white;
@@ -81,7 +105,7 @@ h2, label,p ,input {
   top:20px
 }
 
-h2 {
+h2, h3 {
   text-align: center;
 }
 ul {

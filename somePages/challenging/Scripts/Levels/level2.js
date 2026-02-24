@@ -46,65 +46,65 @@ Some experts worry that this change in lifestyle may affect teenagers’ physica
 
 Instead of completely limiting technology, many educators suggest encouraging balance. By managing screen time wisely and making space for outdoor activities, teenagers can enjoy the advantages of both worlds.`
 const quizData = [
-  
   {    
-    reading: readingPassage2,
-    question: "What is the main idea of the passage?",    
-    a: "Teenagers should stop using technology completely.",    
-    b: "Online games are harmful to teenagers.",    
-    c: "Teenagers’ free-time activities are changing, and balance is important.",    
-    d: "Outdoor sports are no longer popular.",    
-    correct: "c",    
-    explanation: `Teks membahas perubahan aktivitas remaja ke arah digital serta menekankan pentingnya menjaga keseimbangan antara teknologi dan kegiatan luar ruangan.`,    
-  },
-
-  {    
-    reading: readingPassage2,
-
-    question: "Why are outdoor activities becoming less common?",    
-    a: "Parks are closing.",    
-    b: "Teenagers prefer indoor digital activities.",    
-    c: "Parents do not allow teenagers outside.",    
-    d: "Schools give too much homework.",    
-    correct: "b",    
-    explanation: `Pada paragraf pertama dijelaskan bahwa remaja lebih memilih bermain game, streaming, dan media sosial di dalam rumah sehingga kegiatan luar ruangan berkurang.`,    
-  },
-
-  {    
-    reading: readingPassage2,
-
-    question: "What concern do experts have about too much screen time?",    
-    a: "It makes teenagers smarter.",    
-    b: "It improves communication skills.",    
-    c: "It may reduce social skills and physical health.",    
-    d: "It increases outdoor activities.",    
-    correct: "c",    
-    explanation: `Paragraf kedua menyebutkan kurangnya aktivitas fisik dapat berdampak pada kesehatan, dan terlalu banyak layar dapat mengurangi kemampuan sosial tatap muka.`,    
-  },
-
-  {    
-    reading: readingPassage2,
-
-    question: "Which of the following is mentioned as a benefit of online activities?",    
-    a: "Improving physical strength",    
-    b: "Building international friendships",    
-    c: "Reducing homework",    
-    d: "Saving money",    
-    correct: "b",    
-    explanation: `Teks menyebutkan bahwa remaja dapat membangun pertemanan global melalui aktivitas online.`,    
-  },
-
-  {    
-    reading: readingPassage2,
-
-    question: "What does the writer suggest teenagers should do?",    
-    a: "Avoid technology completely",    
-    b: "Spend all their time outdoors",    
-    c: "Use technology without limits",    
-    d: "Balance screen time and outdoor activities",    
+    reading: readingPassage1,
+    question: "Based on the passage, which statement best describes the writer’s primary objective?",    
+    a: "To argue that schools should completely eliminate printed textbooks",    
+    d: "To present both the strengths and weaknesses of digital learning in education",    
+    c: "To describe in detail how tablets and e-readers function",    
+    b: "To blame students for depending too much on technology",    
     correct: "d",    
-    explanation: `Di paragraf terakhir, penulis menyarankan pengelolaan waktu layar secara bijak dan tetap menyediakan waktu untuk aktivitas luar ruangan.`,    
-  }
+    explanation: `Teks membahas kelebihan seperti akses informasi cepat dan ramah lingkungan, serta kekurangan seperti gangguan konsentrasi dan kesenjangan akses.`,    
+  },
+
+  {    
+    reading: readingPassage1,
+
+    question: "According to the passage, how do digital materials contribute positively to environmental sustainability?",    
+    a: "They automatically improve students’ academic performance",    
+    b: "They minimize the consumption of paper resources",    
+    c: "They significantly reduce the use of electricity in schools",    
+    d: "They lower the overall cost of education systems",    
+    correct: "b",    
+    explanation: `Dalam paragraf pertama disebutkan bahwa materi digital mengurangi kebutuhan buku cetak, sehingga dapat membantu lingkungan.`,    
+  },
+
+  {
+    reading: readingPassage1,
+
+    question: "In the context of the passage, the phrase “widen the gap” is closest in meaning to ____.",    
+    a: "increase the difference between groups",    
+    b: "encourage stronger academic competition",    
+    c: "promote collaboration among students",    
+    d: "create equal opportunities for everyone",    
+    correct: "a",    
+    explanation: `Teks menjelaskan bahwa tidak semua siswa memiliki akses internet atau perangkat, sehingga perbedaan antara siswa mampu dan kurang mampu menjadi lebih besar.`,    
+  },
+
+  {    
+    reading: readingPassage1,
+
+    question: "Which of the following challenges related to digital learning is highlighted in the passage?",    
+    a: "Students become less socially interactive in classrooms",    
+    b: "Teachers struggle to maintain discipline during lessons",    
+    d: "Students may have lower comprehension when reading from screens",    
+    c: "Schools are forced to dramatically increase tuition fees",    
+    correct: "d",    
+    explanation: `Paragraf kedua menyebutkan penelitian yang menunjukkan bahwa membaca dari layar dapat mengurangi pemahaman dibandingkan teks cetak.`,    
+  },
+
+  {    
+    reading: readingPassage1,
+
+    question: "Why does the author recommend combining traditional and digital learning methods?",    
+    a: "Because digital learning represents modern educational trends",    
+    b: "Because printed books are considered outdated",    
+    c: "Because each method offers its own distinct advantages",    
+    d: "Because most students prefer printed textbooks",    
+    correct: "c",    
+    explanation: `Di akhir teks dijelaskan bahwa meskipun digital punya banyak keuntungan, pendekatan seimbang dianggap paling efektif karena memanfaatkan kelebihan keduanya.`,    
+  },
+ 
 ];
 const quizData2 = []
 let canActive = true
@@ -206,7 +206,7 @@ let eligble = false
 function loadQuiz() {
   deselectAnswers()
   if (questiontext) { questiontext.setAttribute("style", "color:white") }
-  
+
   const currentQuize = quizData[currentQuiz]
   questiontext.innerText = currentQuize.question
   count.innerHTML = "Question " + (currentQuiz + 1) + "/" + quizData.length
@@ -225,7 +225,7 @@ function loadQuiz() {
       document.getElementById("reading-text").innerHTML = ""
     }
   }
- 
+
   if (currentQuiz == quizData.length - 1) {
     count.style.color = "red"
 
@@ -356,7 +356,7 @@ submit.addEventListener("click", async () => {
             const docRef = doc(db, "users", loggedInUserId)
             const docSnap = await getDoc(docRef)
             const userData = docSnap.data()
-            if (userData.Level3 <= 1) {
+            if (userData.Level3 <= 2) {
               await updateDoc(docRef, {
                 Level3: userData.Level3 + 1
 
@@ -369,5 +369,16 @@ submit.addEventListener("click", async () => {
     }
   }
 })
+window.onload = async () => {
+  if (loggedInUserId) {
 
+
+    const docRef = doc(db, "users", loggedInUserId)
+    const docSnap = await getDoc(docRef)
+    const userData = docSnap.data()
+    if (userData.Level3 < 2) {
+      window.location.replace("ineligable.html")
+    }
+  }
+}
 

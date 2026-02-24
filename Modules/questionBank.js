@@ -1,5 +1,14 @@
 import { getRandomName } from "../Modules/names.js"
+let readingPassage1=`In recent years, many schools have started replacing traditional textbooks with digital devices such as tablets and laptops. Supporters argue that digital learning tools make education more interactive and accessible. Students can watch educational videos, participate in online discussions, and access updated information instantly. In addition, digital materials reduce the need for printed books, which may help the environment.
 
+  However, critics believe that excessive screen time can negatively affect students’ concentration and health. Some research suggests that reading from screens may reduce comprehension compared to reading printed texts. Furthermore, not all students have equal access to reliable internet connections or personal devices, which can widen the gap between privileged and underprivileged learners.
+
+  Although digital education offers many advantages, experts suggest that a balanced approach—combining traditional and digital methods—may be the most effective solution.`
+let readingPassage2= `In recent years, more teenagers have chosen to spend their free time indoors rather than outside. Many prefer playing online games, watching streaming platforms, or scrolling through social media. Technology allows them to connect with friends easily without leaving their homes. As a result, outdoor activities such as cycling, playing sports, or simply walking in the park have become less common.<br><br>
+
+Some experts worry that this change in lifestyle may affect teenagers’ physical and mental health. A lack of physical activity can lead to health problems, while too much screen time may reduce face-to-face social skills. However, others argue that online activities also offer benefits. Teenagers can develop problem-solving skills through games, learn new information, and even build global friendships.<br><br>
+
+Instead of completely limiting technology, many educators suggest encouraging balance. By managing screen time wisely and making space for outdoor activities, teenagers can enjoy the advantages of both worlds.`
 const possibleQuestions = {
   ez: [{
     question: "John __ very good at his job",
@@ -88,8 +97,8 @@ const possibleQuestions = {
   {
     question: "Which of the following sentences is in the negative form?",
     a: `${getRandomName(0)} does not write emails every day.`,
-    b: "Stevie writes emails every day.",
-    c: "Gibson is writing emails every day.",
+    b: `${getRandomName(0)} reads emails every day.`,
+    c: `${getRandomName(0)} is writing emails every day.`,
     d: "Brandon write emails every day.",
     correct: "a",
     explanation: `Kata "does not" merupakan kata negatif karena "not" adalah bahasa inggris dari "tidak"`,
@@ -106,7 +115,7 @@ const possibleQuestions = {
   {
     question: "Which of the following sentences is correct?",
     a: "Budi is wrote a book",
-    b: `${get} has reading the book.`,
+    b: `${getRandomName(0)} has reading the book.`,
     c: "Nova reads books every day",
     d: "Merton will reading a book tomorrow.",
     correct: "c",
@@ -330,7 +339,7 @@ const possibleQuestions = {
     explanation: "Kata 'works' merupakan kata kunci untuk present tense"
   },
   ],
-  med: [
+  med:[
 
 
     {    
@@ -630,6 +639,124 @@ const possibleQuestions = {
       correct: "c",
       explanation: `"This morning" menunjukkan waktu lampau dan bentuk pasif, jadi jawabannya "was made".`,
     }
+  ],
+  hard:[
+    {    
+      reading: readingPassage2,
+      question: "What is the main idea of the passage?",    
+      a: "Teenagers should stop using technology completely.",    
+      b: "Online games are harmful to teenagers.",    
+      c: "Teenagers’ free-time activities are changing, and balance is important.",    
+      d: "Outdoor sports are no longer popular.",    
+      correct: "c",    
+      explanation: `Teks membahas perubahan aktivitas remaja ke arah digital serta menekankan pentingnya menjaga keseimbangan antara teknologi dan kegiatan luar ruangan.`,    
+    },
+
+    {    
+      reading: readingPassage2,
+
+      question: "Why are outdoor activities becoming less common?",    
+      a: "Parks are closing.",    
+      b: "Teenagers prefer indoor digital activities.",    
+      c: "Parents do not allow teenagers outside.",    
+      d: "Schools give too much homework.",    
+      correct: "b",    
+      explanation: `Pada paragraf pertama dijelaskan bahwa remaja lebih memilih bermain game, streaming, dan media sosial di dalam rumah sehingga kegiatan luar ruangan berkurang.`,    
+    },
+
+    {    
+      reading: readingPassage2,
+
+      question: "What concern do experts have about too much screen time?",    
+      a: "It makes teenagers smarter.",    
+      b: "It improves communication skills.",    
+      c: "It may reduce social skills and physical health.",    
+      d: "It increases outdoor activities.",    
+      correct: "c",    
+      explanation: `Paragraf kedua menyebutkan kurangnya aktivitas fisik dapat berdampak pada kesehatan, dan terlalu banyak layar dapat mengurangi kemampuan sosial tatap muka.`,    
+    },
+
+    {    
+      reading: readingPassage2,
+
+      question: "Which of the following is mentioned as a benefit of online activities?",    
+      a: "Improving physical strength",    
+      b: "Building international friendships",    
+      c: "Reducing homework",    
+      d: "Saving money",    
+      correct: "b",    
+      explanation: `Teks menyebutkan bahwa remaja dapat membangun pertemanan global melalui aktivitas online.`,    
+    },
+
+    {    
+      reading: readingPassage2,
+
+      question: "What does the writer suggest teenagers should do?",    
+      a: "Avoid technology completely",    
+      b: "Spend all their time outdoors",    
+      c: "Use technology without limits",    
+      d: "Balance screen time and outdoor activities",    
+      correct: "d",    
+      explanation: `Di paragraf terakhir, penulis menyarankan pengelolaan waktu layar secara bijak dan tetap menyediakan waktu untuk aktivitas luar ruangan.`,    
+    },
+    {    
+      reading: readingPassage1,
+      question: "Based on the passage, which statement best describes the writer’s primary objective?",    
+      a: "To argue that schools should completely eliminate printed textbooks",    
+      d: "To present both the strengths and weaknesses of digital learning in education",    
+      c: "To describe in detail how tablets and e-readers function",    
+      b: "To blame students for depending too much on technology",    
+      correct: "d",    
+      explanation: `Teks membahas kelebihan seperti akses informasi cepat dan ramah lingkungan, serta kekurangan seperti gangguan konsentrasi dan kesenjangan akses.`,    
+    },
+
+    {    
+      reading: readingPassage1,
+
+      question: "According to the passage, how do digital materials contribute positively to environmental sustainability?",    
+      a: "They automatically improve students’ academic performance",    
+      b: "They minimize the consumption of paper resources",    
+      c: "They significantly reduce the use of electricity in schools",    
+      d: "They lower the overall cost of education systems",    
+      correct: "b",    
+      explanation: `Dalam paragraf pertama disebutkan bahwa materi digital mengurangi kebutuhan buku cetak, sehingga dapat membantu lingkungan.`,    
+    },
+
+    {
+      reading: readingPassage1,
+
+      question: "In the context of the passage, the phrase “widen the gap” is closest in meaning to ____.",    
+      a: "increase the difference between groups",    
+      b: "encourage stronger academic competition",    
+      c: "promote collaboration among students",    
+      d: "create equal opportunities for everyone",    
+      correct: "a",    
+      explanation: `Teks menjelaskan bahwa tidak semua siswa memiliki akses internet atau perangkat, sehingga perbedaan antara siswa mampu dan kurang mampu menjadi lebih besar.`,    
+    },
+
+    {    
+      reading: readingPassage1,
+
+      question: "Which of the following challenges related to digital learning is highlighted in the passage?",    
+      a: "Students become less socially interactive in classrooms",    
+      b: "Teachers struggle to maintain discipline during lessons",    
+      d: "Students may have lower comprehension when reading from screens",    
+      c: "Schools are forced to dramatically increase tuition fees",    
+      correct: "d",    
+      explanation: `Paragraf kedua menyebutkan penelitian yang menunjukkan bahwa membaca dari layar dapat mengurangi pemahaman dibandingkan teks cetak.`,    
+    },
+
+    {    
+      reading: readingPassage1,
+
+      question: "Why does the author recommend combining traditional and digital learning methods?",    
+      a: "Because digital learning represents modern educational trends",    
+      b: "Because printed books are considered outdated",    
+      c: "Because each method offers its own distinct advantages",    
+      d: "Because most students prefer printed textbooks",    
+      correct: "c",    
+      explanation: `Di akhir teks dijelaskan bahwa meskipun digital punya banyak keuntungan, pendekatan seimbang dianggap paling efektif karena memanfaatkan kelebihan keduanya.`,    
+    },
   ]
 
 }

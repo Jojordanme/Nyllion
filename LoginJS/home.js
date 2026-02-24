@@ -30,7 +30,7 @@ onAuthStateChanged(auth, (user) =>{
 
         document.getElementById("greetings").innerHTML = "Hello, "+userData.username+"!"
         document.getElementById("yourEmail").innerHTML = "Email:  "+userData.email+"!"
-        document.getElementById("nyllex").innerHTML = "Nyllex:  "+userData.nyllex+""
+        document.getElementById("nyllex").innerHTML = "Nyllex:  "+Math.round(userData.nyllex)+""
         document.getElementById("money").innerHTML = "$"+userData.money+""
       } else {
         console.log("No document found matching id")

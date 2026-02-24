@@ -140,8 +140,10 @@ function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
 function moreQuestions() {
-  if (quizData.length % 4 == 0){
+  if (quizData.length % 4 == 0 && quizData.length != 0){
     quizData.push(possibleQuestions.med[Math.floor(Math.random() * possibleQuestions.med.length)])
+  } else if(quizData.length % 10 == 0 && quizData.length != 0){
+    quizData.push(possibleQuestions.hard[Math.floor(Math.random() * possibleQuestions.hard.length)])
   } else {
     quizData.push(possibleQuestions.ez[Math.floor(Math.random() * possibleQuestions.ez.length)])
 
@@ -156,6 +158,7 @@ for (let i = 0; i < 3; i++) {
 const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
+  
   if (questiontext) { questiontext.setAttribute("style", "color:white") }
   moreQuestions()
   const currentQuize = quizData[currentQuiz]
@@ -164,6 +167,18 @@ function loadQuiz() {
   answers.forEach(answer => {
     answer.disabled = false;
   })
+  let el = document.getElementById("reading-box")
+  if (el){
+    if (currentQuize.reading){
+      if (el.classList.contains("hide")){
+        el.classList.remove("hide")
+      }
+      document.getElementById("reading-text").innerHTML = currentQuize.reading
+    } else {
+      el.classList.add("hide")
+      document.getElementById("reading-text").innerHTML = ""
+    }
+  }
   if (currentQuiz == quizData.length - 1) {
     count.style.color = "red"
 
@@ -222,7 +237,6 @@ function loadQuiz() {
     opt4.innerText = currentQuize.d
 
   } else {
-    console.log("no")
     esay.classList.remove("hide")
 
     opt1.classList.add("hide")
@@ -289,6 +303,24 @@ async function getMatchDoc(matchId) {
 
   return docRef
 }
+function showScorePopup(amount) {
+  const popup = document.createElement("span");
+  popup.classList.add("score-popup");
+
+  if (amount > 0) {
+    popup.classList.add("positive");
+    popup.textContent = "+" + amount;
+  } else {
+    popup.classList.add("negative");
+    popup.textContent = amount;
+  }
+
+  document.querySelector(".score-wrapper").appendChild(popup);
+
+  setTimeout(() => {
+    popup.remove();
+  }, 1000);
+}
 
 let ansuorOpt
 let audio = new Audio("sfx/Click.mp3");
@@ -299,7 +331,6 @@ submit.addEventListener("click", async () => {
     const matchData = matchDocSnap.data()
     const answer = getSelected()
     if (phase == 0) {
-
       ansuorOpt = answer
       if (answer) {
         answers.forEach(answerio => {
@@ -313,7 +344,13 @@ submit.addEventListener("click", async () => {
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
-          currentScore++
+          if (currentQuiz % 10 == 0 && currentQuiz != 0){
+            currentScore+=3
+            showScorePopup(3)
+          } else {
+            currentScore++
+            showScorePopup(1)
+          }
           
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
@@ -322,7 +359,13 @@ submit.addEventListener("click", async () => {
           labelOption.innerText += " ❌"
 
           questiontext.innerHTML = "SALAH!"
-          currentScore--
+          if (currentQuiz % 10 == 0 && currentQuiz != 0){
+            currentScore-=3
+            showScorePopup(-3)
+          } else {
+            currentScore--
+            showScorePopup(-1)
+          }
         }
         if(currentScore <= 0){
           currentScore = 0
@@ -344,7 +387,12 @@ submit.addEventListener("click", async () => {
 
           const answerEssay = document.getElementById("essay").value
           if (currentQuize.correct.includes(answerEssay.toLowerCase())) {
-            currentScore++
+            if (currentQuiz % 10 == 0){
+              currentScore+=3
+            } else {
+              currentScore++
+            }
+            
             questiontext.innerHTML = "BENAR!"
             questiontext.setAttribute("style", "color:rgb(0,255,0)")
 
@@ -372,51 +420,9 @@ submit.addEventListener("click", async () => {
       canActive = false
       phase = 0
       currentQuiz++
-      if (currentQuiz < quizData.length) {
-        if (quizData[currentQuiz - 1].a) {
-          labelOption.setAttribute("style", "color:white")
-          correctOption.setAttribute("style", "color:white")
-        }
-
-
-        loadQuiz()
-      } else {
-
-
-        if (currentScore <= Math.round(quizData.length / 2)) {
-          agj.innerHTML = "Butuh Latihan Lagi..."
-          quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
-      <center><button class="button-pathway-pushable" role="button"  onclick="location.reload()">
-      <span class="button-pathway-shadow"></span>
-      <span class="button-pathway-edge" style="background-color:rgb(0,120,0)!important"></span>
-      <span class="button-pathway-front text" style="background-color:rgb(0,180,0)!important">
-        <b>Retry</b>
-      </span>
-    </button></center>`
-        } else if (currentScore >= Math.round(quizData.length / 2) && currentScore != quizData.length) {
-          agj.innerHTML = "Bagus"
-          quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
-      <center><button class="button-pathway-pushable" role="button"  onclick="window.location.replace('${"pathway.html"}')">
-      <span class="button-pathway-shadow" style="background-color:rgb(120,0,0)!important"></span>
-      <span class="button-pathway-edge" style="background-color:rgb(120,0,0)!important"></span>
-      <span class="button-pathway-front text" style="background-color:rgb(180,0,0)!important">
-        <b>Back</b>
-      </span>
-    </button></center>`
-        } else if (currentScore == quizData.length) {
-          quiz.innerHTML = `<h2>Anda menjawab ${currentScore}/${quizData.length} pertanyaan benar</h2>
-      <center><button class="button-pathway-pushable" role="button"  onclick="location.replace('${"pathway.html"}')">
-      <span class="button-pathway-shadow" style="background-color:rgb(120,0,0)!important"></span>
-      <span class="button-pathway-edge" style="background-color:rgb(120,0,0)!important"></span>
-      <span class="button-pathway-front text" style="background-color:rgb(180,0,0)!important">
-        <b>Back</b>
-      </span>
-    </button></center>`
-          agj.innerHTML = "Sangat Baik"
-        }
-      
-        agj.innerHTML = agj.innerHTML + " " + Math.floor(currentScore / quizData.length * 100) + "%"
-      }
+      labelOption.setAttribute("style", "color:white")
+      correctOption.setAttribute("style", "color:white")
+      loadQuiz()      
     }
   }
 })

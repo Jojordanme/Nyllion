@@ -7,7 +7,7 @@ import { getFirestore, getDoc, doc } from "https://www.gstatic.com/firebasejs/11
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  ,
+  apiKey: "AIzaSyAKGaSBlKuGY3WTZXgA5TBuTD6FOXQDcGk",
   authDomain: "nyllion-2f95f.firebaseapp.com",
   databaseURL: "https://nyllion-2f95f-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "nyllion-2f95f",
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   for (let i = 1; i <= 10; i++) {
 
-    if (i-1 >= userData.Level2) {
+    if (i - 1 >= userData.Level2) {
       document.getElementById(`lvl${i}`).classList.add("locked")
       document.getElementById(`lvl${i}`).onclick = "window.location.replace('ineligable.html')"
 

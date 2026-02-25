@@ -112,7 +112,7 @@ async function matchmakingFunction() {
       document.getElementById("matchmaking").innerHTML = `<span class="button-82-shadow"></span>
         <span class="button-82-edge" style="background-color:rgb(0,120,0)!important"></span>
         <span class="button-82-front text" style="background-color:rgb(0,180,0)!important">
-          <span style="color:rgb(0,180,0)!important">A</span> Begin Matchmaking <span style="color:rgb(0,180,0)!important">A</span>
+          <span style="color:rgb(0,180,0)!important">A</span> Play <span style="color:rgb(0,180,0)!important">A</span>
         </span>`
     } catch (error) {
       console.log("Error deleting document:" + error)
@@ -132,7 +132,7 @@ async function matchmakingFunction() {
       document.getElementById("matchmaking").innerHTML = `<span class="button-82-shadow"></span>
         <span class="button-82-edge" style="background-color:rgb(120,0,0)!important"></span>
         <span class="button-82-front text" style="background-color:rgb(180,0,0)!important">
-          <span style="color:rgb(180,0,0)!important">AA</span> Stop Matchmaking <span style="color:rgb(180,0,0)!important">AA</span>
+          <span style="color:rgb(180,0,0)!important">AA</span> Exit <span style="color:rgb(180,0,0)!important">AA</span>
         </span>`
       document.getElementById("matchmakingText").innerHTML = "Waiting for match"
       interval = setInterval(async () => {

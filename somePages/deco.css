@@ -29,7 +29,7 @@ img { background:rgb(40,40,50);}
   margin: 0.5rem;
 }
 #reading-box {
-  border: 3px solid #aa0000;
+  border: 3px solid #03a800;
   border-radius: 12px;
   background-color: #111;
   padding: 15px;
@@ -76,7 +76,7 @@ img { background:rgb(40,40,50);}
 }
 .reading-title {
   font-weight: bold;
-  color: #ff1900;
+  color: #06b711;
   margin-bottom: 10px;
   font-size: 18px;
 }

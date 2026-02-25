@@ -140,10 +140,12 @@ function deselectAnswers() {
   answers.forEach(answer => answer.checked = false)
 }
 function moreQuestions() {
-  if (quizData.length % 4 == 0 && quizData.length != 0){
-    quizData.push(possibleQuestions.med[Math.floor(Math.random() * possibleQuestions.med.length)])
-  } else if(quizData.length % 10 == 0 && quizData.length != 0){
+  if (quizData.length % 25 == 0 && quizData.length != 0) {
+    quizData.push(possibleQuestions.expert[Math.floor(Math.random() * possibleQuestions.expert.length)])
+  } else if (quizData.length % 10 == 0 && quizData.length != 0) {
     quizData.push(possibleQuestions.hard[Math.floor(Math.random() * possibleQuestions.hard.length)])
+  } else if (quizData.length % 4 == 0 && quizData.length != 0) {
+    quizData.push(possibleQuestions.med[Math.floor(Math.random() * possibleQuestions.med.length)])
   } else {
     quizData.push(possibleQuestions.ez[Math.floor(Math.random() * possibleQuestions.ez.length)])
 
@@ -158,7 +160,7 @@ for (let i = 0; i < 3; i++) {
 const test = document.getElementById("test")
 function loadQuiz() {
   deselectAnswers()
-  
+
   if (questiontext) { questiontext.setAttribute("style", "color:white") }
   moreQuestions()
   const currentQuize = quizData[currentQuiz]
@@ -168,9 +170,9 @@ function loadQuiz() {
     answer.disabled = false;
   })
   let el = document.getElementById("reading-box")
-  if (el){
-    if (currentQuize.reading){
-      if (el.classList.contains("hide")){
+  if (el) {
+    if (currentQuize.reading) {
+      if (el.classList.contains("hide")) {
         el.classList.remove("hide")
       }
       document.getElementById("reading-text").innerHTML = currentQuize.reading
@@ -326,7 +328,7 @@ let ansuorOpt
 let audio = new Audio("sfx/Click.mp3");
 submit.addEventListener("click", async () => {
   if (canActive) {
-    const matchDocRef  = await getMatchDoc(idTrust)
+    const matchDocRef = await getMatchDoc(idTrust)
     const matchDocSnap = await getDoc(matchDocRef)
     const matchData = matchDocSnap.data()
     const answer = getSelected()
@@ -344,14 +346,14 @@ submit.addEventListener("click", async () => {
           questiontext.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.setAttribute("style", "color:rgb(0,255,0)")
           labelOption.innerText += " ✅"
-          if (currentQuiz % 10 == 0 && currentQuiz != 0){
-            currentScore+=3
+          if ((currentQuiz % 10 == 0 || currentQuiz % 25 == 0) && currentQuiz != 0) {
+            currentScore += 3
             showScorePopup(3)
           } else {
             currentScore++
             showScorePopup(1)
           }
-          
+
         } else {
           explanation.innerHTML = `<b>Explanasi: ${quizData[currentQuiz].explanation}</b>`
           labelOption.setAttribute("style", "color:rgb(255,0,0)")
@@ -359,15 +361,15 @@ submit.addEventListener("click", async () => {
           labelOption.innerText += " ❌"
 
           questiontext.innerHTML = "SALAH!"
-          if (currentQuiz % 10 == 0 && currentQuiz != 0){
-            currentScore-=3
+          if ((currentQuiz % 10 == 0 || currentQuiz % 25 == 0) && currentQuiz != 0) {
+            currentScore -= 3
             showScorePopup(-3)
           } else {
             currentScore--
             showScorePopup(-1)
           }
         }
-        if(currentScore <= 0){
+        if (currentScore <= 0) {
           currentScore = 0
         }
         updateDoc(matchDocRef, {
@@ -387,12 +389,12 @@ submit.addEventListener("click", async () => {
 
           const answerEssay = document.getElementById("essay").value
           if (currentQuize.correct.includes(answerEssay.toLowerCase())) {
-            if (currentQuiz % 10 == 0){
-              currentScore+=3
+            if (currentQuiz % 10 == 0) {
+              currentScore += 3
             } else {
               currentScore++
             }
-            
+
             questiontext.innerHTML = "BENAR!"
             questiontext.setAttribute("style", "color:rgb(0,255,0)")
 
@@ -422,7 +424,7 @@ submit.addEventListener("click", async () => {
       currentQuiz++
       labelOption.setAttribute("style", "color:white")
       correctOption.setAttribute("style", "color:white")
-      loadQuiz()      
+      loadQuiz()
     }
   }
 })
@@ -436,7 +438,7 @@ window.onload = async () => {
   agj.innerHTML = "Test"
   if (loggedInUserId) {
 
-    
+
 
     // Extract the part between "?=$&" and "|"
     const match = window.location.href.match(/\?=\$&([^|]+)/);
@@ -447,7 +449,7 @@ window.onload = async () => {
 
 
     if (match) {
-      
+
 
       var matchDocRef = await getMatchDoc(idTrust)
       var matchDocSnap = await getDoc(matchDocRef)
@@ -485,7 +487,7 @@ window.onload = async () => {
         }
         async function keepGoingUntilTimesUp() {
           if (matchData) {
-            
+
             document.getElementById("ptsCounter").innerHTML = `Point: ${currentScore}`
 
             if (timeLeft < 0 || matchData["timerfromu2"] < 0) {
@@ -510,11 +512,11 @@ window.onload = async () => {
                   nyllex: Math.round(resultWin.newRating)
                 });
               }
-              setTimeout(()=>{
+              setTimeout(() => {
                 agj.innerHTML = "Menghitung..."
-                
+
                 setTimeout(async () => {
-                 
+
                   await new Promise(resolve => setTimeout(resolve, 1000))
                   agj.innerHTML = `${userData.username}: `
                   await new Promise(resolve => setTimeout(resolve, 1500))
@@ -526,8 +528,8 @@ window.onload = async () => {
                   agj.innerHTML = line1 + `<br>${userDat2a.username}: ${matchData["point" + opponentPlayer]}`
                   await new Promise(resolve => setTimeout(resolve, 1500))
                   if (matchData["point" + player] < matchData["point" + opponentPlayer]) {
-                    
-                    agj.innerHTML = agj.innerHTML+`<br>Defeat`
+
+                    agj.innerHTML = agj.innerHTML + `<br>Defeat`
                     agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(resultLoss.newRating)}`
 
                   } else {
@@ -535,23 +537,23 @@ window.onload = async () => {
                     agj.innerHTML += `<br>Your new Nyllex: ${Math.floor(resultWin.newRating)}`
 
                   }
-                  
-                  
-                 setTimeout(async()=>{
-                   
-                   try {
 
-                     await deleteDoc(matchDocRef)
-                   } catch (error) {
-                     console.log("Error deleting waiting document:" + error)
-                   }
-                   setTimeout(async()=>{
+
+                  setTimeout(async () => {
+
+                    try {
+
+                      await deleteDoc(matchDocRef)
+                    } catch (error) {
+                      console.log("Error deleting waiting document:" + error)
+                    }
+                    setTimeout(async () => {
                       window.location.replace("../levels.html")
 
-                   },3000)
-                 },2000)
-                },4000)
-              },3900)
+                    }, 3000)
+                  }, 2000)
+                }, 4000)
+              }, 3900)
 
 
             } else {
@@ -571,9 +573,9 @@ window.onload = async () => {
           const docRe2f = doc(db, "users", matchData["user" + opponentPlayer + "ID"])
           const docSna2p = await getDoc(docRe2f)
           const userDat2a = docSna2p.data()
-          agj.innerHTML = `${userData.username}`
+          agj.innerHTML = `${userData.username} (${Math.floor(userData.nyllex)})`
           await new Promise(resolve => setTimeout(resolve, 1000))
-          agj.innerHTML = `${userData.username}<br> vs`
+          agj.innerHTML = `${userData.username} (${Math.floor(userData.nyllex)})<br> vs`
           await new Promise(resolve => setTimeout(resolve, 1000))
           agj.innerHTML = `${userData.username} (${Math.floor(userData.nyllex)})<br> vs<br> ${userDat2a.username} (${Math.floor(userDat2a.nyllex)})`
           await new Promise(resolve => setTimeout(resolve, 2000))
@@ -583,15 +585,15 @@ window.onload = async () => {
 
           });
 
-          mainInterval = setInterval(async() => {
+          mainInterval = setInterval(async () => {
             timeLeft--
-           await onSnapshot(matchDocRef, async (snap) => {
+            await onSnapshot(matchDocRef, async (snap) => {
               if (snap.exists()) {
                 matchData = snap.data();
 
-                } else {
-                  window.location.replace("../levels.html")
-                }
+              } else {
+                window.location.replace("../levels.html")
+              }
 
             });
 
@@ -600,35 +602,35 @@ window.onload = async () => {
 
               ["timerfromu" + player]: timeLeft,
             });
-           
+
 
             document.getElementById("stopwatchplacement").innerHTML = matchData["timerfromu" + player] + " Seconds"
-            
+
           }, 1000)
           agj.innerHTML = ""
           keepGoingUntilTimesUp(matchDocRef, matchData)
-          
+
           loadQuiz()
-         for (let i=5;i>0;i--){
-           
-           
-           await new Promise (resolve => {
-             setTimeout(()=>{
-               if (i > 2){
-                 agj.innerHTML = i - 2
-               } else if (i == 2){
-                 agj.innerHTML = "GO!"
-               } else {
-                 agj.innerHTML = ""
-                 quiz.classList.remove("hide")
-               }
-               resolve()
-              },1000)
-           });
-         }
+          for (let i = 5; i > 0; i--) {
+
+
+            await new Promise(resolve => {
+              setTimeout(() => {
+                if (i > 2) {
+                  agj.innerHTML = i - 2
+                } else if (i == 2) {
+                  agj.innerHTML = "GO!"
+                } else {
+                  agj.innerHTML = ""
+                  quiz.classList.remove("hide")
+                }
+                resolve()
+              }, 1000)
+            });
+          }
         } else {
           agj.innerHTML = "Lawan disconnect"
-          setTimeout(async()=>{
+          setTimeout(async () => {
             if (matchDocSnap.exists()) {
               try {
                 await deleteDoc(matchDocRef)
@@ -639,18 +641,23 @@ window.onload = async () => {
 
             }
           })
-          
+
 
         }
 
 
       }
     } else {
-        window.location.replace("../levels.html")
-      
+      window.location.replace("../levels.html")
+
     }
 
 
 
   }
 }
+
+window.addEventListener("beforeunload", function (e) {
+  e.preventDefault();
+  e.returnValue = "";
+});

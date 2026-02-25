@@ -51,6 +51,7 @@ function getStarted() {
     
     <br>
     <br>
+    </center>
     `
 
 

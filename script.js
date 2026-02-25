@@ -32,33 +32,26 @@ function getStarted() {
 
   mainSections[0].innerHTML = ""
   setTimeout(() => {
-    mainSections[0].innerHTML = `<center><h1>Pilih Tingkat Kesulitan</h1><br><br><button class="button-82-pushable" role="button" id="beginner">
+    mainSections[0].innerHTML = `<center><h1>Pilih Cara Belajar</h1><br><br><button class="button-82-pushable" role="button" id="quizTP">
       <span class="button-82-shadow"></span>
-      <span class="button-82-edge" style="background-color:rgb(0,120,0)!important"></span>
-      <span class="button-82-front text" style="background-color:rgb(0,180,0)!important">
-        <span style="color:rgb(0,180,0)!important">A</span> Beginner <span style="color:rgb(0,180,0)!important">A</span>
+      <span class="button-82-edge" style="background-color:rgb(0,0,120)!important"></span>
+      <span class="button-82-front text" style="background-color:rgb(0,0,180)!important">
+        <span style="color:rgb(0,0,180)!important">A</span> Quiz <span style="color:rgb(0,0,180)!important">A</span>
       </span>
     </button><br>
     <br>
-    <span><button class="button-82-pushable" role="button" id="intermidiate" >
+    <span><button class="button-82-pushable" role="button" id="battleTP" >
       <span class="button-82-shadow"></span>
-      <span class="button-82-edge" style="background-color:rgb(120,120,0)!important"></span>
-      <span class="button-82-front text" style="background-color:rgb(180,180,0)!important">
+      <span class="button-82-edge" style="background-color:rgb(120,0,0)!important"></span>
+      <span class="button-82-front text" style="background-color:rgb(180,0,0)!important">
         
-        Intermediate
+        Battle
       </span>
     </button></span>
     
     <br>
     <br>
-    <button class="button-82-pushable" role="button" id="advanced">
-      <span class="button-82-shadow"></span>
-      <span class="button-82-edge" ></span>
-      <span class="button-82-front text" >
-        <span style="color:hsl(345deg 100% 47%)!important">A</span>
-        Challenging <span style="color:hsl(345deg 100% 47%)!important">A</span>
-      </span>
-    </button></center>`
+    `
 
 
   }, 1000)

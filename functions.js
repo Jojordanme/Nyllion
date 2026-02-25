@@ -134,18 +134,18 @@ window.onload = async () => {
 
 updateBtnHovers()
 
-waitForElm('#beginner').then((elm) => {
+waitForElm('#quizTP').then((elm) => {
   updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
     audio.play()
     await new Promise(resolve => setTimeout(resolve, 200))
-    window.location.href = "somePages/beginner/pathway.html"
+    window.location.href = "selection.html"
 
   })
 });
 
-waitForElm('#intermidiate').then((elm) => {
+waitForElm('#battleTP').then((elm) => {
   updateBtnHovers()
   console.log('Element is ready');
   elm.addEventListener("click", async () => {
@@ -154,18 +154,7 @@ waitForElm('#intermidiate').then((elm) => {
 
     audio.play()
     await new Promise(resolve => setTimeout(resolve, 200))
-    window.location.href = "somePages/intermidiate/pathway.html"
+    window.location.href = "levels.html"
 
   })
-});
-waitForElm('#advanced').then((elm) => {
-  updateBtnHovers()
-  console.log('Element is ready');
-  elm.addEventListener("click", async () => {
-    
-    audio.play()
-    await new Promise(resolve => setTimeout(resolve, 200))
-    window.location.href = "somePages/challenging/pathway.html"
-
-  })
-});
+})

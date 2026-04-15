@@ -86,6 +86,19 @@ if (localStorage.getItem('loggedInUserId')){
     }
 
   }
+  if (!userData.matchesPlayed){
+    try {
+      await updateDoc(docRef, {
+        matchesPlayed: {}
+      })
+    }
+  }
+  const nyllexDebtRef = doc(db,"NyllexDebt",localStorage.getItem('loggedInUserId'))
+  const nyllexDebtSnap = await getDoc(nyllexDebtRef)
+  if (nyllexDebtSnap.exists()){
+    const nyllexDebtData = nyllexDebtSnap.data()
+    
+  }
 }
 }
 addFieldsThatHasntBeenAdded()

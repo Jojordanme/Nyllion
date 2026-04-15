@@ -21,7 +21,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)
 const auth = getAuth(app)
 const loggedInUserId = localStorage.getItem('loggedInUserId');
-
+let refreshProtection = true
 let quizData = []
 let canActive = true
 const agj = document.getElementById("yourgoodness")
@@ -633,6 +633,7 @@ window.onload = async () => {
           setTimeout(async () => {
             if (matchDocSnap.exists()) {
               try {
+                refreshProtection = false
                 await deleteDoc(matchDocRef)
                 window.location.replace("../levels.html")
               } catch (Err) {
@@ -658,6 +659,9 @@ window.onload = async () => {
 }
 
 window.addEventListener("beforeunload", function (e) {
-  e.preventDefault();
+  if (refreshProtection){
+    e.preventDefault();
   e.returnValue = "";
+  }
+  
 });

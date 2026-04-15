@@ -21,6 +21,7 @@ const firebaseConfig = {
 let app;
 let db;
 let auth;
+let ourOwnStudyPlace = false
 try {
   app = initializeApp(firebaseConfig);
   db = getFirestore(app);
@@ -166,7 +167,9 @@ window.onload = async() => {
     window.location.href = "login.html"
     return
   }
-  
+  if (window.location.href.includes("?=study")){
+    ourOwnStudyPlace = true
+  }
   do{
     let {userData, docRef} = await getData(localStorage.getItem('loggedInUserId'))
     console.log(userData)

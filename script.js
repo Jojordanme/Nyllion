@@ -16,12 +16,6 @@ closeBtn.addEventListener('click', function() {
 
 
 
-
-
-
-
-
-
 const mainSections = document.getElementsByClassName("main")
 function signin() {
   window.location.href = "login.html"

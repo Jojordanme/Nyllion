@@ -11,7 +11,7 @@ document.addEventListener('visibilitychange', function() {
     }
     
 });
-
+document.body.style = "background-image:url('../../../filesafter1211/3D325D.png')!important"
 let agj = document.getElementById("yourgoodness")
 let placement = document.getElementById("stopwatchplacement")
 

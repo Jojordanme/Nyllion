@@ -26,7 +26,7 @@ function getStarted() {
   mainSections[0].style = "background-image:url('filesafter1211/whiteahh.png');background-size:cover;background-position:center;"
   mainSections[0].innerHTML = ""
   setTimeout(() => {
-    mainSections[0].innerHTML = `<div style="position:relative!important;left:42.5%"><h1>Pilih Cara Belajar</h1><br><br><button class="button-82-pushable" style="position:relative!important;left:18.5%" role="button" id="quizTP">
+    mainSections[0].innerHTML = `<div><h1>Pilih Cara Belajar</h1><br><br><button role="button" id="quizTP">
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" style="background-color:rgb(0,0,120)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(0,0,180)!important">
@@ -34,7 +34,7 @@ function getStarted() {
       </span>
     </button><br>
     <br>
-    <span><button class="button-82-pushable" style="position:relative!important;left:23%"  role="button" id="battleTP" >
+    <span><button class="button-82-pushable"  role="button" id="battleTP" >
       <span class="button-82-shadow"></span>
       <span class="button-82-edge" style="background-color:rgb(120,0,0)!important"></span>
       <span class="button-82-front text" style="background-color:rgb(180,0,0)!important">
